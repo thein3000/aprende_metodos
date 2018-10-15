@@ -1,0 +1,35 @@
+{% extends "../base/base_main.html" %}
+
+{% block title %}Resumen de movimientos{% endblock title %}
+{% block content_center %}
+
+
+<table cellpadding="0" cellspacing="0" border="0" id="example">
+     <thead>
+         <tr>
+           <th>Id</th>
+           <th>Descripción</th>
+         </tr>
+     </thead>
+     <tbody></tbody>
+</table>
+
+
+<script type="text/javascript" language="javascript" class="init">
+     $(document).ready(function() {
+         $('#example').dataTable( {
+             "processing": true,
+             "ajax": {
+                 "processing": true,
+                 "url": "{% url 'movement_data' %}",
+                 "dataSrc": ""
+             },
+             "columns": [
+                     { "data": "pk" },
+                     { "data": "fields.detail" }
+                 ]
+         } );
+     } );
+ </script>
+
+{% endblock content_center %}

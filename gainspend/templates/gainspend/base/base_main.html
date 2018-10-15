@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  {% block head %}
+  <head>
+    <meta charset="utf-8">
+    <title>
+      {% block title %}GainSpend{% endblock title %}
+    </title>
+
+    {% block stylesheets %}
+      {% include "gainspend/base/base_head_stylesheets.html" %}
+    {% endblock stylesheets %}
+
+    {% block scripts %}
+      {% include "gainspend/base/base_head_scripts.html" %}
+    {% endblock scripts %}
+  </head>
+  {% endblock head %}
+
+  {% block body %}
+  <body>
+    {% block header %}
+
+    {% endblock header %}
+
+    {% block content %}
+      {% block content_header %}
+
+      {% endblock content_header %}
+
+      {% block content_center %}
+
+      {% endblock content_center %}
+    {% endblock content %}
+
+    {% block navigation %}
+      {% include "gainspend/base/base_navigation.html" %}
+    {% endblock navigation %}
+  </body>
+  {% endblock body %}
+</html>
