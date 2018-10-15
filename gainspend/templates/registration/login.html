@@ -1,0 +1,33 @@
+{% extends "../gainspend/base/base_main.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock title %}
+
+{% block header %}{% endblock header %}
+
+{% block navigation %}{% endblock navigation %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'gainspend/authentification/login.css' %}">
+{% endblock stylesheets %}
+
+
+
+{% block content %}
+<div class="valign-wrapper login_background  grey darken-4">
+  <div class="container row">
+    <div class="card col s6 offset-s3">
+      <div class="card-content">
+        <h2 class="center-align">GainSpend</h2>
+        <span class="card-title">Sign in</span>
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn orange">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,22 +1,22 @@
 {% extends "../base/base_main.html" %}
 
-{% block title %}Resumen de movimientos{% endblock title %}
+{% block title %}Movement summary{% endblock title %}
 {% block content_center %}
 
 <div class="container">
   <div class="card">
     <div class="card-content">
       <div class="card-title">
-        Movimientos
+        Movements
       </div>
       <table class="display cell-border" width="100%" cellpadding="0" cellspacing="0" border="0" id="example">
         <thead>
           <tr>
             <th>Id</th>
-            <th>Cantidad</th>
-            <th>Descripción</th>
-            <th>Categoria</th>
-            <th>Fecha</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Date</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -24,7 +24,6 @@
     </div>
   </div>
 </div>
-
 
 <script type="text/javascript" language="javascript" class="init">
      $(document).ready(function() {
