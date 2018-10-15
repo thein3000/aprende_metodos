@@ -1,0 +1,25 @@
+{% load static %}
+
+<ul id="slide-out" class="sidenav">
+  <li>
+    <div class="user-view" style="height: 175px;">
+      <div class="background" style="background-color:black;">
+        <img height="205" style="opacity: 0.7;" src="{% static 'images/money.jpg' %}">
+      </div>
+      <span class="white-text name">John Doe</span>
+      <span class="white-text email">jdandturk@gmail.com</span>
+    </div>
+  </li>
+  <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+  <li><a href="#!">Second Link</a></li>
+  <li><div class="divider"></div></li>
+  <li><a class="subheader">Subheader</a></li>
+  <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+</ul>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+   $('.sidenav').sidenav();
+  });
+</script>

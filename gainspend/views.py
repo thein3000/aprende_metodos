@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import TableMovements
+from django.http import HttpResponse
+from django.core import serializers
 
 def main_dashboard(request):
     movements = TableMovements.objects.all()
@@ -7,10 +9,6 @@ def main_dashboard(request):
         "movements": movements
     }
     return render(request, 'gainspend/pages/main_dashboard.html', context)
-
-
-from django.http import HttpResponse
-from django.core import serializers
 
 def movement_data(request):
     movements = TableMovements.objects.all()
