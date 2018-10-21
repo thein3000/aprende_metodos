@@ -1,15 +1,54 @@
 {% extends "../base/base_main.html" %}
-
+{% load humanize %}
 {% block title %}Movement summary{% endblock title %}
 {% block content_center %}
 
 <div class="container">
   <div class="card">
+    <div class="row">
+      <div data-target="income_modal" class="modal-trigger waves-effect waves-light btn col s4 m4 green">
+        Add income
+      </div>
+      <div data-target="expense_modal" class="modal-trigger waves-effect waves-light btn col s4 m4 red">
+        Add expense
+      </div>
+      <div data-target="transfer_modal" class="modal-trigger waves-effect waves-light btn col s4 m4 purple">
+        Transfer
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title">
+        Movement summary
+      </div>
+      <table>
+        <tbody>
+          <tr class="green lighten-4">
+            <td><strong>Total income</strong></td>
+            <td>${{total_income|floatformat:2|intcomma }}</td>
+          </tr>
+          <tr class="red lighten-4">
+            <td><strong>Total expenses</strong></td>
+            <td>${{total_expenses|floatformat:2|intcomma}}</td>
+          </tr>
+          <tr class="">
+            <td><strong>Current capital</strong></td>
+            <td>${{current_capital|floatformat:2|intcomma }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="card">
     <div class="card-content">
       <div class="card-title">
         Movements
       </div>
-      <table class="display cell-border" width="100%" cellpadding="0" cellspacing="0" border="0" id="example">
+      <table class="display cell-border" width="100%" cellpadding="0" cellspacing="0" border="0" id="movements_datatable">
         <thead>
           <tr>
             <th>Id</th>
@@ -25,24 +64,148 @@
   </div>
 </div>
 
+<!-- Modal Structure -->
+<div id="income_modal" class="modal">
+  <form id="form_income" action="register_income/" method="post">
+    <div class="modal-content">
+      <h4>Register income</h4>
+      {% csrf_token %}
+      {{income_form}}
+    </div>
+    <div class="modal-footer">
+      <input type="submit" class="modal-close waves-effect waves-green btn green lighten-1 white-text" value="Register">
+    </div>
+  </form>
+</div>
+
+<div id="expense_modal" class="modal">
+  <form id="form_expense" action="register_expense/" method="post">
+    <div class="modal-content">
+      <h4>Register expense</h4>
+      {% csrf_token %}
+      {{expense_form}}
+    </div>
+    <div class="modal-footer">
+      <input type="submit" class="modal-close waves-effect waves-green btn red lighten-2 white-text" value="Register">
+    </div>
+  </form>
+</div>
+
+<div id="transfer_modal" class="modal">
+  <form id="form_transfer" action="register_transfer/" method="post">
+    <div class="modal-content">
+      <h4>Register transfer</h4>
+      {% csrf_token %}
+      {{transfer_form}}
+    </div>
+    <div class="modal-footer">
+      <input type="submit" class="modal-close waves-effect waves-green btn purple lighten-2 white-text" value="Register">
+    </div>
+  </form>
+</div>
+
 <script type="text/javascript" language="javascript" class="init">
-     $(document).ready(function() {
-         $('#example').dataTable( {
-             "processing": true,
-             "ajax": {
-                 "processing": true,
-                 "url": "{% url 'movement_data' %}",
-                 "dataSrc": ""
-             },
-             "columns": [
-                     { "data": "pk" },
-                     { "data": "fields.amount" },
-                     { "data": "fields.detail" },
-                     { "data": "fields.category" },
-                     { "data": "fields.date" }
-                 ]
-         } );
-     } );
+  $(document).ready(function() {
+    var movements_datatable = $('#movements_datatable').dataTable( {
+      "processing": true,
+      "order": [],
+      "lengthChange": false,
+      "ajax": {
+        "processing": true,
+        "url": "{% url 'movement_data' %}",
+        "dataSrc": ""
+      },
+      'rowCallback': function(row, data, index){
+        console.log();
+        if(data.fields.sign != "+"){
+          $(row).find('td:eq(1)').css('color','red');
+          $(row).find('td:eq(1)').css('font-weight','bold');
+        } else {
+          $(row).find('td:eq(1)').css('color','green');
+          $(row).find('td:eq(1)').css('font-weight','bold');
+        }
+      },
+      "columns": [
+        { "data": "pk" },
+        { "data": "fields.amount" },
+        { "data": "fields.detail" },
+        { "data": "fields.category" },
+        { "data": "fields.date" }
+      ]
+    } );
+
+    $('.modal').modal();
+    $('select').formSelect();
+
+
+    $('#form_income').on('submit', function(event){
+      event.preventDefault();
+      console.log("form submitted!")  // sanity check
+      register_income();
+    } );
+
+    function register_income() {
+      console.log("create post is working!") // sanity check
+      $.ajax({
+        url : "register_income/", // the endpoint
+        type : "POST", // http method
+        data : {
+          amount : $('#id_income_amount').val(),
+          detail : $('#id_income_detail').val(),
+          date : $('#id_income_date').val(),
+          income_account : $('#id_income_account').val(),
+          income_category : $('#id_income_category').val()
+        }, // data sent with the post request
+        // handle a successful response
+        success : function(json) {
+          $('#id_income_amount').val('')
+          $('#id_income_detail').val('')
+          console.log(json); // log the returned json to the console
+          console.log("success"); // another sanity check
+          $('#movements_datatable').DataTable().ajax.reload();
+        },
+        // handle a non-successful response
+        error : function(xhr,errmsg,err) {
+          alert("We have encountered an error! (" + errmsg +")")
+          console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        }
+      });
+    };
+
+    $('#form_expense').on('submit', function(event){
+      event.preventDefault();
+      console.log("form submitted!")  // sanity check
+      register_expense();
+    } );
+
+    function register_expense() {
+      console.log("create post is working!") // sanity check
+      $.ajax({
+        url : "register_expense/", // the endpoint
+        type : "POST", // http method
+        data : {
+          amount : $('#id_expense_amount').val(),
+          detail : $('#id_expense_detail').val(),
+          date : $('#id_expense_date').val(),
+          expense_account : $('#id_expense_account').val(),
+          expense_category : $('#id_expense_category').val()
+        }, // data sent with the post request
+        // handle a successful response
+        success : function(json) {
+          $('#id_expense_amount').val('')
+          $('#id_expense_detail').val('')
+          console.log(json); // log the returned json to the console
+          console.log("success"); // another sanity check
+          $('#movements_datatable').DataTable().ajax.reload();
+        },
+        // handle a non-successful response
+        error : function(xhr,errmsg,err) {
+          alert("We have encountered an error! (" + errmsg +")")
+          console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        }
+      });
+    };
+  });
  </script>
 
 {% endblock content_center %}
