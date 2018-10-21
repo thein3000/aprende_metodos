@@ -23,22 +23,30 @@
       <div class="card-title">
         Movement summary
       </div>
-      <table>
-        <tbody>
-          <tr class="green lighten-4">
-            <td><strong>Total income</strong></td>
-            <td>${{total_income|floatformat:2|intcomma }}</td>
-          </tr>
-          <tr class="red lighten-4">
-            <td><strong>Total expenses</strong></td>
-            <td>${{total_expenses|floatformat:2|intcomma}}</td>
-          </tr>
-          <tr class="">
-            <td><strong>Current capital</strong></td>
-            <td>${{current_capital|floatformat:2|intcomma }}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="row">
+        <table class="col s12 m8">
+          <tbody>
+            <tr>
+              <td><strong>Total income</strong></td>
+              <td class="green lighten-4">${{total_income|floatformat:2|intcomma }}</td>
+            </tr>
+            <tr>
+              <td><strong>Total expenses</strong></td>
+              <td class="red lighten-4">${{total_expenses|floatformat:2|intcomma}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="col s12 m4 z-depth-1 ">
+          <tbody>
+            <tr >
+              <td class="center-align"><strong>Current capital</strong></td>
+            </tr>
+            <tr>
+              <td class=" flow-text center-align"><p >${{current_capital|floatformat:2|intcomma }}</p ></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
