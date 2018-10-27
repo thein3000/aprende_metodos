@@ -2,3 +2,8 @@
   padding: 20px;
   font-size: x-large;
 }
+
+
+.card_margin {
+  margin: .5rem 0 1rem 0;
+}

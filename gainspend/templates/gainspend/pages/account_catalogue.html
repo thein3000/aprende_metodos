@@ -1,30 +1,25 @@
 {% extends "../base/base_main.html" %}
 {% load humanize %}
-{% block title %}Movement summary{% endblock title %}
+{% block title %}Accounts{% endblock title %}
 {% block content_center %}
 
 <div class="container">
-  <div class="card">
-    <div class="row">
+    <div class="row card_margin">
       <div data-target="income_modal" class="modal-trigger waves-effect waves-light btn col s4 m4 green">
-        Add income
+        Add account
       </div>
     </div>
-  </div>
 
   <div class="card">
     <div class="card-content">
       <div class="card-title">
-        Movements
+        Accounts
       </div>
-      <table class="display cell-border" width="100%" cellpadding="0" cellspacing="0" border="0" id="movements_datatable">
+      <table class="display cell-border" width="100%" cellpadding="0" cellspacing="0" border="0" id="accounts_datatable">
         <thead>
           <tr>
             <th>Id</th>
-            <th>Amount</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Date</th>
+            <th>Account</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -49,31 +44,19 @@
 
 <script type="text/javascript" language="javascript" class="init">
   $(document).ready(function() {
-    var movements_datatable = $('#movements_datatable').dataTable( {
+    var accounts_datatable = $('#accounts_datatable').dataTable( {
       "processing": true,
       "order": [],
+      "searching": false ,
       "lengthChange": false,
       "ajax": {
         "processing": true,
-        "url": "{% url 'movement_data' %}",
+        "url": "{% url 'account_data' %}",
         "dataSrc": ""
-      },
-      'rowCallback': function(row, data, index){
-        console.log();
-        if(data.fields.sign != "+"){
-          $(row).find('td:eq(1)').css('color','red');
-          $(row).find('td:eq(1)').css('font-weight','bold');
-        } else {
-          $(row).find('td:eq(1)').css('color','green');
-          $(row).find('td:eq(1)').css('font-weight','bold');
-        }
       },
       "columns": [
         { "data": "pk" },
-        { "data": "fields.amount" },
-        { "data": "fields.detail" },
-        { "data": "fields.category" },
-        { "data": "fields.date" }
+        { "data": "fields.account" }
       ]
     } );
 
@@ -104,7 +87,7 @@
         success : function(json) {
           $('#id_income_amount').val('')
           $('#id_income_detail').val('')
-          $('#movements_datatable').DataTable().ajax.reload();
+          $('#accounts_datatable').DataTable().ajax.reload();
           M.toast({html: json.result})
           general_modal.modal('close')
         },

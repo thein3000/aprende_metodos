@@ -6,18 +6,20 @@ class TableAccounts(models.Model):
     account = models.TextField(blank=True, null=True)
     icon = models.TextField(blank=True, null=True)
 
+    @property
     def account_capital(self):
         movements = TableMovements.objects.filter(account=self.account)
+        account_capital = 0
         for movement in movements:
             if movement.sign == '+':
-                account_capital = total_income + movement.amount
+                account_capital = account_capital + movement.amount
             else:
-                account_capital = total_income - movement.amount
+                account_capital = account_capital - movement.amount
 
         return account_capital
 
     class Meta:
-        # managed = False
+        managed = False
         db_table = 'table_accounts'
 
 

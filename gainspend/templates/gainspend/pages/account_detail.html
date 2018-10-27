@@ -1,0 +1,107 @@
+{% extends "../base/base_main.html" %}
+{% load humanize %}
+{% block title %}Accounts{% endblock title %}
+{% block content_center %}
+
+<div class="container">
+    <div class="row card_margin">
+      <div data-target="income_modal" class="modal-trigger waves-effect waves-light btn col s4 m4 green">
+        Add account
+      </div>
+    </div>
+
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title">
+        Accounts
+      </div>
+      <table class="display cell-border" width="100%" cellpadding="0" cellspacing="0" border="0" id="accounts_datatable">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Account</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="income_modal" class="modal">
+  <form id="form_income" action="register_income/" method="post">
+    <div class="modal-content">
+      <h4>Register income</h4>
+      {% csrf_token %}
+      {{income_form}}
+    </div>
+    <div class="modal-footer">
+      <input type="submit" class=" waves-effect waves-green btn green lighten-1 white-text" value="Register">
+    </div>
+  </form>
+</div>
+
+<script type="text/javascript" language="javascript" class="init">
+  $(document).ready(function() {
+    var accounts_datatable = $('#accounts_datatable').dataTable( {
+      "processing": true,
+      "order": [],
+      "searching": false ,
+      "lengthChange": false,
+      "ajax": {
+        "processing": true,
+        "url": "{% url 'account_data' %}",
+        "dataSrc": ""
+      },
+      "columns": [
+        { "data": "pk" },
+        { "data": "fields.account" }
+      ]
+    } );
+
+    general_modal = $('.modal')
+    general_modal.modal()
+
+    $('select').formSelect();
+
+    $('#form_income').on('submit', function(event){
+      event.preventDefault();
+      console.log("form submitted!")  // sanity check
+      register_income();
+    } );
+
+    function register_income() {
+      console.log("create post is working!") // sanity check
+      $.ajax({
+        url : "register_income/", // the endpoint
+        type : "POST", // http method
+        data : {
+          amount : $('#id_income_amount').val(),
+          detail : $('#id_income_detail').val(),
+          date : $('#id_income_date').val(),
+          income_account : $('#id_income_account').val(),
+          income_category : $('#id_income_category').val()
+        }, // data sent with the post request
+        // handle a successful response
+        success : function(json) {
+          $('#id_income_amount').val('')
+          $('#id_income_detail').val('')
+          $('#accounts_datatable').DataTable().ajax.reload();
+          M.toast({html: json.result})
+          general_modal.modal('close')
+        },
+        // handle a non-successful response
+        error : function(xhr,errmsg,err) {
+          // alert("We have encountered an error! (" + errmsg +")")
+          M.toast({html: json.result})
+          console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        }
+      });
+    };
+
+  });
+
+ </script>
+
+{% endblock content_center %}

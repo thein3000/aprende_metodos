@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import TableMovements
+from .models import TableAccounts
 from django.http import HttpResponse
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
@@ -42,15 +43,21 @@ def main_dashboard(request):
     return render(request, 'gainspend/pages/main_dashboard.html', context)
 
 @login_required
-def catalogue_accounts(request):
+def account_catalogue(request):
     context = {
     }
-    return render(request, 'gainspend/pages/catalogue_accounts.html', context)
+    return render(request, 'gainspend/pages/account_catalogue.html', context)
+
+@login_required
+def account_detail(request, field_id):
+    context = {
+    }
+    return render(request, 'gainspend/pages/account_detail.html', context)
 
 @login_required
 def account_data(request):
     # Data view in json format for ajax access
-    accounts = TableMovements.objects.all()
+    accounts = TableAccounts.objects.all()
 
     json = serializers.serialize('json', accounts)
     return HttpResponse(json, content_type='application/json')
