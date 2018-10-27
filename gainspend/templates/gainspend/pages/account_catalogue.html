@@ -69,7 +69,6 @@
             cell_content = `
             <form class="account_delete" method="post" action="/gainspend/account_catalogue/account_delete/${data}/" >
               {% csrf_token %}
-              <input type="hidden" name="next" value="{{ request.path }}">
               <button type="submit" class="btn red lighten-1">Delete</button>
             </form>`
             return cell_content

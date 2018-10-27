@@ -314,3 +314,11 @@ def register_transfer(request):
             json.dumps({"nothing to see": "this isn't happening"}),
             content_type="application/json"
         )
+
+
+@login_required
+def movement_delete(request, field_id):
+    movement = get_object_or_404(TableMovements, field_id=field_id)
+    if request.method == 'POST':
+        movement.delete()
+    return redirect('main_dashboard')

@@ -10,10 +10,13 @@
         <h4>{{ movement.detail }}</h4>
         {% csrf_token %}
         {{movement_update_form}}
-        <div class="modal-footer">
-          <input type="submit" class=" btn blue lighten-1 white-text" value="Register changes">
-        </div>
+        <input type="submit" style="float:left;" class=" btn blue lighten-1 white-text" value="Register changes">
       </form>
+      <form method="post" action="{% url 'movement_delete' movement.field_id %}" >
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
+        <button type="submit" style="float:left; margin-left: 5px;" class="btn red lighten-1">Delete</button>
+      </form>`
     </div>
   </div>
 </div>
