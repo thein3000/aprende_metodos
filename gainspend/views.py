@@ -3,7 +3,7 @@ from .models import TableMovements
 from django.http import HttpResponse
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
-from .forms import MovementsIncomeForm, MovementsExpenseForm
+from .forms import MovementsIncomeForm, MovementsExpenseForm, MovementsTransferForm
 import datetime
 import json
 
@@ -15,8 +15,10 @@ def main_dashboard(request):
     today_date = datetime.date.today()
     time_now = datetime.datetime.now()
     initial_data = { "date":today_date, "time": time_now}
+    initial_date = { "date":today_date}
     income_form = MovementsIncomeForm(initial = initial_data)
     expense_form = MovementsExpenseForm(initial = initial_data)
+    transfer_form = MovementsTransferForm(initial = initial_date)
     # Calculate general total, income, and  expense
     total_income = 0
     total_expenses = 0
@@ -34,9 +36,31 @@ def main_dashboard(request):
         "total_expenses": total_expenses,
         "current_capital": current_capital,
         "income_form": income_form,
-        "expense_form": expense_form
+        "expense_form": expense_form,
+        "transfer_form": transfer_form,
     }
     return render(request, 'gainspend/pages/main_dashboard.html', context)
+
+@login_required
+def catalogue_accounts(request):
+    context = {
+    }
+    return render(request, 'gainspend/pages/catalogue_accounts.html', context)
+
+@login_required
+def account_data(request):
+    # Data view in json format for ajax access
+    accounts = TableMovements.objects.all()
+
+    json = serializers.serialize('json', accounts)
+    return HttpResponse(json, content_type='application/json')
+
+@login_required
+def category_data(request):
+    # Data view in json format for ajax access
+    categories = TableMovements.objects.all()
+    json = serializers.serialize('json', categories)
+    return HttpResponse(json, content_type='application/json')
 
 @login_required
 def movement_data(request):
@@ -105,6 +129,56 @@ def register_expense(request):
             movement.save()
             response_data = {}
             response_data['result'] = 'Succesfully registered movement!'
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
+        else:
+            print(form.errors)
+            response_data = {}
+            response_data['result'] = 'Error in validation!'
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing to see": "this isn't happening"}),
+            content_type="application/json"
+        )
+
+@login_required
+def register_transfer(request):
+    if request.method == 'POST':
+        form = MovementsTransferForm(request.POST)
+        if form.is_valid(): #form.cleaned_data['subject']
+            print(form.cleaned_data)
+            post_amount = form.cleaned_data['amount']
+            post_date = form.cleaned_data['date']
+            post_account = form.cleaned_data['transfer_account']
+            post_receiver = form.cleaned_data['transfer_receiver']
+            detail_providing = f'Transfered to {post_receiver}'
+            detail_receiving = f'Transfered to {post_account}'
+            movement_providing = TableMovements(
+                transfer=1,
+                amount=post_amount,
+                detail= detail_providing,
+                date=post_date,
+                account=post_account,
+                category='Transfer',
+                sign='-')
+            movement_providing.save()
+            movement_receiving = TableMovements(
+                transfer=1,
+                amount=post_amount,
+                detail=detail_receiving,
+                date=post_date,
+                account=post_receiver,
+                category='Transfer',
+                sign='+')
+            movement_receiving.save()
+            response_data = {}
+            response_data['result'] = 'Succesfully registered transfer!'
             return HttpResponse(
                 json.dumps(response_data),
                 content_type="application/json"

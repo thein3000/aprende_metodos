@@ -81,7 +81,7 @@
       {{income_form}}
     </div>
     <div class="modal-footer">
-      <input type="submit" class="modal-close waves-effect waves-green btn green lighten-1 white-text" value="Register">
+      <input type="submit" class=" waves-effect waves-green btn green lighten-1 white-text" value="Register">
     </div>
   </form>
 </div>
@@ -94,7 +94,7 @@
       {{expense_form}}
     </div>
     <div class="modal-footer">
-      <input type="submit" class="modal-close waves-effect waves-green btn red lighten-2 white-text" value="Register">
+      <input type="submit" class=" waves-effect waves-green btn red lighten-2 white-text" value="Register">
     </div>
   </form>
 </div>
@@ -107,7 +107,7 @@
       {{transfer_form}}
     </div>
     <div class="modal-footer">
-      <input type="submit" class="modal-close waves-effect waves-green btn purple lighten-2 white-text" value="Register">
+      <input type="submit" class=" waves-effect waves-green btn purple lighten-2 white-text" value="Register">
     </div>
   </form>
 </div>
@@ -142,9 +142,10 @@
       ]
     } );
 
-    $('.modal').modal();
-    $('select').formSelect();
+    general_modal = $('.modal')
+    general_modal.modal()
 
+    $('select').formSelect();
 
     $('#form_income').on('submit', function(event){
       event.preventDefault();
@@ -168,13 +169,14 @@
         success : function(json) {
           $('#id_income_amount').val('')
           $('#id_income_detail').val('')
-          console.log(json); // log the returned json to the console
-          console.log("success"); // another sanity check
           $('#movements_datatable').DataTable().ajax.reload();
+          M.toast({html: json.result})
+          general_modal.modal('close')
         },
         // handle a non-successful response
         error : function(xhr,errmsg,err) {
-          alert("We have encountered an error! (" + errmsg +")")
+          // alert("We have encountered an error! (" + errmsg +")")
+          M.toast({html: json.result})
           console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
         }
       });
@@ -202,18 +204,55 @@
         success : function(json) {
           $('#id_expense_amount').val('')
           $('#id_expense_detail').val('')
-          console.log(json); // log the returned json to the console
-          console.log("success"); // another sanity check
           $('#movements_datatable').DataTable().ajax.reload();
+          M.toast({html: json.result})
+          general_modal.modal('close')
         },
         // handle a non-successful response
         error : function(xhr,errmsg,err) {
-          alert("We have encountered an error! (" + errmsg +")")
+          // alert("We have encountered an error! (" + errmsg +")")
+          M.toast({html: json.result})
           console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
         }
       });
     };
+
+    $('#form_transfer').on('submit', function(event){
+      event.preventDefault();
+      console.log("form submitted!")  // sanity check
+      register_transfer();
+    });
+
+    function register_transfer() {
+      console.log("create post is working!") // sanity check
+      $.ajax({
+        url : "register_transfer/", // the endpoint
+        type : "POST", // http method
+        data : {
+          amount : $('#id_transfer_amount').val(),
+          date : $('#id_transfer_date').val(),
+          transfer_account : $('#id_transfer_account').val(),
+          transfer_receiver : $('#id_transfer_receiver').val()
+        }, // data sent with the post request
+        // handle a successful response
+        success : function(json) {
+          $('#id_transfer_amount').val('')
+          console.log(json); // log the returned json to the console
+          $('#movements_datatable').DataTable().ajax.reload();
+          M.toast({html: json.result})
+          general_modal.modal('close')
+        },
+        // handle a non-successful response
+        error : function(xhr,errmsg,err) {
+          // alert("We have encountered an error! (" + errmsg +")")
+          M.toast({html: json.result})
+          console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+        }
+      });
+    };
+
   });
+
  </script>
 
 {% endblock content_center %}
