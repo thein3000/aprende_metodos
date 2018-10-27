@@ -4,14 +4,14 @@
   <li>
     <div class="user-view" style="height: 175px;">
       <div class="background" style="background-color:black;">
-        <img height="205" style="opacity: 0.4;" src="{% static 'images/money.jpg' %}">
+        <img height="205" style="opacity: 0.4;" src="{% static 'images/money.png' %}">
       </div>
       <span class="white-text name"><h4>{{ request.user.username }}</h4></span>
       <span class="white-text email">{{ request.user.email }}</span>
     </div>
   </li>
   <li><a href="{% url 'main_dashboard' %}"><i class="material-icons">account_balance</i>Movements</a></li>
-  <li><a href="#!"><i class="material-icons">account_balance_wallet</i>Accounts</a></li>
+  <li><a href="{% url 'account_catalogue' %}"><i class="material-icons">account_balance_wallet</i>Accounts</a></li>
   <li><a href="#!"><i class="material-icons">library_add</i>Categories</a></li>
   <li><div class="divider"></div></li>
   <li><a class="subheader">Configurations</a></li>

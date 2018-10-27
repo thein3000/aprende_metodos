@@ -3,7 +3,6 @@ from .models import TableMovements
 from .models import TableAccounts
 from .models import TableCategories
 
-
 class MovementsIncomeForm(forms.ModelForm):
     accounts_list = list(TableAccounts.objects.values_list('account','account'))
     categories_list = list(TableCategories.objects.values_list('category','category'))
@@ -42,4 +41,12 @@ class MovementsTransferForm(forms.ModelForm):
         widgets = {
             'amount': forms.NumberInput(attrs={'id':'id_transfer_amount'}),
             'date': forms.DateInput(attrs={'id':'id_transfer_date'})
+        }
+
+class AccountsForm(forms.ModelForm):
+    class Meta:
+        model = TableAccounts
+        fields  = ['account']
+        widgets = {
+            'account': forms.TextInput(attrs={'id':'id_account'}),
         }

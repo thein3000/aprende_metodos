@@ -5,9 +5,89 @@ from django.http import HttpResponse
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from .forms import MovementsIncomeForm, MovementsExpenseForm, MovementsTransferForm
+from .forms import AccountsForm
 import datetime
 import json
 
+# ------------------------------ ACCOUNT ------------------------------------
+@login_required
+def account_catalogue(request):
+    accounts_form = AccountsForm()
+    context = {
+        "accounts_form": accounts_form
+    }
+    return render(request, 'gainspend/pages/account_catalogue.html', context)
+
+@login_required
+def account_detail(request, field_id):
+    # Get view data
+    account = TableAccounts.objects.filter(field_id=field_id).first()
+    account_description = account.account
+    movements = TableMovements.objects.filter(account=account_description)
+    # Calculate general total, income, and  expense
+    total_income = 0
+    total_expenses = 0
+    current_capital = 0
+    for movement in movements:
+        if movement.sign == '+':
+            total_income = total_income + movement.amount
+        else:
+            total_expenses = total_expenses + movement.amount
+
+    current_capital = total_income - total_expenses
+    context = {
+        "account": account,
+        "movements": movements,
+        "total_income": total_income,
+        "total_expenses": total_expenses,
+        "current_capital": current_capital,
+    }
+    return render(request, 'gainspend/pages/account_detail.html', context)
+
+@login_required
+def account_data(request):
+    # Data view in json format for ajax access
+    accounts = TableAccounts.objects.all()
+    json = serializers.serialize('json', accounts)
+    return HttpResponse(json, content_type='application/json')
+
+@login_required
+def account_register(request):
+    if request.method == 'POST':
+        form = AccountsForm(request.POST)
+        if form.is_valid():
+            post_account = form.cleaned_data['account']
+            account = TableAccounts(
+                account=post_account
+                )
+            account.save()
+            response_data = {}
+            response_data['result'] = 'Succesfully registered account!'
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
+        else:
+            response_data = {}
+            response_data['result'] = 'Error in validation!'
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing to see": "this isn't happening"}),
+            content_type="application/json"
+        )
+ # ------------------------------ CATEGORY ------------------------------------
+@login_required
+def category_data(request):
+    # Data view in json format for ajax access
+    categories = TableMovements.objects.all()
+    json = serializers.serialize('json', categories)
+    return HttpResponse(json, content_type='application/json')
+
+ # ------------------------------ MOVEMENT ------------------------------------
 @login_required
 def main_dashboard(request):
     # Get view data
@@ -43,36 +123,16 @@ def main_dashboard(request):
     return render(request, 'gainspend/pages/main_dashboard.html', context)
 
 @login_required
-def account_catalogue(request):
-    context = {
-    }
-    return render(request, 'gainspend/pages/account_catalogue.html', context)
-
-@login_required
-def account_detail(request, field_id):
-    context = {
-    }
-    return render(request, 'gainspend/pages/account_detail.html', context)
-
-@login_required
-def account_data(request):
-    # Data view in json format for ajax access
-    accounts = TableAccounts.objects.all()
-
-    json = serializers.serialize('json', accounts)
-    return HttpResponse(json, content_type='application/json')
-
-@login_required
-def category_data(request):
-    # Data view in json format for ajax access
-    categories = TableMovements.objects.all()
-    json = serializers.serialize('json', categories)
-    return HttpResponse(json, content_type='application/json')
-
-@login_required
 def movement_data(request):
     # Data view in json format for ajax access
     movements = TableMovements.objects.all().order_by('-pk')
+    json = serializers.serialize('json', movements)
+    return HttpResponse(json, content_type='application/json')
+
+@login_required
+def account_movement_data(request, account):
+    # Data view in json format for ajax access
+    movements = TableMovements.objects.filter(account = account).order_by('-pk')
     json = serializers.serialize('json', movements)
     return HttpResponse(json, content_type='application/json')
 
