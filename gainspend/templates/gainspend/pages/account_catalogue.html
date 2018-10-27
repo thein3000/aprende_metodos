@@ -21,6 +21,7 @@
             <th>Id</th>
             <th>Account</th>
             <th>Detail</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -48,16 +49,31 @@
     var accounts_datatable = $('#accounts_datatable').dataTable( {
       "processing": true,
       "columnDefs": [ {
-        "targets": 2,
-        "width": "10px",
-        "orderable": false,
-        "render": function (data, type, full, meta) {
-          cell_content = `
-            <a href="{% url 'account_catalogue' %}${data}">
-              <i class="material-icons grey white-text">chevron_right</i>
-            </a>`
-          return cell_content
-        }
+          "targets": 2,
+          "width": "10px",
+          "orderable": false,
+          "render": function (data, type, full, meta) {
+            cell_content = `
+              <a href="{% url 'account_catalogue' %}${data}">
+                <div class="btn blue">
+                  Summary
+                </div>
+              </a>`
+            return cell_content
+          }
+        }, {
+          "targets": 3,
+          "width": "10px",
+          "orderable": false,
+          "render": function (data, type, full, meta) {
+            cell_content = `
+            <form class="account_delete" method="post" action="/gainspend/account_catalogue/account_delete/${data}/" >
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{{ request.path }}">
+              <button type="submit" class="btn red lighten-1">Delete</button>
+            </form>`
+            return cell_content
+          }
       } ],
       "order": [],
       "searching": false ,
@@ -70,6 +86,7 @@
       "columns": [
         { "data": "pk" },
         { "data": "fields.account" },
+        { "data": "pk" },
         { "data": "pk" }
       ]
     } );
@@ -82,10 +99,10 @@
     $('#accounts_form').on('submit', function(event){
       event.preventDefault();
       console.log("form submitted!")  // sanity check
-      register_income();
+      account_register();
     } );
 
-    function register_income() {
+    function account_register() {
       console.log("create post is working!") // sanity check
       $.ajax({
         url : "account_register/", // the endpoint

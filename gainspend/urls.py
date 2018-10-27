@@ -14,7 +14,7 @@ urlpatterns = [
     path('account_catalogue/',views.account_catalogue, name='account_catalogue'),
     path('account_catalogue/<int:field_id>/',views.account_detail,name='account_detail'),
     path('account_catalogue/account_register/',views.account_register, name='account_register'),
-    path('account_catalogue/account_register/',views.account_register, name='account_register'),
+    path('account_catalogue/account_delete/<int:field_id>/',views.account_delete, name='account_delete'),
     path('movement_data/<str:account>/',views.account_movement_data, name='account_movement_data'),
     # ------------------------------ CATEGORY -----------------------------------
     # path('',views.catalogue_categories, name='catalogue_categories'),

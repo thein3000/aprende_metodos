@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from .models import TableMovements
 from .models import TableAccounts
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from .forms import MovementsIncomeForm, MovementsExpenseForm, MovementsTransferForm
 from .forms import AccountsForm
+from django.shortcuts import get_object_or_404
 import datetime
 import json
 
@@ -14,7 +15,8 @@ import json
 def account_catalogue(request):
     accounts_form = AccountsForm()
     context = {
-        "accounts_form": accounts_form
+        "accounts_form": accounts_form,
+        "account": 1
     }
     return render(request, 'gainspend/pages/account_catalogue.html', context)
 
@@ -77,6 +79,28 @@ def account_register(request):
     else:
         return HttpResponse(
             json.dumps({"nothing to see": "this isn't happening"}),
+            content_type="application/json"
+        )
+
+@login_required
+def account_delete(request, field_id):
+    account = get_object_or_404(TableAccounts, field_id=field_id)
+    if request.method == 'POST':
+        account.delete()
+        response_data = {}
+        response_data['result'] = 'Succesfully deleted account!'
+
+        next = request.POST.get('next', '/')
+        return HttpResponseRedirect(next)
+        return HttpResponse(
+            json.dumps(response_data),
+            content_type="application/json"
+        )
+    else:
+        response_data = {}
+        response_data['result'] = 'Error on deletion!'
+        return HttpResponse(
+            json.dumps(response_data),
             content_type="application/json"
         )
  # ------------------------------ CATEGORY ------------------------------------
