@@ -67,7 +67,7 @@
           "orderable": false,
           "render": function (data, type, full, meta) {
             cell_content = `
-            <form class="account_delete" method="post" action="/gainspend/account_catalogue/account_delete/${data}/" >
+            <form class="account_delete" method="post" action="/account_catalogue/account_delete/${data}/" >
               {% csrf_token %}
               <button type="submit" class="btn red lighten-1">Delete</button>
             </form>`
