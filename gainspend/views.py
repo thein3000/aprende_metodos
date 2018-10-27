@@ -4,9 +4,9 @@ from .models import TableAccounts
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
-from .forms import MovementsIncomeForm, MovementsExpenseForm, MovementsTransferForm
+from .forms import MovementUpdateForm, MovementsIncomeForm, MovementsExpenseForm, MovementsTransferForm
 from .forms import AccountsForm
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 import datetime
 import json
 
@@ -16,7 +16,6 @@ def account_catalogue(request):
     accounts_form = AccountsForm()
     context = {
         "accounts_form": accounts_form,
-        "account": 1
     }
     return render(request, 'gainspend/pages/account_catalogue.html', context)
 
@@ -90,19 +89,9 @@ def account_delete(request, field_id):
         response_data = {}
         response_data['result'] = 'Succesfully deleted account!'
 
-        next = request.POST.get('next', '/')
-        return HttpResponseRedirect(next)
-        return HttpResponse(
-            json.dumps(response_data),
-            content_type="application/json"
-        )
-    else:
-        response_data = {}
-        response_data['result'] = 'Error on deletion!'
-        return HttpResponse(
-            json.dumps(response_data),
-            content_type="application/json"
-        )
+    next = request.POST.get('next', '/')
+    return HttpResponseRedirect(next)
+
  # ------------------------------ CATEGORY ------------------------------------
 @login_required
 def category_data(request):
@@ -145,6 +134,45 @@ def main_dashboard(request):
         "transfer_form": transfer_form,
     }
     return render(request, 'gainspend/pages/main_dashboard.html', context)
+
+@login_required
+def movement_detail(request, field_id):
+    # Get view data
+    movement = get_object_or_404(TableMovements, field_id=field_id)
+    movement_data = {}
+    movement_data = {
+        "amount" : movement.amount,
+        "detail" : movement.detail,
+        "date" : movement.date,
+        "account" : movement.account,
+        "category" : movement.category,
+    }
+    #Prepare update forms
+    movement_update_form = MovementUpdateForm(initial = movement_data)
+    context = {
+        "movement": movement,
+        "movement_update_form": movement_update_form,
+    }
+    return render(request, 'gainspend/pages/movement_detail.html', context)
+
+@login_required
+def movement_update(request, field_id):
+    movement = get_object_or_404(TableMovements, field_id=field_id)
+    if request.method == 'POST':
+        form = MovementUpdateForm(request.POST, instance=movement)
+        if form.is_valid(): #form.cleaned_data['subject']
+            movement.amount = form.cleaned_data['amount']
+            movement.detail = form.cleaned_data['detail']
+            movement.date = form.cleaned_data['date']
+            movement.account = form.cleaned_data['update_account']
+            movement.category = form.cleaned_data['update_category']
+            movement.save()
+            return redirect('main_dashboard')
+        else:
+            return render(request, template_name, {'form':form})
+    else:
+        return redirect('main_dashboard')
+
 
 @login_required
 def movement_data(request):
@@ -203,7 +231,6 @@ def register_expense(request):
     if request.method == 'POST':
         form = MovementsExpenseForm(request.POST)
         if form.is_valid(): #form.cleaned_data['subject']
-            print(form.cleaned_data)
             post_amount = form.cleaned_data['amount']
             post_detail = form.cleaned_data['detail']
             post_date = form.cleaned_data['date']

@@ -3,6 +3,20 @@ from .models import TableMovements
 from .models import TableAccounts
 from .models import TableCategories
 
+class MovementUpdateForm(forms.ModelForm):
+    accounts_list = list(TableAccounts.objects.values_list('account','account'))
+    categories_list = list(TableCategories.objects.values_list('category','category'))
+    update_account = forms.ChoiceField(choices=accounts_list)
+    update_category = forms.ChoiceField(choices=categories_list)
+    class Meta:
+        model = TableMovements
+        fields  = ['amount','detail','date','update_account','update_category']
+        widgets = {
+            'amount': forms.NumberInput(attrs={'id':'id_update_amount','required':'required'}),
+            'detail': forms.TextInput(attrs={'id':'id_update_detail'}),
+            'date': forms.DateInput(attrs={'id':'id_update_date'})
+        }
+
 class MovementsIncomeForm(forms.ModelForm):
     accounts_list = list(TableAccounts.objects.values_list('account','account'))
     categories_list = list(TableCategories.objects.values_list('category','category'))
@@ -48,5 +62,5 @@ class AccountsForm(forms.ModelForm):
         model = TableAccounts
         fields  = ['account']
         widgets = {
-            'account': forms.TextInput(attrs={'id':'id_account'}),
+            'account': forms.TextInput(attrs={'id':'id_account','required':'required'})
         }

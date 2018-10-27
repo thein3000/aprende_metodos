@@ -63,6 +63,7 @@
             <th>Description</th>
             <th>Category</th>
             <th>Date</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -121,6 +122,23 @@
         "url": "{% url 'movement_data' %}",
         "dataSrc": ""
       },
+      "columnDefs": [ {
+        "targets": 4,
+        "width": "70px",
+      },{
+        "targets": 5,
+        "width": "10px",
+        "orderable": false,
+        "render": function (data, type, full, meta) {
+          cell_content = `
+          <a href="/gainspend/movement_detail/${data}/">
+            <div class="btn blue">
+              Edit
+            </div>
+          </a>`
+          return cell_content
+        }
+      }],
       'rowCallback': function(row, data, index){
         console.log();
         if(data.fields.sign != "+"){
@@ -136,7 +154,8 @@
         { "data": "fields.amount" },
         { "data": "fields.detail" },
         { "data": "fields.category" },
-        { "data": "fields.date" }
+        { "data": "fields.date" },
+        { "data": "pk" }
       ]
     } );
 
