@@ -1,11 +1,14 @@
 from django.shortcuts import render
 from .models import TableMovements
 from .models import TableAccounts
+from .models import TableCategories
 from django.http import HttpResponse, HttpResponseRedirect
+from django.utils.http import is_safe_url
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from .forms import MovementUpdateForm, MovementsIncomeForm, MovementsExpenseForm, MovementsTransferForm
 from .forms import AccountsForm
+from .forms import CategoriesForm
 from django.shortcuts import get_object_or_404, redirect
 import datetime
 import json
@@ -90,15 +93,63 @@ def account_delete(request, field_id):
         response_data['result'] = 'Succesfully deleted account!'
 
     next = request.POST.get('next', '/')
-    return HttpResponseRedirect(next)
+    return redirect(next)
 
  # ------------------------------ CATEGORY ------------------------------------
 @login_required
+def category_catalogue(request):
+    categories_form = CategoriesForm()
+    context = {
+        "categories_form": categories_form,
+    }
+    return render(request, 'gainspend/pages/category_catalogue.html', context)
+
+@login_required
 def category_data(request):
     # Data view in json format for ajax access
-    categories = TableMovements.objects.all()
+    categories = TableCategories.objects.all()
     json = serializers.serialize('json', categories)
     return HttpResponse(json, content_type='application/json')
+
+@login_required
+def category_delete(request, field_id):
+    category = get_object_or_404(TableCategories, field_id=field_id)
+    if request.method == 'POST':
+        category.delete()
+        response_data = {}
+        response_data['result'] = 'Succesfully deleted account!'
+    next = request.POST.get('next', '/')
+    return redirect(next)
+    # return redirect('main_dashboard')
+
+@login_required
+def category_register(request):
+    if request.method == 'POST':
+        form = CategoriesForm(request.POST)
+        if form.is_valid():
+            post_category = form.cleaned_data['category']
+            category = TableCategories(
+                category=post_category
+                )
+            category.save()
+            response_data = {}
+            response_data['result'] = 'Succesfully registered category!'
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
+        else:
+            response_data = {}
+            response_data['result'] = 'Error in validation!'
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing to see": "this isn't happening"}),
+            content_type="application/json"
+        )
 
  # ------------------------------ MOVEMENT ------------------------------------
 @login_required
@@ -276,7 +327,7 @@ def register_transfer(request):
             post_account = form.cleaned_data['transfer_account']
             post_receiver = form.cleaned_data['transfer_receiver']
             detail_providing = f'Transfered to {post_receiver}'
-            detail_receiving = f'Transfered to {post_account}'
+            detail_receiving = f'Transfered from {post_account}'
             movement_providing = TableMovements(
                 transfer=1,
                 amount=post_amount,

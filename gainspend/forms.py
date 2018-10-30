@@ -64,3 +64,11 @@ class AccountsForm(forms.ModelForm):
         widgets = {
             'account': forms.TextInput(attrs={'id':'id_account','required':'required'})
         }
+
+class CategoriesForm(forms.ModelForm):
+    class Meta:
+        model = TableCategories
+        fields  = ['category']
+        widgets = {
+            'category': forms.TextInput(attrs={'id':'id_category','required':'required'})
+        }

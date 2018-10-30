@@ -20,6 +20,8 @@ urlpatterns = [
     path('account_catalogue/account_delete/<int:field_id>/',views.account_delete, name='account_delete'),
     path('movement_data/<str:account>/',views.account_movement_data, name='account_movement_data'),
     # ------------------------------ CATEGORY -----------------------------------
-    # path('',views.catalogue_categories, name='catalogue_categories'),
-
+    path('category_data/',views.category_data, name='category_data'),
+    path('category_catalogue/',views.category_catalogue, name='category_catalogue'),
+    path('category_catalogue/category_register/',views.category_register, name='category_register'),
+    path('category_catalogue/category_delete/<int:field_id>/',views.category_delete, name='category_delete'),
 ]
