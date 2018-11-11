@@ -1,15 +1,25 @@
-body {
-}
 .dark-purple {
   background-color: #363442 !important;
 }
-
 .base_header_logo {
   padding: 20px;
   font-size: x-large;
 }
-
-
 .card_margin {
   margin: .5rem 0 1rem 0;
+}
+.preface_content {
+
+}
+.preface_title {
+  margin-top: 10px;
+  min-height: 70px;
+  color: white;
+  margin-bottom: -4px;
+  position: relative;
+  text-align: center;
+  padding-top: 10px;
+}
+.start_excercise_box {
+  border-top: 1px solid black;
 }

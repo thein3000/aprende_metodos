@@ -3,6 +3,7 @@
     "model": "gainspend.method",
     "pk": 1,
     "fields": {
+      "preface_name": "",
       "name": "Interpolación",
       "is_subject": true
     }
@@ -11,6 +12,7 @@
     "model": "gainspend.method",
     "pk": 2,
     "fields": {
+      "preface_name": "newton_hacia_adelante",
       "name": "Newton hacia adelante",
       "is_subject": false
     }
@@ -19,6 +21,7 @@
     "model": "gainspend.method",
     "pk": 3,
     "fields": {
+      "preface_name": "newton_hacia_atras",
       "name": "Newton hacia atras",
       "is_subject": false
     }
@@ -27,7 +30,8 @@
     "model": "gainspend.method",
     "pk": 4,
     "fields": {
-      "name": "Newton hacia atras",
+      "preface_name": "newton_con_diferencias_divididas",
+      "name": "Newton con diferencias divididas",
       "is_subject": false
     }
   },
@@ -35,7 +39,8 @@
     "model": "gainspend.method",
     "pk": 5,
     "fields": {
-      "name": "Newton hacia atras",
+      "preface_name": "lagrange",
+      "name": "Lagrange",
       "is_subject": false
     }
   },
@@ -43,6 +48,7 @@
     "model": "gainspend.method",
     "pk": 6,
     "fields": {
+      "preface_name": "",
       "name": "Solución de Ecuaciones no Lineales",
       "is_subject": true
     }
@@ -51,6 +57,7 @@
     "model": "gainspend.method",
     "pk": 7,
     "fields": {
+      "preface_name": "punto_fijo",
       "name": "Punto fijo",
       "is_subject": false
     }
@@ -59,6 +66,7 @@
     "model": "gainspend.method",
     "pk": 8,
     "fields": {
+      "preface_name": "newton_raphson",
       "name": "Newton - Raphson",
       "is_subject": false
     }
@@ -67,6 +75,7 @@
     "model": "gainspend.method",
     "pk": 9,
     "fields": {
+      "preface_name": "falsa_posicion",
       "name": "Falsa posición",
       "is_subject": false
     }
@@ -75,6 +84,7 @@
     "model": "gainspend.method",
     "pk": 10,
     "fields": {
+      "preface_name": "secante",
       "name": "Secante",
       "is_subject": false
     }
@@ -83,6 +93,7 @@
     "model": "gainspend.method",
     "pk": 11,
     "fields": {
+      "preface_name": "",
       "name": "Solución de Ecuaciones Lineales",
       "is_subject": true
     }
@@ -91,6 +102,7 @@
     "model": "gainspend.method",
     "pk": 12,
     "fields": {
+      "preface_name": "montante",
       "name": "Montante",
       "is_subject": false
     }
@@ -99,6 +111,7 @@
     "model": "gainspend.method",
     "pk": 13,
     "fields": {
+      "preface_name": "gauss_jordan",
       "name": "Gauss - Jordan",
       "is_subject": false
     }
@@ -107,6 +120,7 @@
     "model": "gainspend.method",
     "pk": 14,
     "fields": {
+      "preface_name": "eliminacion_gaussiana",
       "name": "Eliminación Gaussiana",
       "is_subject": false
     }
@@ -115,6 +129,7 @@
     "model": "gainspend.method",
     "pk": 15,
     "fields": {
+      "preface_name": "gauss_seidel",
       "name": "Gauss - Seidel",
       "is_subject": false
     }
@@ -123,6 +138,7 @@
     "model": "gainspend.method",
     "pk": 16,
     "fields": {
+      "preface_name": "jacobi",
       "name": "Jacobi",
       "is_subject": false
     }
@@ -131,6 +147,7 @@
     "model": "gainspend.method",
     "pk": 17,
     "fields": {
+      "preface_name": "",
       "name": "Minimos Cuadrados",
       "is_subject": true
     }
@@ -139,6 +156,7 @@
     "model": "gainspend.method",
     "pk": 18,
     "fields": {
+      "preface_name": "linea_recta",
       "name": "Linea Recta",
       "is_subject": false
     }
@@ -147,6 +165,7 @@
     "model": "gainspend.method",
     "pk": 19,
     "fields": {
+      "preface_name": "cuadratica",
       "name": "Cuadratica",
       "is_subject": false
     }
@@ -155,6 +174,7 @@
     "model": "gainspend.method",
     "pk": 20,
     "fields": {
+      "preface_name": "cubica",
       "name": "Cubica",
       "is_subject": false
     }
@@ -163,6 +183,7 @@
     "model": "gainspend.method",
     "pk": 21,
     "fields": {
+      "preface_name": "",
       "name": "Integración",
       "is_subject": true
     }
@@ -171,6 +192,7 @@
     "model": "gainspend.method",
     "pk": 22,
     "fields": {
+      "preface_name": "newton_cotes_cerradas",
       "name": "Newton - Cotes cerradas",
       "is_subject": false
     }
@@ -179,6 +201,7 @@
     "model": "gainspend.method",
     "pk": 23,
     "fields": {
+      "preface_name": "newton_cotes_abiertas",
       "name": "Newton - Cotes abiertas",
       "is_subject": false
     }
@@ -187,6 +210,7 @@
     "model": "gainspend.method",
     "pk": 24,
     "fields": {
+      "preface_name": "regla_un_tercio_de_simpson",
       "name": "Regla de 1/3 de Simpson",
       "is_subject": false
     }
@@ -195,6 +219,7 @@
     "model": "gainspend.method",
     "pk": 25,
     "fields": {
+      "preface_name": "regla_tres_octavos_de_simpson",
       "name": "Regla de 3/8 de Simpson",
       "is_subject": false
     }
@@ -203,6 +228,7 @@
     "model": "gainspend.method",
     "pk": 26,
     "fields": {
+      "preface_name": "",
       "name": "Ecuaciones Diferenciales Ordinarias",
       "is_subject": true
     }
@@ -211,6 +237,7 @@
     "model": "gainspend.method",
     "pk": 27,
     "fields": {
+      "preface_name": "euler_hacia_adelante",
       "name": "Euler hacia adelante",
       "is_subject": false
     }
@@ -219,6 +246,7 @@
     "model": "gainspend.method",
     "pk": 28,
     "fields": {
+      "preface_name": "euler_hacia_atras",
       "name": "Euler hacia atras",
       "is_subject": false
     }
@@ -227,6 +255,7 @@
     "model": "gainspend.method",
     "pk": 29,
     "fields": {
+      "preface_name": "euler_modificado",
       "name": "Euler modificado",
       "is_subject": false
     }
@@ -235,6 +264,7 @@
     "model": "gainspend.method",
     "pk": 30,
     "fields": {
+      "preface_name": "runge_kutta_segundo_orden",
       "name": "Runge - Kutta (2do orden)",
       "is_subject": false
     }
@@ -243,6 +273,7 @@
     "model": "gainspend.method",
     "pk": 31,
     "fields": {
+      "preface_name": "runge_kutta_tercer_orden",
       "name": "Runge - Kutta (3er orden)",
       "is_subject": false
     }
@@ -251,6 +282,7 @@
     "model": "gainspend.method",
     "pk": 32,
     "fields": {
+      "preface_name": "runge_kutta_cuarto_orden_por_un_tercio_de_simpson",
       "name": "Runge - Kutta (4to orden) por 1/3 de Simpson",
       "is_subject": false
     }
@@ -259,7 +291,8 @@
     "model": "gainspend.method",
     "pk": 33,
     "fields": {
-      "name": "Runge - Kutta (4to orden) por 1/3 de Simpson",
+      "preface_name": "runge_kutta_cuarto_orden_por_tres_octavos_de_simpson",
+      "name": "Runge - Kutta (4to orden) por 3/8 de Simpson",
       "is_subject": false
     }
   }
