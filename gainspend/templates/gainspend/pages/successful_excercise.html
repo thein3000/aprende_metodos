@@ -1,0 +1,33 @@
+{% extends "../base/base_main.html" %}
+{% load humanize %}
+{% load static %}
+{% block title %}Program progress{% endblock title %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'gainspend/successful_excercise.css' %}">
+{% endblock stylesheets %}
+
+{% block content_center %}
+<div class="rocket_background" style="background-image: url({% static 'images/success_rocket.jpg' %})"></div>
+<div class="container">
+  <div class="card success_message_box">
+    <div class="card-content">
+      <div class="card-title">
+        <h3 style ="margin:0px;">¡Ha completado el ejercicio correctamente!</h3>
+        <h5>Presione aqui para regresar al menú principal</h5>
+        <a href="{% url 'main_dashboard' %}">
+        <div class="btn btn-large green">
+          Menú principal
+        </div>
+      </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" language="javascript" class="init">
+
+ </script>
+
+{% endblock content_center %}

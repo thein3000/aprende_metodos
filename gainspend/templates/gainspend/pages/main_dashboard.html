@@ -10,20 +10,16 @@
 
 {% block content_center %}
 <div class="container">
-
   <div class="dashboard_title" style="background-image: url({% static 'images/32.png' %})">
     <div class="card-title">
       <h3 style ="margin:0px;">Progreso del programa</h3>
     </div>
   </div>
-
-
   <div class="card">
     <div class="card-content">
       <div class="card-title">
         <h4>Métodos y temas</h4>
       </div>
-
       <table class="progress_table">
         <tbody>
           {% for method in methods %}
@@ -41,7 +37,6 @@
           {% endfor %}
         </tbody>
       </table>
-
     </div>
   </div>
 </div>
