@@ -1,3 +1,9 @@
+body {
+}
+.dark-purple {
+  background-color: #363442 !important;
+}
+
 .base_header_logo {
   padding: 20px;
   font-size: x-large;

@@ -1,0 +1,30 @@
+.dashboard_title {
+  margin-top: 10px;
+  height: 275px;
+  color: white;
+  margin-bottom: -4px;
+  position: relative;
+  text-align: center;
+  padding-top: 178px;
+}
+.dashboard_title h3 {
+}
+
+.progress_table td{
+  padding: 0px;
+  margin: 0px;
+}
+.progress_table tr:hover{
+  background-color: #e6e6e6;
+}
+.subject_circle{
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  margin: auto;
+}
+.method_line{
+  margin: auto;
+  width: 10px;
+  height: 50px;
+}

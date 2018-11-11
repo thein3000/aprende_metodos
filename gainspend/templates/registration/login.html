@@ -17,14 +17,14 @@
 {% block content %}
 <div class="valign-wrapper login_background  grey darken-4">
   <div class="container row">
-    <div class="card col s6 offset-s3">
+    <div class="card col s8 offset-s2">
       <div class="card-content">
-        <h2 class="center-align">GainSpend</h2>
-        <span class="card-title">Sign in</span>
+        <h2 class="center-align">AprendeMétodos</h2>
+        <span class="card-title">IniciarSesión</span>
         <form method="post">
           {% csrf_token %}
           {{ form.as_p }}
-          <button type="submit" class="btn orange">Login</button>
+          <button type="submit" class="btn orange  darken-3">Ingresar</button>
         </form>
       </div>
     </div>

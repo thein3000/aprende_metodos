@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>
-      {% block title %}GainSpend{% endblock title %}
+      {% block title %}AprendeMétodos{% endblock title %}
     </title>
 
     {% block stylesheets %}
@@ -18,7 +18,7 @@
   {% endblock head %}
 
   {% block body %}
-  <body class="grey lighten-2">
+  <body class="dark-purple">
     {% block header %}
       {% include "gainspend/base/base_header.html" %}
     {% endblock header %}
@@ -33,9 +33,6 @@
       {% endblock content_center %}
     {% endblock content %}
 
-    {% block navigation %}
-      {% include "gainspend/base/base_navigation.html" %}
-    {% endblock navigation %}
   </body>
   {% endblock body %}
 </html>

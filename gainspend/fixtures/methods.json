@@ -1,0 +1,266 @@
+[
+  {
+    "model": "gainspend.method",
+    "pk": 1,
+    "fields": {
+      "name": "Interpolación",
+      "is_subject": true
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 2,
+    "fields": {
+      "name": "Newton hacia adelante",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 3,
+    "fields": {
+      "name": "Newton hacia atras",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 4,
+    "fields": {
+      "name": "Newton hacia atras",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 5,
+    "fields": {
+      "name": "Newton hacia atras",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 6,
+    "fields": {
+      "name": "Solución de Ecuaciones no Lineales",
+      "is_subject": true
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 7,
+    "fields": {
+      "name": "Punto fijo",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 8,
+    "fields": {
+      "name": "Newton - Raphson",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 9,
+    "fields": {
+      "name": "Falsa posición",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 10,
+    "fields": {
+      "name": "Secante",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 11,
+    "fields": {
+      "name": "Solución de Ecuaciones Lineales",
+      "is_subject": true
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 12,
+    "fields": {
+      "name": "Montante",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 13,
+    "fields": {
+      "name": "Gauss - Jordan",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 14,
+    "fields": {
+      "name": "Eliminación Gaussiana",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 15,
+    "fields": {
+      "name": "Gauss - Seidel",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 16,
+    "fields": {
+      "name": "Jacobi",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 17,
+    "fields": {
+      "name": "Minimos Cuadrados",
+      "is_subject": true
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 18,
+    "fields": {
+      "name": "Linea Recta",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 19,
+    "fields": {
+      "name": "Cuadratica",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 20,
+    "fields": {
+      "name": "Cubica",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 21,
+    "fields": {
+      "name": "Integración",
+      "is_subject": true
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 22,
+    "fields": {
+      "name": "Newton - Cotes cerradas",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 23,
+    "fields": {
+      "name": "Newton - Cotes abiertas",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 24,
+    "fields": {
+      "name": "Regla de 1/3 de Simpson",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 25,
+    "fields": {
+      "name": "Regla de 3/8 de Simpson",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 26,
+    "fields": {
+      "name": "Ecuaciones Diferenciales Ordinarias",
+      "is_subject": true
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 27,
+    "fields": {
+      "name": "Euler hacia adelante",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 28,
+    "fields": {
+      "name": "Euler hacia atras",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 29,
+    "fields": {
+      "name": "Euler modificado",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 30,
+    "fields": {
+      "name": "Runge - Kutta (2do orden)",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 31,
+    "fields": {
+      "name": "Runge - Kutta (3er orden)",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 32,
+    "fields": {
+      "name": "Runge - Kutta (4to orden) por 1/3 de Simpson",
+      "is_subject": false
+    }
+  },
+  {
+    "model": "gainspend.method",
+    "pk": 33,
+    "fields": {
+      "name": "Runge - Kutta (4to orden) por 1/3 de Simpson",
+      "is_subject": false
+    }
+  }
+]

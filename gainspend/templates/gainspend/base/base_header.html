@@ -1,18 +1,18 @@
 <ul id="settings_list" class="dropdown-content">
   <li class="divider"></li>
   {% if request.user.is_authenticated %}
-  <li><a href="{% url 'logout' %}">Logout</a></li>
+  <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
   {% endif %}
 </ul>
 <nav>
   <div class="nav-wrapper black">
-    <a href="#" data-target="slide-out" class="sidenav-trigger" style="display: block;"><i class="material-icons">menu</i></a>
-    <a href="{% url 'main_dashboard' %}" class="base_header_logo z-depth-2 orange">GainSpend</a>
+    <a href="#" data-target="slide-out" class="sidenav-trigger" style="display: block;"><i class="material-icons black-text">menu</i></a>
+    <a href="{% url 'main_dashboard' %}" class="base_header_logo z-depth-2 orange darken-3">AprendeMétodos</a>
     <ul id="nav-mobile" class="right">
       <li>
         <a class="dropdown-trigger" href="#!" data-target="settings_list">
           {{ request.user.username }}<i class="material-icons right">account_circle</i>
-        </a>
+        </a>  
       </li>
     </ul>
   </div>
