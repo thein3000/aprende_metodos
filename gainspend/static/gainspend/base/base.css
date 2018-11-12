@@ -23,3 +23,35 @@
 .start_excercise_box {
   border-top: 1px solid black;
 }
+.number_answer {
+  font-size: 30px !important;
+  padding: 10px 0px !important;
+  margin-top: 12px !important;
+  cursor: pointer;
+}
+.excercise_content {
+  position: relative;
+}
+
+#excercise_cover{
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: #38373c;
+}
+#comenzar_problema {
+  margin: auto;
+  color: black;
+}
+#excercise_timer {
+  margin: auto;
+  color: #fbfbfb;
+  background-color: grey;
+  display: block;
+  width: 156px;
+  text-align: center;
+  padding: 14px;
+  font-size: 20px;
+}

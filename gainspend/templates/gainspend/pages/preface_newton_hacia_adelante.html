@@ -8,7 +8,7 @@
 
   <div class="preface_title" style="background-image: url({% static 'images/32.png' %})">
     <div class="card-title">
-      <h3 style ="margin:0px;">{{ method.name }}</h3>
+      <h3 style ="margin:0px;">Interpolación</h3>
     </div>
   </div>
 
@@ -19,7 +19,32 @@
       </div>
 
       <div class="preface_content">
-
+        <p>
+          Las abscisas de los datos tienen igual separacion con un tamaño de intervalo h, los puntos se denotan por (xi, fi).
+          <br> Para evaluar una formula de interpolacion de Newton hacia Adelante son necesarios:
+          <br> 1. Tablas de coeficiente hacia adelante.
+          <br> 2. Coeficientes binomiales.
+          <br> <br> Diferencia hacia adelante de orden:
+          <br> <br> Tablas de diferencias
+          <br> <br> Columna:
+          <br> 1era. Indice de los datos.
+          <br> 2nda. Ordenadas de los datos.
+          <br> 3ra. Lista de las diferencias de primer orden.
+          <br> Caluladas a partir de la segunda columna.
+          <br> 4ta.Diferencias de 2° orden calculadas a partir de la columna anterior.
+          <br> <br> Cada renglon proporciona un conjunto de diferencias hacia adelante de los puntos correspondientes.
+        </p> - Tiene intervalos iguales
+        <br> - Intervalos uniformes
+        <br> <br> ∆0 f(x1) la primera diferencia de los puntos,  partir de  ella se obtiene todos los demas.
+        <br> <br> El valor inferior - el valor superior de acuerdo a la cantidad de puntos.
+        <br> <br> Factor binomial "s"
+        <br> <br> Es una coordenada local.
+        <br> <br> Siempre positivo (izquierda a derecha)
+        <br> <br> Si no lo es se invierten los valroes de "x" y "y" (derecha a izquierda)
+        <br> <br> Los coeficiente binomiales estan dados por:
+        <br> <br> <b>Nota. Obtener "h" y ver si es uniforme; si lo es se resuelve por el metodo de Newton hacia Atras o Lagrange. </b>
+        <br><br>
+        <b>Ejemplo:</b>
       </div>
 
       <div class="start_excercise_box">
