@@ -1,17 +1,31 @@
 // Funcion de Validacion de respuesta
+function sort_of_equal(v1, v2, epsilon) {
+  if (epsilon == null) {
+    epsilon = 0.001;
+  }
+  return Math.abs(v1 - v2) < epsilon;
+};
 function validar_respuesta() {
   if ($("#no_tiene_solucion").is(":checked")) {
-    if (excercise_answer == "No hay solucion") {
+    if (excercise_answer_x == "No hay solucion") {
       mandar_formulario();
+      // console.log("Yei");
     } else {
       $("#valor_x").addClass("invalid");
+      $("#valor_y").addClass("invalid");
+      $("#valor_z").addClass("invalid");
     }
   } else {
     valor_x = Number($("#valor_x").val());
-    if (valor_x == excercise_answer) {
+    valor_y = Number($("#valor_y").val());
+    valor_z = Number($("#valor_z").val());
+    if (sort_of_equal(valor_x, excercise_answer_x, 0.01) && sort_of_equal(valor_y, excercise_answer_y, 0.01) && sort_of_equal(valor_z, excercise_answer_z, 0.01)) {
       mandar_formulario();
+      // console.log("Yaaaas");
     } else {
       $("#valor_x").addClass("invalid");
+      $("#valor_y").addClass("invalid");
+      $("#valor_z").addClass("invalid");
     }
   }
 }
