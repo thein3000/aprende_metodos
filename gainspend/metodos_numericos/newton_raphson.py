@@ -1,3 +1,5 @@
+from math import *
+
 def function_fx(equation,x):
     evaluation = eval(equation)
     return evaluation
@@ -21,6 +23,8 @@ def metodo_newton_raphson(equation):
             x = next_x
         next_x = raphson_formula(equation, x)
         error = abs(next_x - x)
+        if i == 200:
+            return "No hay solucion"
         i += 1
     return next_x
 

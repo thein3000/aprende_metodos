@@ -9,7 +9,9 @@ from django.shortcuts import get_object_or_404, redirect
 import datetime
 import json
 from gainspend.metodos_numericos import newton_raphson
+from gainspend.metodos_numericos import punto_fijo
 from gainspend.forms import UserMethodForm
+from sympy import pretty, symbols, pprint
 
 
 @login_required
@@ -27,6 +29,8 @@ def excercise_newton_raphson(request):
     equation = "0.8*x**2 + x - 3"
     result = newton_raphson.metodo_newton_raphson(equation)
     # Variables de presentacion del problema
+    # x = symbols('x')
+    # equation_print = eval("str(pprint(( (0.8 * x ** 2) / (x - 3)), use_unicode=False))")
     equation_print = "0.8*x**2 + x - 3"
     # Datos del formulario
     data = {'method_id': method.field_id}
@@ -38,6 +42,33 @@ def excercise_newton_raphson(request):
         "method": method
     }
     return render(request, 'gainspend/pages/excercise_newton_raphson.html', context)
+
+@login_required
+def preface_punto_fijo(request):
+    method = Method.objects.filter(name="Punto fijo").first()
+    context = {
+        "method": method
+    }
+    return render(request, 'gainspend/pages/preface_punto_fijo.html', context)
+
+@login_required
+def excercise_punto_fijo(request):
+    method = Method.objects.filter(name="Punto fijo").first()
+    # Variables del problema
+    equation = "(e**x - 2) / 2"
+    result = punto_fijo.metodo_punto_fijo(equation)
+    # Variables de presentacion del problema
+    equation_print = "(e**x - 2) / 2"
+    # Datos del formulario
+    data = {'method_id': method.field_id}
+    user_method_form = UserMethodForm(initial=data)
+    context = {
+        "user_method_form": user_method_form,
+        "equation_print": equation_print,
+        "result": result,
+        "method": method
+    }
+    return render(request, 'gainspend/pages/excercise_punto_fijo.html', context)
 
 
    # # "Solución de Ecuaciones no Lineales"
