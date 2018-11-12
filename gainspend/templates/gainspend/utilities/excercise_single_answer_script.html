@@ -1,4 +1,10 @@
 // Funcion de Validacion de respuesta
+function sort_of_equal(v1, v2, epsilon) {
+  if (epsilon == null) {
+    epsilon = 0.001;
+  }
+  return Math.abs(v1 - v2) < epsilon;
+};
 function validar_respuesta() {
   if ($("#no_tiene_solucion").is(":checked")) {
     if (excercise_answer == "No hay solucion") {
@@ -8,7 +14,7 @@ function validar_respuesta() {
     }
   } else {
     valor_x = Number($("#valor_x").val());
-    if (valor_x == excercise_answer) {
+    if (sort_of_equal(valor_x, excercise_answer, .00001)) {
       mandar_formulario();
     } else {
       $("#valor_x").addClass("invalid");
