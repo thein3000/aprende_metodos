@@ -13,3 +13,4 @@ class UserMethod(models.Model):
     method = models.ForeignKey(Method, null=True, blank=True, on_delete = models.CASCADE)
     completed = models.BooleanField(blank=True, null=True)
     paramaters = models.TextField(blank=True, null=True)
+    seconds = models.IntegerField(blank=True, null=True)

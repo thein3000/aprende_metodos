@@ -26,6 +26,9 @@
           </div>
         </div>
         <div id="excercise_timer">00:00</div>
+        <form id="user_method_form" action="" method="post">
+          {{ user_method_form }}
+        </form>
         <!-- Excercise elements end -->
         <div class="row">
           <div class="col m7">
@@ -57,7 +60,7 @@
           <div class="col s12 m9">
             <input id="valor_x" class="number_answer" type="number" value="">
           </div>
-          <div id="validar_respuesta" class="col s12 m3 btn btn-large green" style="margin-top:20px;">
+          <div id="validar_respuesta" class="col s12 m3 btn btn-large green hoverable" style="margin-top:20px;">
             Validar respuesta
           </div>
         </div>
@@ -73,18 +76,23 @@
 
 <script type="text/javascript" language="javascript" class="init">
   $(document).ready(function() {
+    function mandar_formulario() {
+      form_seconds = $("#excercise_timer").data('seconds');
+      form_method = "{{ method.field_id}}";
+      console.log(form_seconds);
+      console.log(form_method);
+      //form submission
+    }
     // Funcion de Validacion de respuesta
     function validar_respuesta() {
       valor_x = Number($("#valor_x").val());
       if (valor_x == excercise_answer) {
-        $("#excercise_timer").timer('start');
-        window.location.replace("http://stackoverflow.com");
+        mandar_formulario();
       }
     }
     //Conseguir Respuesta
     var excercise_answer = {{ result }};
     console.log(excercise_answer)
-
     // Aparecer probelma e iniciar timer
     function iniciar_problema(){
       $("#start_excercise_box").removeClass("hide");
