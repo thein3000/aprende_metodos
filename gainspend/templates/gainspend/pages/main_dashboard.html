@@ -22,16 +22,28 @@
       </div>
       <table class="progress_table">
         <tbody>
-          {% for method in methods %}
+          {% for method, completed in methods_list %}
           <tr>
             {% if method.is_subject %}
-            <td><div class="center-align subject_circle green"></div></td>
-            <td><h5>{{ method.name }}</h5></td>
-            <td></td>
+              {% if completed %}
+                <td><div class="center-align subject_circle green"></div></td>
+                <td><h5>{{ method.name }}</h5></td>
+                <td></td>
+              {% else %}
+                <td><div class="center-align subject_circle grey darken-2"></div></td>
+                <td><h5>{{ method.name }}</h5></td>
+                <td></td>
+              {% endif %}
             {% else %}
-            <td><div class="method_line grey"></div></td>
-            <td>{{ method.name }}</td>
-            <td><a href="/preface_{{ method.preface_name }}"><div class="btn dark-purple">Practicar</div></a></td>
+              {% if completed %}
+                <td><div class="method_line black"></div></td>
+                <td>{{ method.name }}</td>
+                <td><a href="/preface_{{ method.preface_name }}"><div class="btn dark-purple">Practicar</div></a></td>
+              {% else %}
+                <td><div class="method_line grey"></div></td>
+                <td>{{ method.name }}</td>
+                <td><a href="/preface_{{ method.preface_name }}"><div class="btn grey">Practicar</div></a></td>
+              {% endif %}
             {% endif %}
           </tr>
           {% endfor %}
