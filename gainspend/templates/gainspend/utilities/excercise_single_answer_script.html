@@ -14,7 +14,7 @@ function validar_respuesta() {
     }
   } else {
     valor_x = Number($("#valor_x").val());
-    if (sort_of_equal(valor_x, excercise_answer, .00001)) {
+    if (sort_of_equal(valor_x, excercise_answer, .0000099999)) {
       mandar_formulario();
     } else {
       $("#valor_x").addClass("invalid");
