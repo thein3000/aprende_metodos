@@ -10,6 +10,7 @@ import datetime
 import json
 from gainspend.metodos_numericos import newton_raphson
 from gainspend.metodos_numericos import punto_fijo
+from gainspend.metodos_numericos import falsa_posicion
 from gainspend.forms import UserMethodForm
 from sympy import pretty, symbols, pprint
 
@@ -69,6 +70,33 @@ def excercise_punto_fijo(request):
         "method": method
     }
     return render(request, 'gainspend/pages/excercise_punto_fijo.html', context)
+
+@login_required
+def preface_falsa_posicion(request):
+    method = Method.objects.filter(name="Falsa posición").first()
+    context = {
+        "method": method
+    }
+    return render(request, 'gainspend/pages/preface_falsa_posicion.html', context)
+
+@login_required
+def excercise_falsa_posicion(request):
+    method = Method.objects.filter(name="Falsa posición").first()
+    # Variables del problema
+    equation = "x*e**x - 10"
+    result = falsa_posicion.metodo_falsa_posicion(equation)
+    # Variables de presentacion del problema
+    equation_print = "x*e**x - 10"
+    # Datos del formulario
+    data = {'method_id': method.field_id}
+    user_method_form = UserMethodForm(initial=data)
+    context = {
+        "user_method_form": user_method_form,
+        "equation_print": equation_print,
+        "result": result,
+        "method": method
+    }
+    return render(request, 'gainspend/pages/excercise_falsa_posicion.html', context)
 
 
    # # "Solución de Ecuaciones no Lineales"
