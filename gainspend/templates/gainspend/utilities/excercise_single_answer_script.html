@@ -1,0 +1,36 @@
+// Funcion de Validacion de respuesta
+function validar_respuesta() {
+  if ($("#no_tiene_solucion").is(":checked")) {
+    if (excercise_answer == "No tiene solucion") {
+      mandar_formulario();
+    } else {
+      $("#valor_x").addClass("invalid");
+    }
+  } else {
+    valor_x = Number($("#valor_x").val());
+    if (valor_x == excercise_answer) {
+      mandar_formulario();
+    } else {
+      $("#valor_x").addClass("invalid");
+    }
+  }
+}
+
+function mandar_formulario() {
+  form_seconds = $("#excercise_timer").data('seconds');
+  console.log(form_seconds);
+  $('#id_seconds').val(form_seconds);
+  $("#user_method_form").submit();
+}
+// Aparecer probelma e iniciar timer
+function iniciar_problema(){
+  $("#start_excercise_box").removeClass("hide");
+  $("#excercise_cover").addClass("hide");
+  $("#excercise_timer").timer('start');
+}
+$("#validar_respuesta").on("click", function() {
+  validar_respuesta();
+});
+$("#comenzar_problema").on("click", function() {
+  iniciar_problema();
+});

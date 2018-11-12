@@ -1,0 +1,10 @@
+<div id="excercise_cover" class="valign-wrapper">
+  <div id="comenzar_problema" class="hoverable btn btn-large white ">
+    Comenzar problema
+  </div>
+</div>
+<div id="excercise_timer">00:00</div>
+<form id="user_method_form" class="hide" action="{% url 'register_method_completion' %}" method="post">
+  {{ user_method_form }}
+  {% csrf_token %}
+</form>

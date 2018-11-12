@@ -3,35 +3,28 @@
 {% load static %}
 {% block title %}{{method.name}}{% endblock title %}
 
+{% block scripts %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static 'vendor/timer/timer.jquery.min.js' %}"></script>
+{% endblock scripts %}
+
 {% block content_center %}
 <div class="container">
-
   <div class="preface_title" style="background-image: url({% static 'images/32.png' %})">
     <div class="card-title">
       <h3 style ="margin:0px;">{{ method.name }}</h3>
     </div>
   </div>
-
   <div class="card">
     <div class="card-content">
       <div class="card-title" style="border-bottom:1px solid black;">
         <h5>Completa el ejercicio para progresar a la siguiente etapa del programa</h5>
       </div>
-
       <div class="excercise_content">
         <!-- Excercise elements Start -->
-        <div id="excercise_cover" class="valign-wrapper">
-          <div id="comenzar_problema" class="hoverable btn btn-large white ">
-            Comenzar problema
-          </div>
-        </div>
-        <div id="excercise_timer">00:00</div>
-        <form id="user_method_form" action="{% url 'register_method_completion' %}" method="post">
-          {{ user_method_form }}
-          {% csrf_token %}
-        </form>
+        {% include "gainspend/utilities/excercise_upper_elements.html" with user_method_form=user_method_form %}
         <!-- Excercise elements end -->
-        <div class="row">
+        <div id="problem_description" class="row">
           <div class="col m7">
             <table>
               <thead>
@@ -54,58 +47,20 @@
             <h4>t = {{ t_print }}</h4>
           </div>
         </div>
+        <!-- problem_description -->
       </div>
-
-      <div id="start_excercise_box" class="hide">
-        <div class="row">
-          <div class="col s12 m9">
-            <input id="valor_x" class="number_answer" type="number" value="">
-          </div>
-          <div id="validar_respuesta" class="col s12 m3 btn btn-large green hoverable" style="margin-top:20px;">
-            Validar respuesta
-          </div>
-        </div>
-      </div>
+      {% include "gainspend/utilities/excercise_start_excercise_box.html" %}
     </div>
   </div>
 </div>
 
-{% block scripts %}
-  {{ block.super }}
-  <script type="text/javascript" src="{% static 'vendor/timer/timer.jquery.min.js' %}"></script>
-{% endblock scripts %}
-
 <script type="text/javascript" language="javascript" class="init">
   $(document).ready(function() {
-    function mandar_formulario() {
-      form_seconds = $("#excercise_timer").data('seconds');
-      console.log(form_seconds);
-      $('#id_seconds').val(form_seconds);
-      $("#user_method_form").submit();
-    }
-    // Funcion de Validacion de respuesta
-    function validar_respuesta() {
-      valor_x = Number($("#valor_x").val());
-      if (valor_x == excercise_answer) {
-        mandar_formulario();
-      }
-    }
     //Conseguir Respuesta
     var excercise_answer = {{ result }};
     console.log(excercise_answer)
-    // Aparecer probelma e iniciar timer
-    function iniciar_problema(){
-      $("#start_excercise_box").removeClass("hide");
-      $("#excercise_cover").addClass("hide");
-      $("#excercise_timer").timer('start');
-    }
-    $("#validar_respuesta").on("click", function() {
-      validar_respuesta();
-    });
-    $("#comenzar_problema").on("click", function() {
-      iniciar_problema();
-    });
+    //Validaciones y todo procesamiento
+    {% include "gainspend/utilities/excercise_single_answer_script.html" %}
   });
 </script>
-
 {% endblock content_center %}
