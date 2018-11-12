@@ -1,0 +1,56 @@
+{% extends "../base/base_main.html" %}
+{% load humanize %}
+{% load static %}
+{% block title %}{{method.name}}{% endblock title %}
+
+{% block content_center %}
+<div class="container">
+
+  <div class="preface_title" style="background-image: url({% static 'images/32.png' %})">
+    <div class="card-title">
+      <h3 style ="margin:0px;">Interpolación</h3>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title" style="border-bottom:1px solid black;">
+        <h4>{{ method.name }}</h4>
+      </div>
+
+      <div class="preface_content">
+        Se aplica para intervalos uniformes y no uniformes.
+        <br> <br>Esta ecuacion es equivalente a la serie de potencias que se determinan resolviendo la ecuacion lineal.
+        <br> <br> Desventajas:
+        <br> 1) La cantidad de calculos necesarios para la interpolacion es grande.
+        <br> 2) La interpolacion para otro valor "x" requiere la misma cantidad de calculo adicionales, ya que no se puede utilizar partes de la aplicacion previa.
+        <br> 3) Cuando el numero de datos tiene que incrementarse o decrementarse no se puede utilizar los resultados en los calculos previos.
+        <br> 4) La evaluacion de error no es facil.
+        <p>
+        	<b> Ejemplo: </b>
+        </p>
+        Encontrar g(x) para x=
+        <br> <br> g(x) se encuentra entre los valores y con respecto a "y".
+        <br> <br> <b> Nota: Obtener "h" y ver si es uniforme; si lo es se resuelve tambien por el metodo de Newton hacia Adelante y Newton hacia Atras
+        <br><br> Pero si "h" es no uniforme entonces realizarlo por Newton con Diferencidas Divididas
+        </b>
+      </div>
+
+      <div class="start_excercise_box">
+        <div class="row">
+          <div class="col s12 m9">
+            <h5>Completa el ejercicio para progresar a la siguiente etapa del programa</h5>
+          </div>
+          <a href="/preface_{{ method.preface_name }}/excercise">
+            <div class="col s12 m3 btn btn-large green" style="margin-top:20px;">
+              Comenzar
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock content_center %}

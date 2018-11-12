@@ -1,10 +1,10 @@
+#
+# t = 7
+# x = [7.3,6.5,6.1,5.5]
+# y = [-.28,-1.35,-1.96,-2.74]
 
-t = 7
-x = [7.3,6.5,6.1,5.5]
-y = [-.28,-1.35,-1.96,-2.74]
 
-
-def metodolagrange(valor,xs,ys):
+def metodo_lagrange(valor,xs,ys):
     i = 0
     px = 0
     temp =len(ys)
@@ -28,4 +28,4 @@ def metodolagrange(valor,xs,ys):
 
 
 #print(diferenciasvalor(t,x))
-print (f'lagrange {metodolagrange(t,x,y)}')
+# print (f'lagrange {metodolagrange(t,x,y)}')
