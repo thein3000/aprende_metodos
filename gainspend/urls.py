@@ -5,7 +5,8 @@ from . import views
 urlpatterns = [
     # ------------------------------ MOVEMENT -----------------------------------
     path('',views.main_dashboard, name='main_dashboard'),
-    path('successful_excercise',views.successful_excercise, name='successful_excercise'),
+    path('register_method_completion/',views.register_method_completion, name='register_method_completion'),
+    path('successful_excercise/',views.successful_excercise, name='successful_excercise'),
     path('preface_newton_hacia_adelante/',views.preface_newton_hacia_adelante, name='preface_newton_hacia_adelante'),
     path('preface_newton_hacia_adelante/excercise',views.excercise_newton_hacia_adelante, name='excercise_newton_hacia_adelante'),
     # path('preface_newton_hacia_atras/',views.preface_newton_hacia_atras, name='preface_newton_hacia_atras'),

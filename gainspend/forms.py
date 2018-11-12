@@ -2,7 +2,7 @@ from django import forms
 from .models import UserMethod
 
 class UserMethodForm(forms.ModelForm):
-    method = forms.IntegerField()
+    method_id = forms.IntegerField()
     class Meta:
         model = UserMethod
-        fields = ('method','seconds')
+        fields = ('method_id','seconds')

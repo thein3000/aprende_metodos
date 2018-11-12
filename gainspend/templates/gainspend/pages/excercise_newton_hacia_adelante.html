@@ -26,8 +26,9 @@
           </div>
         </div>
         <div id="excercise_timer">00:00</div>
-        <form id="user_method_form" action="" method="post">
+        <form id="user_method_form" action="{% url 'register_method_completion' %}" method="post">
           {{ user_method_form }}
+          {% csrf_token %}
         </form>
         <!-- Excercise elements end -->
         <div class="row">
@@ -78,10 +79,9 @@
   $(document).ready(function() {
     function mandar_formulario() {
       form_seconds = $("#excercise_timer").data('seconds');
-      form_method = "{{ method.field_id}}";
       console.log(form_seconds);
-      console.log(form_method);
-      //form submission
+      $('#id_seconds').val(form_seconds);
+      $("#user_method_form").submit();
     }
     // Funcion de Validacion de respuesta
     function validar_respuesta() {

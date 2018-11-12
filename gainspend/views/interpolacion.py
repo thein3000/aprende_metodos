@@ -25,15 +25,19 @@ def preface_newton_hacia_adelante(request):
 @login_required
 def excercise_newton_hacia_adelante(request):
     method = Method.objects.filter(name="Newton hacia adelante").first()
+    # Variables del problema
     t = 3.5
     x = [1,2,3,4]
     y = [120,94,75,62]
     result = newton_hacia_adelante.metodo_newton_hacia_adelante(t,x,y)
+    # Variables de presentacion del problema
     t_print = 3.5
     x_print = [1,2,3,4]
     y_print = [120,94,75,62]
     xy_print = zip(x_print,y_print)
-    user_method_form = UserMethodForm()
+    # Datos del formulario
+    data = {'method_id': method.field_id}
+    user_method_form = UserMethodForm(initial=data)
     context = {
         "user_method_form":user_method_form,
         "xy_print": xy_print,
