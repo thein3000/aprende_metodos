@@ -6,7 +6,7 @@ def function_fx(equation,x):
 
 def conseguir_ab(equation):
     ab_no_encontrada = True
-    lower_bound = -2
+    lower_bound = - 2
     upper_bound = 3
     while ab_no_encontrada:
         for i in range(lower_bound,upper_bound):

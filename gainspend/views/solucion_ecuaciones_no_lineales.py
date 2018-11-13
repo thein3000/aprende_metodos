@@ -30,8 +30,6 @@ def excercise_newton_raphson(request):
     equation = "0.8*x**2 + x - 3"
     result = newton_raphson.metodo_newton_raphson(equation)
     # Variables de presentacion del problema
-    # x = symbols('x')
-    # equation_print = eval("str(pprint(( (0.8 * x ** 2) / (x - 3)), use_unicode=False))")
     equation_print = "0.8*x**2 + x - 3"
     # Datos del formulario
     data = {'method_id': method.field_id}

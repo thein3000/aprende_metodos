@@ -20,6 +20,10 @@
   text-align: center;
   padding-top: 10px;
 }
+.second_tag {
+  border-radius: 14px;
+  padding: 2px 8px 4px;
+}
 .start_excercise_box {
   border-top: 1px solid black;
 }

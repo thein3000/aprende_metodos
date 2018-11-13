@@ -14,15 +14,27 @@ from gainspend.forms import UserMethodForm
 def main_dashboard(request):
     methods = Method.objects.all()
     completed_list = []
+    seconds_list = []
+    second_tag_colors = []
     for method in methods:
-        completed = len(UserMethod.objects.filter(user=request.user, method=method))
-        last_completed_value = completed
+        user_methods = UserMethod.objects.filter(user=request.user, method=method)
+        completed = len(user_methods)
         if completed >= 1:
             completed_list.append(True)
+            seconds = user_methods.order_by('seconds').first().seconds
+            seconds_list.append(seconds)
+            if seconds <= 120:
+                second_tag_colors.append("green")
+            elif seconds <= 240:
+                second_tag_colors.append("yellow darken-4")
+            else:
+                second_tag_colors.append("red")
         else:
             completed_list.append(False)
+            seconds_list.append(0)
+            second_tag_colors.append("")
     completed_list.insert(0,True)
-    methods_list = zip(methods, completed_list)
+    methods_list = zip(methods, completed_list, seconds_list, second_tag_colors)
     context = {
         "methods_list": methods_list
     }
@@ -30,7 +42,6 @@ def main_dashboard(request):
 
 @login_required
 def successful_excercise(request):
-
     context = {
     }
     return render(request, 'gainspend/pages/successful_excercise.html', context)

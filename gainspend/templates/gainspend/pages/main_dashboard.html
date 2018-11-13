@@ -22,26 +22,34 @@
       </div>
       <table class="progress_table">
         <tbody>
-          {% for method, completed in methods_list %}
+          {% for method, completed, seconds, tag_color in methods_list %}
           <tr>
             {% if method.is_subject %}
               {% if completed %}
                 <td><div class="center-align subject_circle green"></div></td>
-                <td><h5>{{ method.name }}</h5></td>
+                <td><h5>{{ method.name }} </h5></td>
                 <td></td>
               {% else %}
                 <td><div class="center-align subject_circle grey darken-2"></div></td>
-                <td><h5>{{ method.name }}</h5></td>
+                <td><h5>{{ method.name }} </h5></td>
                 <td></td>
               {% endif %}
             {% else %}
               {% if completed %}
                 <td><div class="method_line black"></div></td>
-                <td>{{ method.name }}</td>
+                <td>{{ method.name }}
+                  {% if seconds > 0 %}
+                    <span class="second_tag {{tag_color}} darken-2 white-text">{{seconds}} segundos</span>
+                  {% endif %}
+                </td>
                 <td><a href="/preface_{{ method.preface_name }}"><div class="btn dark-purple">Practicar</div></a></td>
               {% else %}
                 <td><div class="method_line grey"></div></td>
-                <td>{{ method.name }}</td>
+                <td>{{ method.name }}
+                  {% if seconds > 0 %}
+                    <span class="second_tag {{tag_color}} darken-2 white-text">{{seconds}} segundos</span>
+                  {% endif %}
+                </td>
                 <td><a href="/preface_{{ method.preface_name }}"><div class="btn grey">Practicar</div></a></td>
               {% endif %}
             {% endif %}
