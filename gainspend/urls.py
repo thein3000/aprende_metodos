@@ -59,6 +59,6 @@ urlpatterns = [
     path('preface_runge_kutta_tercer_orden/excercise',views.excercise_runge_kutta_tercer_orden, name='excercise_runge_kutta_tercer_orden'),
     path('preface_runge_kutta_cuarto_orden_por_un_tercio_de_simpson/',views.preface_runge_kutta_cuarto_orden_por_un_tercio_de_simpson, name='preface_runge_kutta_cuarto_orden_por_un_tercio_de_simpson'),
     path('preface_runge_kutta_cuarto_orden_por_un_tercio_de_simpson/excercise',views.excercise_runge_kutta_cuarto_orden_por_un_tercio_de_simpson, name='excercise_runge_kutta_cuarto_orden_por_un_tercio_de_simpson'),
-    # path('preface_runge_kutta_cuarto_orden_por_tres_octavos_de_simpson/',views.preface_runge_kutta_cuarto_orden_por_tres_octavos_de_simpson, name='preface_runge_kutta_cuarto_orden_por_tres_octavos_de_simpson'),
-    # path('preface_runge_kutta_cuarto_orden_por_tres_octavos_de_simpson/excercise',views.excercise_runge_kutta_cuarto_orden_por_tres_octavos_de_simpson, name='excercise_runge_kutta_cuarto_orden_por_tres_octavos_de_simpson'),
+    path('preface_runge_kutta_cuarto_orden_por_tres_octavos_de_simpson/',views.preface_runge_kutta_cuarto_orden_por_tres_octavos_de_simpson, name='preface_runge_kutta_cuarto_orden_por_tres_octavos_de_simpson'),
+    path('preface_runge_kutta_cuarto_orden_por_tres_octavos_de_simpson/excercise',views.excercise_runge_kutta_cuarto_orden_por_tres_octavos_de_simpson, name='excercise_runge_kutta_cuarto_orden_por_tres_octavos_de_simpson'),
 ]
