@@ -1,13 +1,14 @@
-equaciondeveras = "(5*y*t-1)/3"
-yodeveras = 2
-hdeveras = .2
+from math import *
+# equaciondeveras = "(5*y*t-1)/3"
+# yodeveras = 2
+# hdeveras = .2
 
 
 def equacionmoveradelante(equeacion,y,t):
     return eval(equeacion)
 
 
-def euler_hacia_adelante(equeacion1,y0,h):
+def metodo_euler_hacia_adelante(equeacion1,y0,h):
     i = 0
     t0 = 0
     parte1 = equacionmoveradelante(equeacion1,y0,t0)
@@ -21,4 +22,4 @@ def euler_hacia_adelante(equeacion1,y0,h):
 
 
 
-print(euler_hacia_adelante(equaciondeveras,yodeveras,hdeveras))
+# print(euler_hacia_adelante(equaciondeveras,yodeveras,hdeveras))

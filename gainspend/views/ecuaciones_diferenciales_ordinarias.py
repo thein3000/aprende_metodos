@@ -12,6 +12,7 @@ from gainspend.metodos_numericos import runge_kutta_segundo_orden
 from gainspend.metodos_numericos import runge_kutta_tercer_orden
 from gainspend.metodos_numericos import runge_kutta_cuarto_orden_por_un_tercio_de_simpson
 from gainspend.metodos_numericos import runge_kutta_cuarto_orden_por_tres_octavos_de_simpson
+from gainspend.metodos_numericos import euler_modificado
 from gainspend.forms import UserMethodForm
 
 @login_required
@@ -145,6 +146,40 @@ def excercise_runge_kutta_cuarto_orden_por_tres_octavos_de_simpson(request):
     }
     return render(request, 'gainspend/pages/excercise_runge_kutta_cuarto_orden_por_tres_octavos_de_simpson.html', context)
 
+@login_required
+def preface_euler_modificado(request):
+    method = Method.objects.filter(name="Euler modificado").first()
+    context = {
+        "method": method
+    }
+    return render(request, 'gainspend/pages/preface_euler_modificado.html', context)
+
+@login_required
+def excercise_euler_modificado(request):
+    method = Method.objects.filter(name="Euler modificado").first()
+    # Variables del problema
+    equation = "sin(t)-(y/2)"
+    y_inicial = 1
+    h = .5
+    y_uno = 1
+    result = euler_modificado.metodo_euler_modificado(equation,y_inicial,h,y_uno)
+    # Variables de presentacion del problema
+    equation_print = "sin(t)-(y/2)"
+    y_inicial_print = 1
+    h_print = .5
+    y_uno_print = 1
+    data = {'method_id': method.field_id}
+    user_method_form = UserMethodForm(initial=data)
+    context = {
+        "user_method_form": user_method_form,
+        "equation_print": equation_print,
+        "y_inicial_print": y_inicial_print,
+        "y_uno_print": y_uno_print,
+        "h_print": h_print,
+        "result": result,
+        "method": method
+    }
+    return render(request, 'gainspend/pages/excercise_euler_modificado.html', context)
 
 
    # # "Ecuaciones Diferenciales Ordinarias"

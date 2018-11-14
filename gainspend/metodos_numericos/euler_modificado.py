@@ -1,14 +1,14 @@
 from math import *
-equaciondeveras = "sin(t)-(y/2)"
-yodeveras = 1
-hdeveras = .5
-y1deveras = 1
+# equaciondeveras = "sin(t)-(y/2)"
+# yodeveras = 1
+# hdeveras = .5
+# y1deveras = 1
 
 def equacionmover(equeacion,y,t):
     return eval(equeacion)
 
 
-def euler_modificado(equeacion1,y0,h,y1):
+def metodo_euler_modificado(equeacion1,y0,h,y1):
     i = 0
     t0 = 0
     t1 = t0+h
@@ -32,4 +32,4 @@ def euler_modificado(equeacion1,y0,h,y1):
 
 
 
-print(euler_modificado(equaciondeveras,yodeveras,hdeveras,y1deveras))
+# print(euler_modificado(equaciondeveras,yodeveras,hdeveras,y1deveras))
