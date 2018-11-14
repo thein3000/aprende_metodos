@@ -11,6 +11,7 @@ import json
 from gainspend.metodos_numericos import newton_raphson
 from gainspend.metodos_numericos import punto_fijo
 from gainspend.metodos_numericos import falsa_posicion
+from gainspend.metodos_numericos import secante
 from gainspend.forms import UserMethodForm
 from sympy import pretty, symbols, pprint
 
@@ -95,6 +96,33 @@ def excercise_falsa_posicion(request):
         "method": method
     }
     return render(request, 'gainspend/pages/excercise_falsa_posicion.html', context)
+
+@login_required
+def preface_secante(request):
+    method = Method.objects.filter(name="Secante").first()
+    context = {
+        "method": method
+    }
+    return render(request, 'gainspend/pages/preface_secante.html', context)
+
+@login_required
+def excercise_secante(request):
+    method = Method.objects.filter(name="Secante").first()
+    # Variables del problema
+    equation="e**(-x) - x"
+    result = secante.metodo_secante(equation)
+    # Variables de presentacion del problema
+    equation_print="e**(-x) - x"
+    # Datos del formulario
+    data = {'method_id': method.field_id}
+    user_method_form = UserMethodForm(initial=data)
+    context = {
+        "user_method_form": user_method_form,
+        "equation_print": equation_print,
+        "result": result,
+        "method": method
+    }
+    return render(request, 'gainspend/pages/excercise_secante.html', context)
 
 
    # # "Solución de Ecuaciones no Lineales"

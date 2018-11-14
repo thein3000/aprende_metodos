@@ -21,7 +21,7 @@ def main_dashboard(request):
         completed = len(user_methods)
         if completed >= 1:
             completed_list.append(True)
-            seconds = user_methods.order_by('seconds').first().seconds
+            seconds = user_methods.order_by('-seconds').first().seconds
             seconds_list.append(seconds)
             if seconds <= 120:
                 second_tag_colors.append("green")
