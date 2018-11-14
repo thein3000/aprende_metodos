@@ -1,13 +1,13 @@
 from math import *
-equaciondeveras = "(y+t)**2/(1-y)"
-yodeveras = .4
-hdeveras = .2
+# equaciondeveras = "(y+t)**2/(1-y)"
+# yodeveras = .4
+# hdeveras = .2
 
 
 def equacion4orden(equeacion,y,t):
     return round(eval(equeacion),8)
 
-def runge_kutta_cuarto_orden_por_un_tercio_de_simpson(equacion,y0,h):
+def metodo_runge_kutta_cuarto_orden_por_un_tercio_de_simpson(equacion,y0,h):
     i = 0
     t0 = 0
     while i<2:
@@ -27,4 +27,4 @@ def runge_kutta_cuarto_orden_por_un_tercio_de_simpson(equacion,y0,h):
         i += 1
     return respuesta
 
-print(runge_kutta_cuarto_orden_por_un_tercio_de_simpson(equaciondeveras,yodeveras,hdeveras))
+# print(metodo_runge_kutta_cuarto_orden_por_un_tercio_de_simpson(equaciondeveras,yodeveras,hdeveras))

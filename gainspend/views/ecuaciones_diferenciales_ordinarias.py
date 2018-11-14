@@ -10,6 +10,7 @@ import datetime
 import json
 from gainspend.metodos_numericos import runge_kutta_segundo_orden
 from gainspend.metodos_numericos import runge_kutta_tercer_orden
+from gainspend.metodos_numericos import runge_kutta_cuarto_orden_por_un_tercio_de_simpson
 from gainspend.forms import UserMethodForm
 
 @login_required
@@ -77,6 +78,41 @@ def excercise_runge_kutta_tercer_orden(request):
         "method": method
     }
     return render(request, 'gainspend/pages/excercise_runge_kutta_tercer_orden.html', context)
+
+@login_required
+def preface_runge_kutta_cuarto_orden_por_un_tercio_de_simpson(request):
+    method = Method.objects.filter(name="Runge - Kutta (4to orden) por 1/3 de Simpson").first()
+    context = {
+        "method": method
+    }
+    return render(request, 'gainspend/pages/preface_runge_kutta_cuarto_orden_por_un_tercio_de_simpson.html', context)
+
+@login_required
+def excercise_runge_kutta_cuarto_orden_por_un_tercio_de_simpson(request):
+    method = Method.objects.filter(name="Runge - Kutta (4to orden) por 1/3 de Simpson").first()
+    # Variables del problema
+    equation = "(y+t)**2/(1-y)"
+    y_inicial = .4
+    h = .2
+    result = runge_kutta_cuarto_orden_por_un_tercio_de_simpson.metodo_runge_kutta_cuarto_orden_por_un_tercio_de_simpson(equation,y_inicial,h)
+    # Variables de presentacion del problema
+    equation_print = "(y+t)**2/(1-y)"
+    y_inicial_print = .4
+    h_print = .2
+    # Datos del formulario
+    data = {'method_id': method.field_id}
+    user_method_form = UserMethodForm(initial=data)
+    context = {
+        "user_method_form": user_method_form,
+        "equation_print": equation_print,
+        "y_inicial_print": y_inicial_print,
+        "h_print": h_print,
+        "result": result,
+        "method": method
+    }
+    return render(request, 'gainspend/pages/excercise_runge_kutta_cuarto_orden_por_un_tercio_de_simpson.html', context)
+
+
 
 
    # # "Ecuaciones Diferenciales Ordinarias"
