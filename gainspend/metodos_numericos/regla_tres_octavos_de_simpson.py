@@ -25,7 +25,7 @@ def ciclo(temp,h0,valora,valorn):
     return iteracion
 
 
-def regla_tres_octavos_de_simpson(ecuacion,a0,b0,n0):
+def metodo_regla_tres_octavos_de_simpson(ecuacion,a0,b0,n0):
     h = (b0-a0)/n0
     simpsonvalor = ciclo(ecuacion,h,a0,n0)
     respuesta = (3/8)*(h)*(integracionna(ecuacion,a0)+simpsonvalor+integracionna(ecuacion,b0))
@@ -33,4 +33,4 @@ def regla_tres_octavos_de_simpson(ecuacion,a0,b0,n0):
 
 
 
-# print(regla_tres_octavos_de_simpson(integral,a,b,n))
+# print(metodo_regla_tres_octavos_de_simpson(integral,a,b,n))
