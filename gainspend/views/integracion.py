@@ -10,6 +10,8 @@ import datetime
 import json
 from gainspend.metodos_numericos import regla_tres_octavos_de_simpson
 from gainspend.metodos_numericos import regla_un_tercio_de_simpson
+from gainspend.metodos_numericos import newton_cotes_abiertas
+from gainspend.metodos_numericos import newton_cotes_cerradas
 from gainspend.forms import UserMethodForm
 
 @login_required
@@ -81,6 +83,42 @@ def excercise_regla_un_tercio_de_simpson(request):
         "method": method
     }
     return render(request, 'gainspend/pages/excercise_regla_un_tercio_de_simpson.html', context)
+
+@login_required
+def preface_newton_cotes_abiertas(request):
+    method = Method.objects.filter(name="Newton - Cotes abiertas").first()
+    context = {
+        "method": method
+    }
+    return render(request, 'gainspend/pages/preface_newton_cotes_abiertas.html', context)
+
+@login_required
+def excercise_newton_cotes_abiertas(request):
+    method = Method.objects.filter(name="Newton - Cotes abiertas").first()
+    # Variables del problema
+    integral = "(sin(2x)+x**3)"
+    n = 5
+    a = 0
+    b = 1
+    result = newton_cotes_abiertas.metodo_newton_cotes_abiertas(integral,a,b,n)
+    # Variables de presentacion del problema
+    integral_print = "(sin(2x)+x**3)"
+    n_print = 5
+    a_print = 0
+    b_print = 1
+    data = {'method_id': method.field_id}
+    user_method_form = UserMethodForm(initial=data)
+    context = {
+        "user_method_form": user_method_form,
+        "integral_print": integral_print,
+        "n_print": n_print,
+        "a_print": a_print,
+        "b_print": b_print,
+        "result": result,
+        "method": method
+    }
+    return render(request, 'gainspend/pages/excercise_newton_cotes_abiertas.html', context)
+
 
        # # "Integración"
        # "Newton - Cotes cerradas"
