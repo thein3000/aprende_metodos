@@ -13,6 +13,7 @@ from gainspend.metodos_numericos import runge_kutta_tercer_orden
 from gainspend.metodos_numericos import runge_kutta_cuarto_orden_por_un_tercio_de_simpson
 from gainspend.metodos_numericos import runge_kutta_cuarto_orden_por_tres_octavos_de_simpson
 from gainspend.metodos_numericos import euler_modificado
+from gainspend.metodos_numericos import euler_hacia_adelante
 from gainspend.forms import UserMethodForm
 
 @login_required
@@ -180,6 +181,38 @@ def excercise_euler_modificado(request):
         "method": method
     }
     return render(request, 'gainspend/pages/excercise_euler_modificado.html', context)
+
+@login_required
+def preface_euler_hacia_adelante(request):
+    method = Method.objects.filter(name="Euler hacia adelante").first()
+    context = {
+        "method": method
+    }
+    return render(request, 'gainspend/pages/preface_euler_hacia_adelante.html', context)
+
+@login_required
+def excercise_euler_hacia_adelante(request):
+    method = Method.objects.filter(name="Euler hacia adelante").first()
+    # Variables del problema
+    equation = "(5*y*t-1)/3"
+    y_inicial = 2
+    h = .2
+    result = euler_hacia_adelante.metodo_euler_hacia_adelante(equation,y_inicial,h)
+    # Variables de presentacion del problema
+    equation_print = "(5*y*t-1)/3"
+    y_inicial_print = 2
+    h_print = .2
+    data = {'method_id': method.field_id}
+    user_method_form = UserMethodForm(initial=data)
+    context = {
+        "user_method_form": user_method_form,
+        "equation_print": equation_print,
+        "y_inicial_print": y_inicial_print,
+        "h_print": h_print,
+        "result": result,
+        "method": method
+    }
+    return render(request, 'gainspend/pages/excercise_euler_hacia_adelante.html', context)
 
 
    # # "Ecuaciones Diferenciales Ordinarias"
