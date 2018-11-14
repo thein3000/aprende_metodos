@@ -1,7 +1,7 @@
 from math import *
-equaciondeveras = "e**(-t)-3*y"
-yodeveras = 1
-hdeveras = .5
+# equaciondeveras = "e**(-t)-3*y"
+# yodeveras = 1
+# hdeveras = .5
 
 def equacion2orden(equeacion,y,t):
     return round(eval(equeacion),8)
@@ -22,4 +22,4 @@ def metodo_runge_kutta_segundo_orden(equacion,y0,h):
     respuesta = 1+(1/2)*(k2+k1)
     return respuesta
 
-print(metodo_runge_kutta_segundo_orden(equaciondeveras,yodeveras,hdeveras))
+# print(metodo_runge_kutta_segundo_orden(equaciondeveras,yodeveras,hdeveras))
