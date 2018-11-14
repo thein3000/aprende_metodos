@@ -1,8 +1,8 @@
 from math import *
-equaciondeveras = "(((2*y*t)+1)/y**2)"
-yodeveras = 1
-hdeveras = .25
-
+# equaciondeveras = "(((2*y*t)+1)/y**2)"
+# yodeveras = 1
+# hdeveras = .25
+#
 
 def equacion3orden(equeacion,y,t):
     return round(eval(equeacion),8)
@@ -24,4 +24,4 @@ def metodo_runge_kutta_tercer_orden(equacion,y0,h):
         i+=1
     return round(respuesta,8)
 
-print( metodo_runge_kutta_tercer_orden(equaciondeveras,yodeveras,hdeveras))
+# print( metodo_runge_kutta_tercer_orden(equaciondeveras,yodeveras,hdeveras))
