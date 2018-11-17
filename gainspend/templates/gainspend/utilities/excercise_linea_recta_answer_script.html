@@ -1,0 +1,47 @@
+// Funcion de Validacion de respuesta
+function sort_of_equal(v1, v2, epsilon) {
+  if (epsilon == null) {
+    epsilon = 0.001;
+  }
+  return Math.abs(v1 - v2) < epsilon;
+};
+function validar_respuesta() {
+  if ($("#no_tiene_solucion").is(":checked")) {
+    if (excercise_answer_a0 == "No hay solucion") {
+      mandar_formulario();
+      // console.log("Yei");
+    } else {
+      $("#valor_a0").addClass("invalid");
+      $("#valor_a1").addClass("invalid");
+    }
+  } else {
+    valor_a0 = Number($("#valor_a0").val());
+    valor_a1 = Number($("#valor_a1").val());
+    if (sort_of_equal(valor_a0, excercise_answer_a0, 0.00001) && sort_of_equal(valor_a1, excercise_answer_a1, 0.00001)) {
+      mandar_formulario();
+      // console.log("Yaaaas");
+    } else {
+      $("#valor_a0").addClass("invalid");
+      $("#valor_a1").addClass("invalid");
+    }
+  }
+}
+
+function mandar_formulario() {
+  form_seconds = $("#excercise_timer").data('seconds');
+  console.log(form_seconds);
+  $('#id_seconds').val(form_seconds);
+  $("#user_method_form").submit();
+}
+// Aparecer probelma e iniciar timer
+function iniciar_problema(){
+  $("#start_excercise_box").removeClass("hide");
+  $("#excercise_cover").addClass("hide");
+  $("#excercise_timer").timer('start');
+}
+$("#validar_respuesta").on("click", function() {
+  validar_respuesta();
+});
+$("#comenzar_problema").on("click", function() {
+  iniciar_problema();
+});

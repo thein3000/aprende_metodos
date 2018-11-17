@@ -7,7 +7,7 @@ def metodo_minimos_cuadrados(mode,x,y):
     matrix = generar_matriz(mode,list_x,list_y)
     resultados = metodo_montante(matrix)
     # print(resultados)
-    return lista_coeficientes
+    return resultados
 
 def generar_matriz(mode,list_x,list_y):
     x_sums = []
@@ -69,22 +69,8 @@ def metodo_montante(Matriz):
     # return respuesta
     return respuesta
 
-# # x,y,z = metodo_montante(C)
-# x = [
-#     1.1,
-#     1.9,
-#     2.4,
-#     4.8,
-#     5.1,
-#     10.5
-# ]
-# y = [
-#     2.5,
-#     2.7,
-#     3.7,
-#     5.2,
-#     6.0,
-#     8.3
-# ]
+# x = [ 1.1, 1.9, 2.4, 4.8, 5.1,10.5]
+# y = [ 2.5, 2.7, 3.7, 5.2, 6.0, 8.3]
 # mode = 1
-# metodo_minimos_cuadrados(mode,x,y)
+# lista_coeficientes = metodo_minimos_cuadrados(mode,x,y)
+# print(f'Resultados: {lista_coeficientes}')
