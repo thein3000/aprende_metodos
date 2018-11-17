@@ -1,9 +1,9 @@
 from math import *
-# integral = "(3*x**3)-10"
+#integral = "(3*x**3)-10"
 # n = 4
 # a = -2
 # b= 2
-#integral = "(sin(2x)+x**3)"
+#integral = "(sin(2*x)+x**3)"
 #n = 5
 #a = 0
 #b= 1
@@ -31,22 +31,25 @@ def metodo_newton_cotes_abiertas(ecuacion,a0,b0,n0):
     n4=[0,11,-14,26,-14,11,0]
     n5=[0,611,-453,562,562,-453,611,0]
     n6=[0,460,-954,2196,-2459,2196,-954,460,0]
-    h = (b0-a0)/(n+2)
-    if n==6:
+    h = (b0-a0)/(n0+2)
+    if n0==6:
         iteracioncotas = iteracionescotas(ecuacion,h,a0,n6)
-    elif n==5:
+    elif n0==5:
         iteracioncotas = iteracionescotas(ecuacion,h,a0,n5)
-    elif n==4:
+    elif n0==4:
         iteracioncotas = iteracionescotas(ecuacion,h,a0,n4)
-    elif n==3:
+    elif n0==3:
         iteracioncotas = iteracionescotas(ecuacion,h,a0,n3)
-    elif n==2:
+    elif n0==2:
         iteracioncotas = iteracionescotas(ecuacion,h,a0,n2)
     else:
         iteracioncotas = iteracionescotas(ecuacion,h,a0,n1)
-    respuesta = alphas[n-1]*h*iteracioncotas
+    respuesta = alphas[n0-1]*h*iteracioncotas
     return respuesta
 
-
-
+# integral = "(sin(2*x)+x**3)"
+# n = 5
+# a = 0
+# b= 1
+#
 # print(metodo_newton_cotes_abiertas(integral,a,b,n))

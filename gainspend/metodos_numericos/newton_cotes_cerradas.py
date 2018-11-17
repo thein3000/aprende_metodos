@@ -35,20 +35,28 @@ def metodo_newton_cotes_cerradas(ecuacion,a0,b0,n0):
     n8 = [989,5888,-928,10946,-4540,10946,-928,5888,989]
     n9 = [2857,15741,1080,19344,5788,5788,19344,1080,15741,2857]
     n10 = [16067,106300,-48525,272400,-260550,427368,-260550,272400,-48525,106300,16067]
-    h = (b0-a0)/(n)
-    if n==6:
+    h = (b0-a0)/(n0)
+    if n0==10:
+        iteracioncotas = iteracionescotas(ecuacion,h,a0,n10)
+    elif n0==9:
+        iteracioncotas = iteracionescotas(ecuacion,h,a0,n9)
+    elif n0==8:
+        iteracioncotas = iteracionescotas(ecuacion,h,a0,n8)
+    elif n0==7:
+        iteracioncotas = iteracionescotas(ecuacion,h,a0,n7)
+    elif n0==6:
         iteracioncotas = iteracionescotas(ecuacion,h,a0,n6)
-    elif n==5:
+    elif n0==5:
         iteracioncotas = iteracionescotas(ecuacion,h,a0,n5)
-    elif n==4:
+    elif n0==4:
         iteracioncotas = iteracionescotas(ecuacion,h,a0,n4)
-    elif n==3:
+    elif n0==3:
         iteracioncotas = iteracionescotas(ecuacion,h,a0,n3)
-    elif n==2:
+    elif n0==2:
         iteracioncotas = iteracionescotas(ecuacion,h,a0,n2)
     else:
         iteracioncotas = iteracionescotas(ecuacion,h,a0,n1)
-    respuesta = alphas[n-1]*h*iteracioncotas
+    respuesta = alphas[n0-1]*h*iteracioncotas
     return respuesta
 
 

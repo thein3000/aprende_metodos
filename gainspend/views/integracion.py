@@ -96,13 +96,13 @@ def preface_newton_cotes_abiertas(request):
 def excercise_newton_cotes_abiertas(request):
     method = Method.objects.filter(name="Newton - Cotes abiertas").first()
     # Variables del problema
-    integral = "(sin(2x)+x**3)"
+    integral = "(sin(2*x)+x**3)"
     n = 5
     a = 0
     b = 1
     result = newton_cotes_abiertas.metodo_newton_cotes_abiertas(integral,a,b,n)
     # Variables de presentacion del problema
-    integral_print = "(sin(2x)+x**3)"
+    integral_print = "(sin(2*x)+x**3)"
     n_print = 5
     a_print = 0
     b_print = 1
