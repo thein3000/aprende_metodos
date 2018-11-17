@@ -11,6 +11,11 @@ function validar_respuesta() {
       mandar_formulario();
     } else {
       $("#valor_x").addClass("invalid");
+      swal(
+        'Se ha equivocado!',
+        'Revise su procedimiento y vuelva a intentar',
+        'error'
+      )
     }
   } else {
     valor_x = Number($("#valor_x").val());
@@ -18,6 +23,11 @@ function validar_respuesta() {
       mandar_formulario();
     } else {
       $("#valor_x").addClass("invalid");
+      swal(
+        'Se ha equivocado!',
+        'Revise su procedimiento y vuelva a intentar',
+        'error'
+      )
     }
   }
 }

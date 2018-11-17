@@ -13,6 +13,11 @@ function validar_respuesta() {
     } else {
       $("#valor_a0").addClass("invalid");
       $("#valor_a1").addClass("invalid");
+      swal(
+        'Se ha equivocado!',
+        'Revise su procedimiento y vuelva a intentar',
+        'error'
+      )
     }
   } else {
     valor_a0 = Number($("#valor_a0").val());
@@ -23,6 +28,11 @@ function validar_respuesta() {
     } else {
       $("#valor_a0").addClass("invalid");
       $("#valor_a1").addClass("invalid");
+      swal(
+        'Se ha equivocado!',
+        'Revise su procedimiento y vuelva a intentar',
+        'error'
+      )
     }
   }
 }
