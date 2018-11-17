@@ -34,6 +34,7 @@ def main_dashboard(request):
             seconds_list.append(0)
             second_tag_colors.append("")
     completed_list.insert(0,True)
+    completed_list[1] = True
     methods_list = zip(methods, completed_list, seconds_list, second_tag_colors)
     context = {
         "methods_list": methods_list
