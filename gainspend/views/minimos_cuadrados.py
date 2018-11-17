@@ -1,15 +1,9 @@
 from django.shortcuts import render
 from gainspend.models import Method
 from gainspend.models import UserMethod
-from django.http import HttpResponse, HttpResponseRedirect
-from django.utils.http import is_safe_url
-from django.core import serializers
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect
-import datetime
-import json
-from gainspend.metodos_numericos import minimos_cuadrados_general
 from gainspend.forms import UserMethodForm
+from gainspend.metodos_numericos import minimos_cuadrados_general
 # import numpy as np
 
 @login_required

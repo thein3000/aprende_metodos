@@ -1,20 +1,13 @@
 from django.shortcuts import render
 from gainspend.models import Method
 from gainspend.models import UserMethod
-from django.http import HttpResponse, HttpResponseRedirect
-from django.utils.http import is_safe_url
-from django.core import serializers
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect
-import datetime
-import json
+from gainspend.forms import UserMethodForm
+from gainspend.custom_helpers import parsed_equation
 from gainspend.metodos_numericos import newton_raphson
 from gainspend.metodos_numericos import punto_fijo
 from gainspend.metodos_numericos import falsa_posicion
 from gainspend.metodos_numericos import secante
-from gainspend.forms import UserMethodForm
-from sympy import pretty, symbols, pprint
-
 
 @login_required
 def preface_newton_raphson(request):
@@ -31,7 +24,7 @@ def excercise_newton_raphson(request):
     equation = "0.8*x**2 + x - 3"
     result = newton_raphson.metodo_newton_raphson(equation)
     # Variables de presentacion del problema
-    equation_print = "0.8*x**2 + x - 3"
+    equation_print = parsed_equation(equation)
     # Datos del formulario
     data = {'method_id': method.field_id}
     user_method_form = UserMethodForm(initial=data)
@@ -58,7 +51,7 @@ def excercise_punto_fijo(request):
     equation = "(e**x - 2) / 2"
     result = punto_fijo.metodo_punto_fijo(equation)
     # Variables de presentacion del problema
-    equation_print = "(e**x - 2) / 2"
+    equation_print = parsed_equation(equation)
     # Datos del formulario
     data = {'method_id': method.field_id}
     user_method_form = UserMethodForm(initial=data)
@@ -85,7 +78,7 @@ def excercise_falsa_posicion(request):
     equation = "x*e**x - 10"
     result = falsa_posicion.metodo_falsa_posicion(equation)
     # Variables de presentacion del problema
-    equation_print = "x*e**x - 10"
+    equation_print = parsed_equation(equation)
     # Datos del formulario
     data = {'method_id': method.field_id}
     user_method_form = UserMethodForm(initial=data)
@@ -112,7 +105,7 @@ def excercise_secante(request):
     equation="e**(-x) - x"
     result = secante.metodo_secante(equation)
     # Variables de presentacion del problema
-    equation_print="e**(-x) - x"
+    equation_print = parsed_equation(equation)
     # Datos del formulario
     data = {'method_id': method.field_id}
     user_method_form = UserMethodForm(initial=data)

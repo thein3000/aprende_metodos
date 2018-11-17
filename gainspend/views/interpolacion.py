@@ -1,17 +1,11 @@
 from django.shortcuts import render
 from gainspend.models import Method
 from gainspend.models import UserMethod
-from django.http import HttpResponse, HttpResponseRedirect
-from django.utils.http import is_safe_url
-from django.core import serializers
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect
-import datetime
-import json
+from gainspend.forms import UserMethodForm
 from gainspend.metodos_numericos import newton_hacia_adelante
 from gainspend.metodos_numericos import newton_hacia_atras
 from gainspend.metodos_numericos import lagrange
-from gainspend.forms import UserMethodForm
 
 @login_required
 def preface_newton_hacia_adelante(request):

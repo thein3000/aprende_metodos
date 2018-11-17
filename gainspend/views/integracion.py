@@ -1,18 +1,13 @@
 from django.shortcuts import render
 from gainspend.models import Method
 from gainspend.models import UserMethod
-from django.http import HttpResponse, HttpResponseRedirect
-from django.utils.http import is_safe_url
-from django.core import serializers
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect
-import datetime
-import json
+from gainspend.forms import UserMethodForm
+from gainspend.custom_helpers import parsed_equation
 from gainspend.metodos_numericos import regla_tres_octavos_de_simpson
 from gainspend.metodos_numericos import regla_un_tercio_de_simpson
 from gainspend.metodos_numericos import newton_cotes_abiertas
 from gainspend.metodos_numericos import newton_cotes_cerradas
-from gainspend.forms import UserMethodForm
 
 @login_required
 def preface_regla_tres_octavos_de_simpson(request):
@@ -32,7 +27,7 @@ def excercise_regla_tres_octavos_de_simpson(request):
     b= 3
     result = regla_tres_octavos_de_simpson.metodo_regla_tres_octavos_de_simpson(integral,a,b,n)
     # Variables de presentacion del problema
-    integral_print = "1/(1+x**2)"
+    integral_print = parsed_equation(integral)
     n_print = 10
     a_print = 2
     b_print = 3
@@ -67,7 +62,7 @@ def excercise_regla_un_tercio_de_simpson(request):
     b= 2
     result = regla_un_tercio_de_simpson.metodo_regla_un_tercio_de_simpson(integral,a,b,n)
     # Variables de presentacion del problema
-    integral_print = "(cos(x)+x**2)"
+    integral_print = parsed_equation(integral)
     n_print = 3
     a_print = 1
     b_print = 2
@@ -102,7 +97,7 @@ def excercise_newton_cotes_abiertas(request):
     b = 1
     result = newton_cotes_abiertas.metodo_newton_cotes_abiertas(integral,a,b,n)
     # Variables de presentacion del problema
-    integral_print = "(sin(2*x)+x**3)"
+    integral_print = parsed_equation(integral)#"(sin(2*x)+x**3)"
     n_print = 5
     a_print = 0
     b_print = 1
