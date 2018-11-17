@@ -27,9 +27,20 @@
         <div id="problem_description" class="row">
           <div class="center-align">
             <h4>n = {{ n_print }}</h4>
-            <h4>b = {{ b_print }}</h4>
-            <h4>a = {{ a_print }}</h4>
-            <h2>{{ integral_print }}</h2>
+            <table class="integral_table">
+              <tr>
+                <td>
+                  <span class="integral_structure">
+                    <span class="integral_b">{{ b_print }}</span>
+                    <span class="integral_symbol">∫</span>
+                    <span class="integral_a">{{a_print }}</span>
+                  </span>
+                </td>
+                <td>
+                  <h2>{{ integral_print }}</h2>
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
         <!-- problem_description -->

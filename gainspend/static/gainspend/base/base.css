@@ -44,6 +44,7 @@
   left: 0px;
   right: 0px;
   background-color: #38373c;
+  z-index: 5;
 }
 #comenzar_problema {
   margin: auto;
@@ -58,4 +59,37 @@
   text-align: center;
   padding: 14px;
   font-size: 20px;
+}
+.integral_table {
+  width: auto;
+  margin: auto;
+}
+.integral_table tr {
+  border: 0px;
+  width: auto;
+  margin: auto;
+}
+.integral_table .integral_structure {
+  position: relative;
+}
+.integral_table .integral_structure .integral_b {
+  display: block;
+  position: absolute;
+  top: 40px;
+  left: 46px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.integral_table .integral_structure .integral_symbol {
+  display: block;
+  font-weight: 100;
+  font-size: 98px;
+}
+.integral_table .integral_structure .integral_a {
+  display: block;
+  position: absolute;
+  top: -36px;
+  left: 45px;
+  font-size: 18px;
+  font-weight: bold;
 }

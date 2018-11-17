@@ -27,7 +27,7 @@ def excercise_regla_tres_octavos_de_simpson(request):
     b= 3
     result = regla_tres_octavos_de_simpson.metodo_regla_tres_octavos_de_simpson(integral,a,b,n)
     # Variables de presentacion del problema
-    integral_print = parsed_equation(integral)
+    integral_print = parsed_equation(f'({integral}) dx')
     n_print = 10
     a_print = 2
     b_print = 3

@@ -1,13 +1,8 @@
 from django.shortcuts import render
 from gainspend.models import Method
 from gainspend.models import UserMethod
-from django.http import HttpResponse, HttpResponseRedirect
-from django.utils.http import is_safe_url
-from django.core import serializers
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, redirect
-import datetime
-import json
+from django.shortcuts import redirect
 from gainspend.forms import UserMethodForm
 
 @login_required
@@ -21,7 +16,7 @@ def main_dashboard(request):
         completed = len(user_methods)
         if completed >= 1:
             completed_list.append(True)
-            seconds = user_methods.order_by('-seconds').first().seconds
+            seconds = user_methods.order_by('seconds').first().seconds
             seconds_list.append(seconds)
             if seconds <= 120:
                 second_tag_colors.append("green")
