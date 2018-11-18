@@ -55,7 +55,6 @@ def register_method_completion(request):
             user_method = UserMethod(
                 user = request.user,
                 method = post_method,
-                completed = True,
                 seconds = post_seconds
             )
             user_method.save()
@@ -69,7 +68,6 @@ def register_method_completion(request):
                 next_user_method = UserMethod(
                     user = request.user,
                     method = next_method,
-                    completed = True,
                     seconds = 0
                 )
                 next_user_method.save()
