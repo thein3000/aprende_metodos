@@ -8,6 +8,7 @@ from gainspend.metodos_numericos import newton_hacia_atras
 from gainspend.metodos_numericos import lagrange
 from gainspend.metodos_numericos import interpolacion_lineal
 from gainspend.metodos_numericos import newton_con_diferencias_divididas
+from gainspend.randomizers import random_interpolacion
 # from gainspend.randomizers import
 
 @login_required
@@ -57,14 +58,11 @@ def preface_newton_hacia_adelante(request):
 def excercise_newton_hacia_adelante(request):
     method = Method.objects.filter(name="Newton hacia adelante").first()
     # Variables del problema
-    t = 3.5
-    x = [1,2,3,4]
-    y = [120,94,75,62]
+    t,x,y = random_interpolacion.generate_interpolacion(2)
+    t_print = float(t)
+    x_print = tuple(x)
+    y_print = tuple(y)
     result = newton_hacia_adelante.metodo_newton_hacia_adelante(t,x,y)
-    # Variables de presentacion del problema
-    t_print = 3.5
-    x_print = [1,2,3,4]
-    y_print = [120,94,75,62]
     xy_print = zip(x_print,y_print)
     # Datos del formulario
     data = {'method_id': method.field_id}
