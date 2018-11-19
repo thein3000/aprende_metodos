@@ -1,0 +1,54 @@
+{% extends "../base/base_main.html" %}
+{% load humanize %}
+{% load static %}
+{% block title %}{{method.name}}{% endblock title %}
+
+{% block content_center %}
+<div class="container">
+
+  <div class="preface_title" style="background-image: url({% static 'images/32.png' %})">
+    <div class="card-title">
+      <h3 style ="margin:0px;">Ecuaciones diferenciales ordinarias</h3>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title" style="border-bottom:1px solid black;">
+        <h4>{{ method.name }}</h4>
+      </div>
+
+      <div class="preface_content">
+        <p>La mayor exactitud se ve afectada por un excesivo trabajo computacional así como de complejidad.</p>
+        <img src ="{% static 'preface_images\RKOS1.jpg' %}"width="260"/>
+        <p><b>Ejemplo:</b></p>
+        <img src ="{% static 'preface_images\RKOS2.jpg' %}"width="200"/>
+        <br><img src ="{% static 'preface_images\RKOS3.jpg' %}"width="210"/>
+        <br><img src ="{% static 'preface_images\RKOS4.jpg' %}"width="320"/>
+        <br><img src ="{% static 'preface_images\RKOS5.jpg' %}"width="180"/>
+        <br><img src ="{% static 'preface_images\RKOS6.jpg' %}"width="240"/>
+        <br><img src ="{% static 'preface_images\RKOS7.jpg' %}"width="250"/>
+        <br><img src ="{% static 'preface_images\RKOS8.jpg' %}"width="280"/>
+        <br><img src ="{% static 'preface_images\RKOS9.jpg' %}"width="380"/>
+        <br><img src ="{% static 'preface_images\RKOS10.jpg' %}"width="330"/>
+        <br><img src ="{% static 'preface_images\RKOS11.jpg' %}"width="350"/>
+      </div>
+
+      <div class="start_excercise_box">
+        <div class="row">
+          <div class="col s12 m9">
+            <h5>Completa el ejercicio para progresar a la siguiente etapa del programa</h5>
+          </div>
+          <a href="/preface_{{ method.preface_name }}/excercise">
+            <div class="col s12 m3 btn btn-large green" style="margin-top:20px;">
+              Comenzar
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock content_center %}

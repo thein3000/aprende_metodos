@@ -10,6 +10,7 @@ from gainspend.metodos_numericos import runge_kutta_cuarto_orden_por_un_tercio_d
 from gainspend.metodos_numericos import runge_kutta_cuarto_orden_por_tres_octavos_de_simpson
 from gainspend.metodos_numericos import euler_modificado
 from gainspend.metodos_numericos import euler_hacia_adelante
+from gainspend.metodos_numericos import runge_kutta_de_orden_superior
 
 @login_required
 def preface_runge_kutta_segundo_orden(request):
@@ -241,6 +242,41 @@ def excercise_euler_hacia_atras(request):
     }
     return render(request, 'gainspend/pages/excercise_euler_hacia_atras.html', context)
 
+
+@login_required
+def preface_runge_kutta_de_orden_superior(request):
+    method = Method.objects.filter(name="Runge - Kutta de Orden Superior").first()
+    context = {
+        "method": method
+    }
+    return render(request, 'gainspend/pages/preface_runge_kutta_de_orden_superior.html', context)
+
+@login_required
+def excercise_runge_kutta_de_orden_superior(request):
+    method = Method.objects.filter(name="Runge - Kutta de Orden Superior").first()
+    # Variables del problema
+    equationt = "2*s*t-y"
+    yt = 1.1
+    st = 1.2
+    ht = .2
+    result = runge_kutta_de_orden_superior.metodo_runge_kutta_de_orden_superior(equationt,yt,st,ht)
+    # Variables de presentacion del problema
+    equationt_print = "y'' = " + parsed_equation(equationt)
+    yt_print = 1.1
+    st_print = 1.2
+    ht_print = .2
+    data = {'method_id': method.field_id}
+    user_method_form = UserMethodForm(initial=data)
+    context = {
+        "user_method_form": user_method_form,
+        "equationt_print": equationt_print,
+        "yt_print": yt_print,
+        "st_print": st_print,
+        "ht_print": ht_print,
+        "result": result,
+        "method": method
+    }
+    return render(request, 'gainspend/pages/excercise_runge_kutta_de_orden_superior.html', context)
    # # "Ecuaciones Diferenciales Ordinarias"
    # "Euler hacia adelante"
    # "Euler hacia atras"
