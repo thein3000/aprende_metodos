@@ -1,6 +1,6 @@
 from random import *
 
-def randomintegrales(modo):
+def generate_integral(modo):
     valor1 = randint(1,10)
     list = ["1/1-x**2","x**2","x**3","e**x"]
     valor2 = choice(list)
@@ -29,4 +29,4 @@ def randomintegrales(modo):
         valorn = choice(lista)
     return ecuacion,valora,valorb,valorn
 
-print(randomintegrales(5))
+# print(generate_integral(5))

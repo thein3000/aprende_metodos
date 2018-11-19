@@ -1,6 +1,6 @@
 from random import *
 
-def randomdiferen():
+def generate_ecuacion_diferencial():
     valor1 = randint(1,10)
     lista = ["y","y*t","y/t","(y*t)/2","(y*t)/5","(y*t)/3","y*3","e**t","e**-t","t","t**2","sin(t)","cos(t)","sin(y)","cos(y)"]
     valor2 = choice(lista)
@@ -13,4 +13,4 @@ def randomdiferen():
     h0 = round(uniform(0,1),2)
     return ecuacion,y0,h0
 
-print(randomdiferen())
+# print(generate_ecuacion_diferencial())

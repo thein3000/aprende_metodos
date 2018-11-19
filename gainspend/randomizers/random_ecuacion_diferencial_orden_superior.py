@@ -1,6 +1,6 @@
 from random import *
 
-def superiorrandom(modo):
+def generate_ecuacion_diferencial_orden_superior(modo):
     valor1 = randint(1,10)
     if modo == 1:
         #s siendo la derivada de y
@@ -20,4 +20,4 @@ def superiorrandom(modo):
     h = round(uniform(0,1),2)
     return ecuacion,y0,y1,h
 
-print(superiorrandom(1))
+# print(generate_ecuacion_diferencial_orden_superior(1))

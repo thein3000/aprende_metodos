@@ -1,9 +1,9 @@
 
-t = 7
-x = [7.3,6.5,6.1,5.5]
-y = [-.28,-1.35,-1.96,-2.74]
+# t = 7
+# x = [7.3,6.5,6.1,5.5]
+# y = [-.28,-1.35,-1.96,-2.74]
 
-def manejo_diferencias(listax,listay,valor):
+def metodo_newton_con_diferencias_divididas(listax,listay,valor):
     temp = len(listay)
     deltas=[]
     if temp == 5:
@@ -87,4 +87,4 @@ def resolverlistas4(listax1,listay1):
     deltas.append(listay4[0])
     return deltas
 
-print(manejo_diferencias(x,y,t))
+# print(metodo_newton_con_diferencias_divididas(x,y,t))

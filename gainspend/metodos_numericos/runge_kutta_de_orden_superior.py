@@ -1,13 +1,13 @@
 from math import *
-equaciont = "2*s*t-y"
-yt = 1.1
-st = 1.2
-ht = .2
+# equaciont = "2*s*t-y"
+# yt = 1.1
+# st = 1.2
+# ht = .2
 
 def ecuacionordensuperior(equeacion,s,y,t):
     return round(eval(equeacion),6)
 
-def metodo_orden_superior(ecuacion,y,s,h):
+def metodo_runge_kutta_de_orden_superior(ecuacion,y,s,h):
     i = 0
     t0 = 0
     while i<2:
@@ -26,4 +26,4 @@ def metodo_orden_superior(ecuacion,y,s,h):
         i += 1
     return respuesta1,respuesta2
 
-print(metodo_orden_superior(equaciont,yt,st,ht))
+# print(metodo_runge_kutta_de_orden_superior(equaciont,yt,st,ht))
