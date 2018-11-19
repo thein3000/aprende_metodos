@@ -8,7 +8,7 @@
 
   <div class="preface_title" style="background-image: url({% static 'images/32.png' %})">
     <div class="card-title">
-      <h3 style ="margin:0px;">Solución de ecuaciones no lineales</h3>
+      <h3 style ="margin:0px;">Solución de ecuaciones lineales</h3>
     </div>
   </div>
 
@@ -19,7 +19,35 @@
       </div>
 
       <div class="preface_content">
-
+        Consiste en seleccionar un elemento al cual se le denomina elemento pivote, con él
+        se efectúan todas las operaciones de transformación aclarando que
+        <br><br>1) No se puede considerar como elemento pivote un valor igual a cero
+        <br>2) Considerar el signo que le corresponde al elemento pivote por su ubicacion en
+        el determinante
+        <p> Para obtener el valor de cada elemento del determinante equivalente se aplica la
+        siguiente fórmula</p>
+        <img src ="{% static 'preface_images\MON1.jpg' %}"width="240"/>
+        <br><br> Donde:
+        <br><br> N.E.- nuevo elemento
+        <br>E.P- elemento pivote
+        <br>E.A.- elemento actual (elemento externo)
+        <br>E.C.F.P.- elemento correspondiente a la fila del pivote
+        <br>E.C.C.P- elemento correspondiente a la columna del pivote
+        <br>P.A.- pivote anterior
+        <br><br>Reglas generales a seguir para construir la nueva matriz son las sig
+        <br><br>a) La fila se transfiere idéntica.
+        <br>b) Las columnas quedarán formadas por ceros excepto la diagonal principal
+        <p><b>Ejemplo:</b></p>
+        <img src ="{% static 'preface_images\MON2.jpg' %}"width="150"/>
+        <br><img src ="{% static 'preface_images\MON3.jpg' %}"width="320"/>
+        <br><img src ="{% static 'preface_images\MON 4.jpg' %}"width="380"/>
+        <br><img src ="{% static 'preface_images\MON 5.jpg' %}"width="380"/>
+        <br><img src ="{% static 'preface_images\MON 6.jpg' %}"width="220"/>
+        <br><img src ="{% static 'preface_images\MON7.jpg' %}"width="380"/>
+        <br><img src ="{% static 'preface_images\MON8.jpg' %}"width="230"/>
+        <br><img src ="{% static 'preface_images\MON9.jpg' %}"width="380"/>
+        <br><img src ="{% static 'preface_images\MON10.jpg' %}"width="270"/>
+        <br><img src ="{% static 'preface_images\MON11.jpg' %}"width="220"/>
       </div>
 
       <div class="start_excercise_box">

@@ -19,6 +19,31 @@
       </div>
 
       <div class="preface_content">
+        Este método es una variación de la eliminación gaussiana.
+        <br>Todos los renglones se normalizan al dividirlos entre su elemento pivote. De
+        forma, el paso de eliminación genera una matriz identidad, y asi obtener la solución.
+        <br><br>Pasos a seguir
+        <br><br>1) Formar la matriz.
+        <br><br>2) Se encierran la 1era. Fila y la 1era. Columna y donde se cruzan estas se tiene
+        el elemento pivote.
+        <br><br>3) Para generar la matriz siguiente; la fila pivote se divide entre el elemento
+        pivote y la columna se hace ceros.
+        <br><br>4) Para generar los términos que faltan para completar la matriz seria:
+        <br><br>5) El elemento actual menos el elemento correspondiente en la columna pivote por el elemento correspondiente en la fila pivote de la matriz que se esta generando.
+        <br><br>6) El elemento actual es el número de la matriz anterior que ocupa la posición
+        <br><br>7) De esta matriz generada se encierran la 2da. Fila y la 2da. Columna y donde se cruzan estas se tiene un nuevo pivote.
+        <br><br>8) Se desarrollan los pasos 3 y 4
+        <br><br>9) Y asi sucesivamente hasta obtener una matriz generada que contiene la matriz identidad.
+        <br><br>10) Esta matriz generada también contiene una última columna de valores.
+        <br><br>11) Estos valores son los que corresponden a las variables de las ecuaciones lineales proporcionadas en orden.
+        <br><br>12) Los valores de las variables se aplican a las ecuaciones lineales;  resolver y deben de dar los valores de las igualdades respectivamente
+        <p><b>Ejemplo:</b></p>
+        <img src ="{% static 'preface_images\GJ1.jpg' %}"width="120"/>
+        <br><img src ="{% static 'preface_images\GJ2.jpg' %}"width="180"/>
+        <br><img src ="{% static 'preface_images\GJ3.jpg' %}"width="320"/>
+        <br><img src ="{% static 'preface_images\GJ4.jpg' %}"width="410"/>
+        <br><img src ="{% static 'preface_images\GJ6.jpg' %}"width="430"/>
+        <br><img src ="{% static 'preface_images\GJ5.jpg' %}"width="430"/>
 
       </div>
 
