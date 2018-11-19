@@ -209,6 +209,37 @@ def excercise_euler_hacia_adelante(request):
     }
     return render(request, 'gainspend/pages/excercise_euler_hacia_adelante.html', context)
 
+@login_required
+def preface_euler_hacia_atras(request):
+    method = Method.objects.filter(name="Euler hacia atras").first()
+    context = {
+        "method": method
+    }
+    return render(request, 'gainspend/pages/preface_euler_hacia_atras.html', context)
+
+@login_required
+def excercise_euler_hacia_atras(request):
+    method = Method.objects.filter(name="Euler hacia atras").first()
+    # Variables del problema
+    equation = "(5*y*t-1)/3"
+    y_inicial = 2
+    h = .2
+    result = euler_hacia_adelante.metodo_euler_hacia_adelante(equation,y_inicial,h)
+    # Variables de presentacion del problema
+    equation_print = parsed_equation(equation)
+    y_inicial_print = 2
+    h_print = .2
+    data = {'method_id': method.field_id}
+    user_method_form = UserMethodForm(initial=data)
+    context = {
+        "user_method_form": user_method_form,
+        "equation_print": equation_print,
+        "y_inicial_print": y_inicial_print,
+        "h_print": h_print,
+        "result": result,
+        "method": method
+    }
+    return render(request, 'gainspend/pages/excercise_euler_hacia_atras.html', context)
 
    # # "Ecuaciones Diferenciales Ordinarias"
    # "Euler hacia adelante"

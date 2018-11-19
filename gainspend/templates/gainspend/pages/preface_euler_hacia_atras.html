@@ -1,0 +1,52 @@
+{% extends "../base/base_main.html" %}
+{% load humanize %}
+{% load static %}
+{% block title %}{{method.name}}{% endblock title %}
+
+{% block content_center %}
+<div class="container">
+
+  <div class="preface_title" style="background-image: url({% static 'images/32.png' %})">
+    <div class="card-title">
+      <h3 style ="margin:0px;">Ecuaciones diferenciales ordinarias</h3>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title" style="border-bottom:1px solid black;">
+        <h4>{{ method.name }}</h4>
+      </div>
+
+      <div class="preface_content">
+        Se basa en la aproximación de diferencias hacia atrás, es tan preciso como el método anterior
+        Tiene como ventaja que es estable para problemas rígidos y proporciona una solución positiva si también esta anterior es exacta
+        El intervalo lo divide n subintervalos de ancho h
+        <p>Ecuación: </p>
+        <img src ="{% static 'preface_images\EAt1.jpg' %}"width="180"/>
+        <br> t=0, siempre es 0 pues parte del origen
+        <br><br>- Este se obtiene por diferencias hacia atrás y asi reescribiendo la aproximación
+        <br><br>Se calcula yn+1 en forma recursiva.
+        <br><br>Yn+1 = yn + n hf (tn+1, yn+1)   |  0< n < N
+        <br><br>Y0 = n h = 0;                   |             n= 0, 1, 2,…….., N -1
+        <br><br>Donde “n h “ a a representar una aproximación al valor inicial n.
+      </div>
+
+      <div class="start_excercise_box">
+        <div class="row">
+          <div class="col s12 m9">
+            <h5>Completa el ejercicio para progresar a la siguiente etapa del programa</h5>
+          </div>
+          <a href="/preface_{{ method.preface_name }}/excercise">
+            <div class="col s12 m3 btn btn-large green" style="margin-top:20px;">
+              Comenzar
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock content_center %}
