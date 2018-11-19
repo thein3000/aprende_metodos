@@ -19,58 +19,70 @@
       </div>
 
       <div class="preface_content">
+        <p> La interpolacion lineal significa encotrar un valor intermedio entre dos o mas puntos base conocidos, los cuales se pueden aproximar mediante polinomios.
+        </p>
+        <p> Sea en el sistema de coordenadas de la grafica anterior, las ecuaciones f(x) y g(x) en cuyo espacio "a" y "b"se pueden interpolar determinados valores.
+        </p>
+        Consiste en unir 2 puntos con una linea recta.
+        <br> <br> Es una aproximacion a la primera derivada de la funcion (gradiente).
         <p>
-          Las abscisas de los datos tienen igual separación con un tamaño de intervalo h, los puntos se denotan por (xi, fi).
-          <br> Para evaluar una formula de interpolacion de Newton hacia Adelante son necesarios:
-          <br> 1. Tablas de coeficiente hacia adelante.
-          <br> 2. Coeficientes binomiales.
-          <p> Diferencia hacia adelante de orden:</p>
-          <img src ="{% static 'preface_images\NAD1.jpg' %}"/>
-          <br>
-          <img src ="{% static 'preface_images\NAD2.jpg' %}"/>
-          <p>Tablas de diferencias</p>
-          <img src ="{% static 'preface_images\NAD3.jpg' %}"/>
-          <br> <br> Columna:
-          <br><br> 1era. Ìndice de los datos.
-          <br> 2nda. Ordenadas de los datos.
-          <br> 3ra. Lista de las diferencias de primer orden.
-          <br> Caluladas a partir de la segunda columna.
-          <br> 4ta.Diferencias de 2° orden calculadas a partir de la columna anterior.
-          <br> <br> Cada renglon proporciona un conjunto de diferencias hacia adelante de los puntos correspondientes.
-        </p> - Tiene intervalos iguales
-        <p>- Intervalos uniformes</p>
-        <img src ="{% static 'preface_images\NAD4.jpg' %}"/>
-        <br> <br> ∆0 f(x1) la primera diferencia de los puntos,  partir de  ella se obtiene todos los demas.
-        <p>El valor inferior - el valor superior de acuerdo a la cantidad de puntos.</p>
-        <img src ="{% static 'preface_images\NAD6.jpg' %}"/>
-        <br> <br> Factor binomial "s"
-        <br> <br> Es una coordenada local.
-        <br> <br> Siempre positivo (izquierda a derecha).
-        <br> <br> Si no lo es se invierten los valores de "x" y "y" (derecha a izquierda)
-        <p>Los coeficiente binomiales estan dados por:</p>
-        <img src ="{% static 'preface_images\NAD7.jpg' %}"/>
-        <br>
-        <img src ="{% static 'preface_images\NAD8.jpg' %}"/>
-        <br> <br> <b>Nota. Obtener "h" y ver si es uniforme; si lo es se resuelve por el metodo de Newton hacia Atras o Lagrange. </b>
-        <br><br>
+        	Se deduce del modelo de integracion llamdo regla del trapecio
+        </p>
+        	<img src ="{% static 'preface_images\IL1.jpg' %}"/>
+        <p>
+        	La notacion de g(x) designa que este es un polinomio de interpolacion de primer grado.
+        </p>
+        <img src ="{% static 'preface_images\IL2.jpg' %}"/>
+        <br> <br> Este termino es una aproximacion en la diferencia dividida finita a la primera derivada.
+        <br> <br> Es decir, cuanto menor sea el intervalo entre los datos, mejor sera la aproximacion.
+        <p> Esto se debe a que conforme el intervalos disminuye una funcion continua estara mejor aproximada por una linea recta.
+        </p>
+        <img src ="{% static 'preface_images\IL3.jpg' %}"/>
+        <p> Margen de error E </p>
+        <img src ="{% static 'preface_images\IL4.jpg' %}"/>
+        <p>
         <b>Ejemplo:</b>
-      </p>
-      <p> Obtener g(x) para x = 3</p>
-      <img src ="{% static 'preface_images\NAD9.jpg' %}" width="160"/>
-      <br>
-      <img src ="{% static 'preface_images\NAD10.jpg' %}" width="210"/>
-      <img src ="{% static 'preface_images\NAD12.jpg' %}" width="170"/>
-      <br>
-      <img src ="{% static 'preface_images\NAD11.jpg' %}" width="410"/>
-      <br>
-      <img src ="{% static 'preface_images\NAD14.jpg' %}" width="170"/>
-      <img src ="{% static 'preface_images\NAD15.jpg' %}" width="130"/>
-      <br>
-      <img src ="{% static 'preface_images\NAD16.jpg' %}" width="320"/>
-      <br>
-      <img src ="{% static 'preface_images\NAD17.jpg' %}" width="480"/>
-      <br>
-      <img src ="{% static 'preface_images\NAD18.jpg' %}" width="160"/>
+        </p>
+        Estimar el Ln de 8 mediante interpolacion lineal.
+        <br><br> a) Primero realice el calculo entre Ln 7 y Ln 10
+        <br><br> b) Despues desarrolle el procedimiento pero esta vez con intervalos menores de Ln 7 y Ln 9
+        <br><br> Solucion.
+        <p> a)
+        <br><br> Ln 7 = 1.945910149
+        <br> Ln 10 = 2.302585093
+        <br> a = 7
+        <br> b = 10
+        <br> f(a) = Ln 7 = 1.945910149
+        <br> f(b) = Ln 10 = 2.302585093
+        <br> x = 8
+        <br> Ln 8 = 2.079441542
+        <br> f(x) = Ln 8 = 2.079441542
+        </p>
+        <img src ="{% static 'preface_images\IL5.jpg' %}"/>
+        <br>
+        <img src ="{% static 'preface_images\IL6.jpg' %}"/>
+        <br>
+        <img src ="{% static 'preface_images\IL7.jpg' %}"/>
+        <br>
+        <img src ="{% static 'preface_images\IL8.jpg' %}"/>
+        <p> b)
+        <br><br> Ln 7 = 1.945910149
+        <br> Ln 9 = 2.1977224577
+        <br> a = 7
+        <br> b = 9
+        <br> f(a) = Ln 7 = 1.945910149
+        <br> f(b) = Ln 9 = 2.197224577
+        <br> x = 8
+        <br> Ln 8 = 2.079441542
+        <br> f(x) = Ln 8 = 2.079441542
+        </p>
+        <img src ="{% static 'preface_images\IL9.jpg' %}"/>
+        <br>
+        <img src ="{% static 'preface_images\IL10.jpg' %}"/>
+        <br>
+        <img src ="{% static 'preface_images\IL11.jpg' %}"/>
+        <br>
+        <img src ="{% static 'preface_images\IL12.jpg' %}"/>
       </div>
 
       <div class="start_excercise_box">

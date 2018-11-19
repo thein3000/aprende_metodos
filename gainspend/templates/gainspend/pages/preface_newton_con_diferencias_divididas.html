@@ -1,0 +1,58 @@
+{% extends "../base/base_main.html" %}
+{% load humanize %}
+{% load static %}
+{% block title %}{{method.name}}{% endblock title %}
+
+{% block content_center %}
+<div class="container">
+
+  <div class="preface_title" style="background-image: url({% static 'images/32.png' %})">
+    <div class="card-title">
+      <h3 style ="margin:0px;">Interpolación</h3>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title" style="border-bottom:1px solid black;">
+        <h4>{{ method.name }}</h4>
+      </div>
+
+      <div class="preface_content">
+        Se aplica este metodo cuando los intervalos son no uniformes.
+        <br> <br> De acuerdo a la formula se puede observar:
+        <br> <br> 1) Se requiere tener i+1 puntos de "y".
+        <br>  2) La resta de dos diferencias de tipo i-1, es el numerador.
+        <p> 3) La resta de dos valores no comunes en el numerador, es el denominador.</p>
+        <img src ="{% static 'preface_images\NDD1.jpg' %}"width="380"/>
+        <br> <br> <b> Ejemplo: </b>
+        <br> Encuentre g(x) para x = 7.<p>
+        <img src ="{% static 'preface_images\NDD2.jpg' %}"width="130"/>
+        <br><img src ="{% static 'preface_images\NDD3.jpg' %}"width="220"/>
+        <img src ="{% static 'preface_images\NDD4.jpg' %}"width="220"/>
+        <br><img src ="{% static 'preface_images\NDD5.jpg' %}"width="460"/>
+        <br><img src ="{% static 'preface_images\NDD6.jpg' %}"width="380"/>
+        <br><img src ="{% static 'preface_images\NDD7.jpg' %}"width="180"/></p> g(x) se encuentra entre -0.28 y -1.35 con respeccto a "y"
+        <br> <br> <b> Nota: El margen de error permitido es de 2 diez milesimas
+        <br> <br> Si los intervalos son no uniformes tambien se puede resolver por Lagrange.
+        </b>
+      </div>
+
+      <div class="start_excercise_box">
+        <div class="row">
+          <div class="col s12 m9">
+            <h5>Completa el ejercicio para progresar a la siguiente etapa del programa</h5>
+          </div>
+          <a href="/preface_{{ method.preface_name }}/excercise">
+            <div class="col s12 m3 btn btn-large green" style="margin-top:20px;">
+              Comenzar
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock content_center %}
