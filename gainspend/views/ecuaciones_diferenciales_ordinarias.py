@@ -4,6 +4,7 @@ from gainspend.models import UserMethod
 from django.contrib.auth.decorators import login_required
 from gainspend.forms import UserMethodForm
 from gainspend.custom_helpers import parsed_equation
+from gainspend.custom_helpers import var_value
 from gainspend.metodos_numericos import runge_kutta_segundo_orden
 from gainspend.metodos_numericos import runge_kutta_tercer_orden
 from gainspend.metodos_numericos import runge_kutta_cuarto_orden_por_un_tercio_de_simpson
