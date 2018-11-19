@@ -6,6 +6,42 @@ from gainspend.forms import UserMethodForm
 from gainspend.metodos_numericos import newton_hacia_adelante
 from gainspend.metodos_numericos import newton_hacia_atras
 from gainspend.metodos_numericos import lagrange
+from gainspend.metodos_numericos import interpolacion_lineal
+# from gainspend.randomizers import
+
+@login_required
+def preface_interpolacion_lineal(request):
+    method = Method.objects.filter(name="Interpolación lineal").first()
+
+    context = {
+        "method": method
+    }
+    return render(request, 'gainspend/pages/preface_interpolacion_lineal.html', context)
+
+@login_required
+def excercise_interpolacion_lineal(request):
+    method = Method.objects.filter(name="Interpolación lineal").first()
+    # Variables del problema
+    t = 3
+    x = [2,4]
+    y = [.69314718,1.386294361]
+    result = interpolacion_lineal.metodo_interpolacion_lineal(x,y,t)
+    # Variables de presentacion del problema
+    t_print = 3
+    x_print = [2,4]
+    y_print = [.69314718,1.386294361]
+    xy_print = zip(x_print,y_print)
+    # Datos del formulario
+    data = {'method_id': method.field_id}
+    user_method_form = UserMethodForm(initial=data)
+    context = {
+        "user_method_form":user_method_form,
+        "xy_print": xy_print,
+        "t_print": t_print,
+        "result": result,
+        "method": method
+    }
+    return render(request, 'gainspend/pages/excercise_interpolacion_lineal.html', context)
 
 @login_required
 def preface_newton_hacia_adelante(request):
