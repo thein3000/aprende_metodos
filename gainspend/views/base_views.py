@@ -4,6 +4,22 @@ from gainspend.models import UserMethod
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from gainspend.forms import UserMethodForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('main_dashboard')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
 
 @login_required
 def main_dashboard(request):

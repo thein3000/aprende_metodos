@@ -1,7 +1,7 @@
-{% extends "../gainspend/base/base_main.html" %}
+{% extends "gainspend/base/base_main.html" %}
 {% load static %}
 
-{% block title %}Login{% endblock title %}
+{% block title %}Registro de usuario{% endblock title %}
 
 {% block header %}{% endblock header %}
 
@@ -13,19 +13,27 @@
 {% endblock stylesheets %}
 
 
-
 {% block content %}
 <div class="valign-wrapper login_background  grey darken-4">
   <div class="container row">
     <div class="card col s8 offset-s2">
       <div class="card-content">
         <h2 class="center-align">AprendeMétodos</h2>
-        <span class="card-title">Iniciar Sesión</span>
+        <span class="card-title">Registrate</span>
         <form method="post">
           {% csrf_token %}
-          {{ form.as_p }}
-          <button type="submit" class="btn orange  darken-3">Ingresar</button>
-          <a href="{% url 'signup' %}">Registra una cuenta</a>
+          {% for field in form %}
+          <p>
+            {{ field.label_tag }}<br>
+            {{ field }}
+
+            {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+            {% endfor %}
+          </p>
+          {% endfor %}
+          <button type="submit" class="btn orange  darken-3">Crear cuenta</button>
+          <a href="{% url 'login' %}">Iniciar sesión</a>
         </form>
       </div>
     </div>
