@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from gainspend.models import Method
 from gainspend.models import UserMethod
+from gainspend.custom_helpers import var_value
 from django.contrib.auth.decorators import login_required
 from gainspend.forms import UserMethodForm
 from gainspend.metodos_numericos import minimos_cuadrados_general
+from gainspend.randomizers import random_minimos_cuadrados
+from gainspend.randomizers import random_minimos_cuadrados_con_funcion
 # import numpy as np
 
 @login_required
@@ -18,14 +21,20 @@ def preface_linea_recta(request):
 def excercise_linea_recta(request):
     method = Method.objects.filter(name="Línea Recta").first()
     # Variables del problema
-    x = [ 1.1, 1.9, 2.4, 4.8, 5.1,10.5]
-    y = [ 2.5, 2.7, 3.7, 5.2, 6.0, 8.3]
     mode = 1
-    lista_coeficientes = minimos_cuadrados_general.metodo_minimos_cuadrados(mode,x,y)
-    print(f'Resultado minimos: {lista_coeficientes}')
+    invalid = True
+    while invalid:
+        try:
+            x,y = random_minimos_cuadrados.generate_minimos_cuadrados()
+            x_print = var_value(x)
+            y_print = var_value(y)
+            lista_coeficientes = minimos_cuadrados_general.metodo_minimos_cuadrados(mode,x,y)
+            invalid = False
+        except Exception as e:
+            print(e)
+            invalid = True
+    # print(f'Resultado minimos: {lista_coeficientes}')
     # Variables de presentacion del problema
-    x_print = [ 1.1, 1.9, 2.4, 4.8, 5.1,10.5]
-    y_print = [ 2.5, 2.7, 3.7, 5.2, 6.0, 8.3]
     xy_print = zip(x_print,y_print)
     if type(lista_coeficientes) != type("string"):
         result_a0 = lista_coeficientes[0]
@@ -58,14 +67,19 @@ def preface_cuadratica(request):
 def excercise_cuadratica(request):
     method = Method.objects.filter(name="Cuadratica").first()
     # Variables del problema
-    x = [ 1.1, 1.9, 2.4, 4.8, 5.1,10.5]
-    y = [ 2.5, 2.7, 3.7, 5.2, 6.0, 8.3]
     mode = 2
-    lista_coeficientes = minimos_cuadrados_general.metodo_minimos_cuadrados(mode,x,y)
-    print(f'Resultado minimos: {lista_coeficientes}')
-    # Variables de presentacion del problema
-    x_print = [ 1.1, 1.9, 2.4, 4.8, 5.1,10.5]
-    y_print = [ 2.5, 2.7, 3.7, 5.2, 6.0, 8.3]
+    invalid = True
+    while invalid:
+        try:
+            x,y = random_minimos_cuadrados.generate_minimos_cuadrados()
+            x_print = var_value(x)
+            y_print = var_value(y)
+            lista_coeficientes = minimos_cuadrados_general.metodo_minimos_cuadrados(mode,x,y)
+            invalid = False
+        except Exception as e:
+            print(e)
+            invalid = True
+    # print(f'Resultado minimos: {lista_coeficientes}')
     xy_print = zip(x_print,y_print)
     if type(lista_coeficientes) != type("string"):
         result_a0 = lista_coeficientes[0]
@@ -100,14 +114,19 @@ def preface_cubica(request):
 def excercise_cubica(request):
     method = Method.objects.filter(name="Cúbica").first()
     # Variables del problema
-    x = [ 1.1, 1.9, 2.4, 4.8, 5.1,10.5]
-    y = [ 2.5, 2.7, 3.7, 5.2, 6.0, 8.3]
     mode = 3
-    lista_coeficientes = minimos_cuadrados_general.metodo_minimos_cuadrados(mode,x,y)
-    print(f'Resultado minimos: {lista_coeficientes}')
-    # Variables de presentacion del problema
-    x_print = [ 1.1, 1.9, 2.4, 4.8, 5.1,10.5]
-    y_print = [ 2.5, 2.7, 3.7, 5.2, 6.0, 8.3]
+    invalid = True
+    while invalid:
+        try:
+            x,y = random_minimos_cuadrados.generate_minimos_cuadrados()
+            x_print = var_value(x)
+            y_print = var_value(y)
+            lista_coeficientes = minimos_cuadrados_general.metodo_minimos_cuadrados(mode,x,y)
+            invalid = False
+        except Exception as e:
+            print(e)
+            invalid = True
+    # print(f'Resultado minimos: {lista_coeficientes}')
     xy_print = zip(x_print,y_print)
     if type(lista_coeficientes) != type("string"):
         result_a0 = lista_coeficientes[0]
@@ -132,6 +151,7 @@ def excercise_cubica(request):
         "method": method
     }
     return render(request, 'gainspend/pages/excercise_cubica.html', context)
+    
        # # "Minimos Cuadrados"
        # "Linea Recta"
        # "Cuadratica"
