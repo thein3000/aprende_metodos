@@ -313,7 +313,6 @@ def excercise_runge_kutta_de_orden_superior(request):
             invalid = True
     # Variables de presentacion del problema
     equationt_print = parsed_equation(f"y'' = {equationt}")
-    # Variables de presentacion del problema
     data = {'method_id': method.field_id}
     user_method_form = UserMethodForm(initial=data)
     context = {

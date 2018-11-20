@@ -3,7 +3,7 @@ def parsed_equation(equation):
     equation = equation.replace("*","")
     equation = equation.replace("sin","sen")
     equation = equation.replace("log","ln")
-    # equation = equation.replace("s","y'")
+    equation = equation.replace("z","y'")
     return equation
 
 def var_value(value):
