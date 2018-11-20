@@ -27,14 +27,14 @@
         <div id="problem_description" class="row">
           <div class="center-align">
             <h4>h = {{ ht_print }}</h4>
-            <h4>Yo = {{ yt_print }}</h4>
-            <h4>Yo'= {{ st_print }}</h4>
+            <h4>y0 = {{ yt_print }}</h4>
+            <h4>y0'= {{ st_print }}</h4>
             <h2>{{ equationt_print }}</h2>
           </div>
         </div>
         <!-- problem_description -->
       </div>
-      {% include "gainspend/utilities/excercise_start_excercise_box.html" %}
+      {% include "gainspend/utilities/excercise_orden_superior_start_excercise_box.html" %}
     </div>
   </div>
 </div>
@@ -42,10 +42,12 @@
 <script type="text/javascript" language="javascript" class="init">
   $(document).ready(function() {
     //Conseguir Respuesta
-    var excercise_answer = {{ result }};
-    console.log(excercise_answer)
+    var excercise_answer_y1 = {{ result_y1 }};
+    var excercise_answer_y1_prime = {{ result_y1_prime }};
+    console.log(excercise_answer_y1)
+    console.log(excercise_answer_y1_prime)
     //Validaciones y todo procesamiento
-    {% include "gainspend/utilities/excercise_single_answer_script.html" %}
+    {% include "gainspend/utilities/excercise_orden_superior_answer_script.html" %}
   });
 </script>
 {% endblock content_center %}
