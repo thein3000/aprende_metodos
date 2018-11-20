@@ -1,6 +1,9 @@
 .dark-purple {
   background-color: #363442 !important;
 }
+.disabled_option {
+    cursor: default !important;
+}
 .base_header_logo {
   padding: 20px;
   font-size: x-large;
