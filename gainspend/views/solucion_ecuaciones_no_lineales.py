@@ -98,8 +98,18 @@ def preface_falsa_posicion(request):
 def excercise_falsa_posicion(request):
     method = Method.objects.filter(name="Falsa posición").first()
     # Variables del problema
-    equation = "x*e**x - 10"
-    result = falsa_posicion.metodo_falsa_posicion(equation)
+    # equation = "x*e**x - 10"
+    invalid = True
+    while invalid:
+        try:
+            equation = random_ecuacion_no_lineal.generate_ecuacion_no_lineal()
+            result = falsa_posicion.metodo_falsa_posicion(equation)
+            if result == 1 or abs(result) < 0.0001 or result == 0:
+                invalid = True
+            else:
+                invalid = False
+        except Exception as e:
+            invalid = True
     # Variables de presentacion del problema
     equation_print = parsed_equation(equation)
     # Datos del formulario
@@ -125,8 +135,18 @@ def preface_secante(request):
 def excercise_secante(request):
     method = Method.objects.filter(name="Secante").first()
     # Variables del problema
-    equation="e**(-x) - x"
-    result = secante.metodo_secante(equation)
+    # equation="e**(-x) - x"
+    invalid = True
+    while invalid:
+        try:
+            equation = random_ecuacion_no_lineal.generate_ecuacion_no_lineal()
+            result = secante.metodo_secante(equation)
+            if result == 1 or abs(result) < 0.0001 or result == 0:
+                invalid = True
+            else:
+                invalid = False
+        except Exception as e:
+            invalid = True
     # Variables de presentacion del problema
     equation_print = parsed_equation(equation)
     # Datos del formulario

@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from gainspend.models import Method
 from gainspend.models import UserMethod
+from gainspend.custom_helpers import var_value
 from django.contrib.auth.decorators import login_required
 from gainspend.forms import UserMethodForm
 from gainspend.metodos_numericos import montante
+from gainspend.randomizers import random_matriz
 import numpy as np
 
 @login_required
@@ -18,18 +20,16 @@ def preface_montante(request):
 def excercise_montante(request):
     method = Method.objects.filter(name="Montante").first()
     # Variables del problema
-    matriz = [
-        [3, 1, 1, 1],
-        [1, 4, 1, 2],
-        [1, 1, 6, 3]
-    ]
-    result_x,result_y,result_z = montante.metodo_montante(matriz)
+    invalid = True
+    while invalid:
+        try:
+            matriz = random_matriz.generate_matriz()
+            result_x,result_y,result_z = montante.metodo_montante(matriz)
+            invalid = False
+        except Exception as e:
+            invalid = True
     # Variables de presentacion del problema
-    matriz_print = [
-        [3, 1, 1, 1],
-        [1, 4, 1, 2],
-        [1, 1, 6, 3]
-    ]
+    matriz_print = var_value(matriz)
     # Datos del formulario
     data = {'method_id': method.field_id}
     user_method_form = UserMethodForm(initial=data)
@@ -56,18 +56,16 @@ def preface_gauss_jordan(request):
 def excercise_gauss_jordan(request):
     method = Method.objects.filter(name="Gauss - Jordan").first()
     # Variables del problema
-    matriz = [
-        [3, 1, 1, 1],
-        [1, 4, 1, 2],
-        [1, 1, 6, 3]
-    ]
-    result_x,result_y,result_z = montante.metodo_montante(matriz)
+    invalid = True
+    while invalid:
+        try:
+            matriz = random_matriz.generate_matriz()
+            result_x,result_y,result_z = montante.metodo_montante(matriz)
+            invalid = False
+        except Exception as e:
+            invalid = True
     # Variables de presentacion del problema
-    matriz_print = [
-        [3, 1, 1, 1],
-        [1, 4, 1, 2],
-        [1, 1, 6, 3]
-    ]
+    matriz_print = var_value(matriz)
     # Datos del formulario
     data = {'method_id': method.field_id}
     user_method_form = UserMethodForm(initial=data)
@@ -93,18 +91,16 @@ def preface_eliminacion_gaussiana(request):
 def excercise_eliminacion_gaussiana(request):
     method = Method.objects.filter(name="Eliminación Gaussiana").first()
     # Variables del problema
-    matriz = [
-        [3, 1, 1, 1],
-        [1, 4, 1, 2],
-        [1, 1, 6, 3]
-    ]
-    result_x,result_y,result_z = montante.metodo_montante(matriz)
+    invalid = True
+    while invalid:
+        try:
+            matriz = random_matriz.generate_matriz()
+            result_x,result_y,result_z = montante.metodo_montante(matriz)
+            invalid = False
+        except Exception as e:
+            invalid = True
     # Variables de presentacion del problema
-    matriz_print = [
-        [3, 1, 1, 1],
-        [1, 4, 1, 2],
-        [1, 1, 6, 3]
-    ]
+    matriz_print = var_value(matriz)
     # Datos del formulario
     data = {'method_id': method.field_id}
     user_method_form = UserMethodForm(initial=data)
