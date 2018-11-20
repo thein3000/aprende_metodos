@@ -1,0 +1,105 @@
+{% extends "../base/base_main.html" %}
+{% load humanize %}
+{% load static %}
+{% block title %}{{method.name}}{% endblock title %}
+
+{% block scripts %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static 'vendor/timer/timer.jquery.min.js' %}"></script>
+{% endblock scripts %}
+
+{% block content_center %}
+<div class="container">
+  <div class="preface_title" style="background-image: url({% static 'images/32.png' %})">
+    <div class="card-title">
+      <h3 style ="margin:0px;">{{ method.name }}</h3>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title" style="border-bottom:1px solid black;">
+        <h5>Completa el ejercicio para progresar a la siguiente etapa del programa</h5>
+      </div>
+      <div class="excercise_content">
+        <!-- Excercise elements Start -->
+        {% include "gainspend/utilities/excercise_upper_elements.html" with user_method_form=user_method_form %}
+        <!-- Excercise elements end -->
+        <div id="problem_description" class="row">
+          <div class="col offset-m3 m6">
+            <h3>{{ funcion_print }}</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>x</th>
+                  <th>f(x)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for x_print, y_print in xy_print %}
+                <tr>
+                  <td>{{ x_print }}</td>
+                  <td>{{ y_print }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- problem_description -->
+      </div>
+      <div id="start_excercise_box" class="hide">
+        <div class="row">
+          <div class="col s12 m9">
+            <table>
+              <tbody>
+                <td style="width:50px;">g(x) =</td>
+                <td>
+                  <input id="valor_a0" class="number_answer" type="number" value=""><br>
+                </td>
+                <td>+</td>
+                <td>
+                  <input id="valor_a1" class="number_answer" type="number" value=""><br>
+                </td>
+                <td style="font-size: 20px; font-weight: bold;">x</td>
+                <td>+</td>
+                <td>
+                  <input id="valor_a2" class="number_answer" type="number" value=""><br>
+                </td>
+                <td style="font-size: 20px; font-weight: bold;">{{ funcion_print }}</td>
+              </tbody>
+            </table>
+            <p>
+              <label>
+                <input id="no_tiene_solucion" type="checkbox" class="filled-in" />
+                <span>No tiene solucion</span>
+              </label>
+            </p>
+          </div>
+          <div id="validar_respuesta" class="col s12 m3 btn btn-large green hoverable" style="margin-top:20px;">
+            Validar respuesta
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" language="javascript" class="init">
+  $(document).ready(function() {
+    //Conseguir Respuesta
+    var excercise_answer_a0 = "{{ result_a0 }}";
+    var excercise_answer_a1 = "{{ result_a1 }}";
+    var excercise_answer_a2 = "{{ result_a2 }}";
+    if (excercise_answer_a0 != "No hay solucion") {
+      excercise_answer_a0 = Number(excercise_answer_a0);
+      excercise_answer_a1 = Number(excercise_answer_a1);
+      excercise_answer_a2 = Number(excercise_answer_a2);
+    }
+    console.log(excercise_answer_a0)
+    console.log(excercise_answer_a1)
+    console.log(excercise_answer_a2)
+    //Validaciones y todo procesamiento
+    {% include "gainspend/utilities/excercise_cuadratica_answer_script.html" %}
+  });
+</script>
+{% endblock content_center %}

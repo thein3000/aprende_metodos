@@ -18,9 +18,9 @@ def main_dashboard(request):
             completed_list.append(True)
             seconds = user_methods.order_by('seconds').first().seconds
             seconds_list.append(seconds)
-            if seconds <= 120:
+            if seconds <= 180:
                 second_tag_colors.append("green")
-            elif seconds <= 240:
+            elif seconds <= 360:
                 second_tag_colors.append("yellow darken-4")
             else:
                 second_tag_colors.append("red")

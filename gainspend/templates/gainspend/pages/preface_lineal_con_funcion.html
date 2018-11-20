@@ -1,0 +1,47 @@
+{% extends "../base/base_main.html" %}
+{% load humanize %}
+{% load static %}
+{% block title %}{{method.name}}{% endblock title %}
+
+{% block content_center %}
+<div class="container">
+
+  <div class="preface_title" style="background-image: url({% static 'images/32.png' %})">
+    <div class="card-title">
+      <h3 style ="margin:0px;">Mínimos cuadrados</h3>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title" style="border-bottom:1px solid black;">
+        <h4>{{ method.name }}</h4>
+      </div>
+
+      <div class="preface_content">
+        <body>
+        Ajustar una línea recta o varas observaciones por puntos (x1, y1,) (x2, y2,) …. (xn, yn,)
+        <p>Donde a0 y a1 son coeficientes representativos de la intersección de la pendiente y el eje x
+        <br> n.- es el número de valores dados a “x”</p>
+        <img src ="{% static 'preface_images\LCF1.jpg' %}"width="310"/>
+        <br><img src ="{% static 'preface_images\LCF2.jpg' %}"width="310"/>
+      </div>
+
+      <div class="start_excercise_box">
+        <div class="row">
+          <div class="col s12 m9">
+            <h5>Completa el ejercicio para progresar a la siguiente etapa del programa</h5>
+          </div>
+          <a href="/preface_{{ method.preface_name }}/excercise">
+            <div class="col s12 m3 btn btn-large green" style="margin-top:20px;">
+              Comenzar
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock content_center %}
