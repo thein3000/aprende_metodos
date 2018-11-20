@@ -1,10 +1,10 @@
 from random import *
 
 def generate_ecuacion_no_lineal():
-    list = ["x**2","x","x**3","sin(x)","cos(x)","ln(x)","e**x","**x","x","x*e","x**1/2","1/x","(x**2)/5"]
-    valor1 = round(uniform(-10.0,10.0),2)
+    list = ["x**2","x","x**3","sin(x)","cos(x)","log(x)","e**x","*x","x","x*e","1/x","(x**2)/5"]
+    valor1 = randrange(1,10)#round(uniform(1,10),0)
     valor2 = choice(list)
-    valor3 = round(uniform(-10.0,10.0),2)
+    valor3 = randrange(1,10)#round(uniform(1,10),0)
     signo = ["+","-"]
     valor4 = choice(list)
     valor5 = choice(signo)

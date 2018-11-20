@@ -39,7 +39,10 @@
 <script type="text/javascript" language="javascript" class="init">
   $(document).ready(function() {
     //Conseguir Respuesta
-    var excercise_answer = {{ result }};
+    var excercise_answer = "{{ result }}";
+    if (excercise_answer != "No hay solucion") {
+      excercise_answer = Number(excercise_answer)
+    }
     console.log(excercise_answer)
     //Validaciones y todo procesamiento
     {% include "gainspend/utilities/excercise_single_answer_script.html" %}

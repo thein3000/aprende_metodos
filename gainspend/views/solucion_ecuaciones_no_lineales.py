@@ -3,11 +3,13 @@ from gainspend.models import Method
 from gainspend.models import UserMethod
 from django.contrib.auth.decorators import login_required
 from gainspend.forms import UserMethodForm
+from gainspend.custom_helpers import var_value
 from gainspend.custom_helpers import parsed_equation
 from gainspend.metodos_numericos import newton_raphson
 from gainspend.metodos_numericos import punto_fijo
 from gainspend.metodos_numericos import falsa_posicion
 from gainspend.metodos_numericos import secante
+from gainspend.randomizers import random_ecuacion_no_lineal
 
 @login_required
 def preface_newton_raphson(request):
@@ -21,8 +23,17 @@ def preface_newton_raphson(request):
 def excercise_newton_raphson(request):
     method = Method.objects.filter(name="Newton - Raphson").first()
     # Variables del problema
-    equation = "0.8*x**2 + x - 3"
-    result = newton_raphson.metodo_newton_raphson(equation)
+    invalid = True
+    while invalid:
+        try:
+            equation = random_ecuacion_no_lineal.generate_ecuacion_no_lineal()
+            result = newton_raphson.metodo_newton_raphson(equation)
+            if result == 1 or abs(result) < 0.0001 or result == 0:
+                invalid = True
+            else:
+                invalid = False
+        except Exception as e:
+            invalid = True
     # Variables de presentacion del problema
     equation_print = parsed_equation(equation)
     # Datos del formulario
@@ -49,6 +60,18 @@ def excercise_punto_fijo(request):
     method = Method.objects.filter(name="Punto fijo").first()
     # Variables del problema
     equation = "(e**x - 2) / 2"
+    # invalid = True
+    # while invalid:
+    #     try:
+    #         equation = random_ecuacion_no_lineal.generate_ecuacion_no_lineal()
+    #         result = punto_fijo.metodo_punto_fijo(equation)
+    #         if result == 1 or abs(result) < 0.0001 or result == 0:
+    #             invalid = True
+    #         else:
+    #             invalid = False
+    #     except Exception as e:
+    #         print(e)
+    #         invalid = True
     result = punto_fijo.metodo_punto_fijo(equation)
     # Variables de presentacion del problema
     equation_print = parsed_equation(equation)

@@ -15,13 +15,15 @@ def raphson_formula(equation, x):
     return x - (function/derivative)
 
 def metodo_newton_raphson(equation):
+    print(equation)
     x = 1 #initial_point
     error = 1
     i = 0
-    while error > 0.00000:
+    while error > 0.00000999999:
         if i != 0:
             x = next_x
         next_x = raphson_formula(equation, x)
+        print(next_x)
         error = abs(next_x - x)
         if i == 200:
             return "No hay solucion"
