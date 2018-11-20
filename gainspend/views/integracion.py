@@ -8,6 +8,42 @@ from gainspend.metodos_numericos import regla_tres_octavos_de_simpson
 from gainspend.metodos_numericos import regla_un_tercio_de_simpson
 from gainspend.metodos_numericos import newton_cotes_abiertas
 from gainspend.metodos_numericos import newton_cotes_cerradas
+from gainspend.metodos_numericos import regla_trapezoidal
+
+@login_required
+def preface_regla_trapezoidal(request):
+    method = Method.objects.filter(name="Regla Trapezoidal").first()
+    context = {
+        "method": method
+    }
+    return render(request, 'gainspend/pages/preface_regla_trapezoidal.html', context)
+
+@login_required
+def excercise_regla_trapezoidal(request):
+    method = Method.objects.filter(name="Regla Trapezoidal").first()
+    # Variables del problema
+    integral = "1/(1+x**2)"
+    n = 10
+    a = 2
+    b = 3
+    result = regla_trapezoidal.metodo_regla_trapezoidal(integral,n,a,b)
+    # Variables de presentacion del problema
+    integral_print = parsed_equation(f'({integral}) dx')
+    n_print = 10
+    a_print = 2
+    b_print = 3
+    data = {'method_id': method.field_id}
+    user_method_form = UserMethodForm(initial=data)
+    context = {
+        "user_method_form": user_method_form,
+        "integral_print": integral_print,
+        "n_print": n_print,
+        "a_print": a_print,
+        "b_print": b_print,
+        "result": result,
+        "method": method
+    }
+    return render(request, 'gainspend/pages/excercise_regla_trapezoidal.html', context)
 
 @login_required
 def preface_regla_tres_octavos_de_simpson(request):

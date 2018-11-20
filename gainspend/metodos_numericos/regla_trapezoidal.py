@@ -19,9 +19,9 @@ def metodo_regla_trapezoidal(func,s,a0,b0):
     h = (b0-a0)/s
     i = 1
     iteracion = 0
-    while i<=n:
+    while i <= s:
         iteracion =iteracion + integracion(func,(a0+i*h))
         i+=1
     respuesta = (h/2)*((integracion(func,a0)+(2*iteracion)))
     return respuesta
-print(reglatrapecio(integral,n,a,b))
+# print(reglatrapecio(integral,n,a,b))
