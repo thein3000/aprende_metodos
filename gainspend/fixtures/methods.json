@@ -31,7 +31,7 @@
     "pk": 4,
     "fields": {
       "preface_name": "newton_hacia_atras",
-      "name": "Newton hacia atras",
+      "name": "Newton hacia atrás",
       "is_subject": false
     }
   },
@@ -193,7 +193,7 @@
     "pk": 22,
     "fields": {
       "preface_name": "cuadratica",
-      "name": "Cuadratica",
+      "name": "Cuadrática",
       "is_subject": false
     }
   },
@@ -220,7 +220,7 @@
     "pk": 25,
     "fields": {
       "preface_name": "cuadratica_con_funcion",
-      "name": "Cuadratica con función",
+      "name": "Cuadrática con función",
       "is_subject": false
     }
   },
@@ -301,7 +301,7 @@
     "pk": 34,
     "fields": {
       "preface_name": "euler_hacia_atras",
-      "name": "Euler hacia atras",
+      "name": "Euler hacia atrás",
       "is_subject": false
     }
   },

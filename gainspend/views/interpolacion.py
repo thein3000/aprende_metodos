@@ -78,7 +78,7 @@ def excercise_newton_hacia_adelante(request):
 
 @login_required
 def preface_newton_hacia_atras(request):
-    method = Method.objects.filter(name="Newton hacia atras").first()
+    method = Method.objects.filter(name="Newton hacia atrás").first()
 
     context = {
         "method": method
@@ -87,7 +87,7 @@ def preface_newton_hacia_atras(request):
 
 @login_required
 def excercise_newton_hacia_atras(request):
-    method = Method.objects.filter(name="Newton hacia atras").first()
+    method = Method.objects.filter(name="Newton hacia atrás").first()
     # Variables del problema
     t,x,y = random_interpolacion.generate_interpolacion(2)
     t_print = var_value(t)
@@ -171,6 +171,6 @@ def excercise_newton_con_diferencias_divididas(request):
 
        # # "Interpolación",
        # "Newton hacia adelante"
-       # "Newton hacia atras"
+       # "Newton hacia atrás"
        # "Newton con diferencias divididas"
        # "Lagrange"

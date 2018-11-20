@@ -59,7 +59,7 @@ def excercise_linea_recta(request):
 
 @login_required
 def preface_cuadratica(request):
-    method = Method.objects.filter(name="Cuadratica").first()
+    method = Method.objects.filter(name="Cuadrática").first()
     context = {
         "method": method
     }
@@ -67,7 +67,7 @@ def preface_cuadratica(request):
 
 @login_required
 def excercise_cuadratica(request):
-    method = Method.objects.filter(name="Cuadratica").first()
+    method = Method.objects.filter(name="Cuadrática").first()
     # Variables del problema
     mode = 2
     invalid = True
@@ -206,7 +206,7 @@ def excercise_lineal_con_funcion(request):
 
 @login_required
 def preface_cuadratica_con_funcion(request):
-    method = Method.objects.filter(name="Cuadratica con función").first()
+    method = Method.objects.filter(name="Cuadrática con función").first()
     context = {
         "method": method
     }
@@ -214,7 +214,7 @@ def preface_cuadratica_con_funcion(request):
 
 @login_required
 def excercise_cuadratica_con_funcion(request):
-    method = Method.objects.filter(name="Cuadratica con función").first()
+    method = Method.objects.filter(name="Cuadrática con función").first()
     # Variables del problema
     invalid = True
     while invalid:
@@ -259,5 +259,5 @@ def excercise_cuadratica_con_funcion(request):
 
        # # "Minimos Cuadrados"
        # "Linea Recta"
-       # "Cuadratica"
+       # "Cuadrática"
        # "Cubica"

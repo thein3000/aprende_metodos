@@ -246,7 +246,7 @@ def excercise_euler_hacia_adelante(request):
 
 @login_required
 def preface_euler_hacia_atras(request):
-    method = Method.objects.filter(name="Euler hacia atras").first()
+    method = Method.objects.filter(name="Euler hacia atrás").first()
     context = {
         "method": method
     }
@@ -254,7 +254,7 @@ def preface_euler_hacia_atras(request):
 
 @login_required
 def excercise_euler_hacia_atras(request):
-    method = Method.objects.filter(name="Euler hacia atras").first()
+    method = Method.objects.filter(name="Euler hacia atrás").first()
     # Variables del problema
     invalid = True
     while invalid:
@@ -328,7 +328,7 @@ def excercise_runge_kutta_de_orden_superior(request):
     return render(request, 'gainspend/pages/excercise_runge_kutta_de_orden_superior.html', context)
    # # "Ecuaciones Diferenciales Ordinarias"
    # "Euler hacia adelante"
-   # "Euler hacia atras"
+   # "Euler hacia atrás"
    # "Euler modificado"
    # "Runge - Kutta (2do orden)"
    # "Runge - Kutta (3er orden)"
