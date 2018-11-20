@@ -42,7 +42,13 @@ function mandar_formulario() {
 function iniciar_problema(){
   $("#start_excercise_box").removeClass("hide");
   $("#excercise_cover").addClass("hide");
-  $("#excercise_timer").timer('start');
+  $("#excercise_timer").timer({
+    action: 'start',
+    duration: 600,
+    callback: function() {
+      location.reload();
+    }
+  });
 }
 $("#validar_respuesta").on("click", function() {
   validar_respuesta();
