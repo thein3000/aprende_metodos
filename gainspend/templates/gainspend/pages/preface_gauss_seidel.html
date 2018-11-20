@@ -1,0 +1,66 @@
+{% extends "../base/base_main.html" %}
+{% load humanize %}
+{% load static %}
+{% block title %}{{method.name}}{% endblock title %}
+
+{% block content_center %}
+<div class="container">
+
+  <div class="preface_title" style="background-image: url({% static 'images/32.png' %})">
+    <div class="card-title">
+      <h3 style ="margin:0px;">Solución de ecuaciones lineales</h3>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title" style="border-bottom:1px solid black;">
+        <h4>{{ method.name }}</h4>
+      </div>
+
+      <div class="preface_content">
+        Es un método iterativo y por lo mismo, resulta bastante eficiente. Para un sistema de "n" ecuaciones es comúnmente utilizado.
+        <br><br>Es necesario que en la matriz, cada elemento de la diagonal principal sea mayor que la suma de los valores de todos los demás elementos de la misma fila. Considerar
+        valores absolutos.
+        <br><br>El margen de error (E) es de 0.001.
+        <br><br>Pasos a seguir:
+        <br><br>1) Del sistema de ecuaciones se despeja una variable de cada una de ellas.
+        <br><br>2) Considerar  valores iniciales para dichas variables.
+        <br><br>3) Iniciar con un valor de cero de todas las variables.
+        <br><br>4) Obtener el valor de la variable despejadas de la 1era. ecuación considerando las variables restantes con variables de cero.
+        <br><br>5) Calcular el valor de la variable despejada de la 2da. ecuación. Considerando el nuevo valor de la variable obtenido de la 1era. ecuación y el de la 3er. ec. igual a cero.
+        <br><br>6) El valor de la variable despejada de la 3er. ecuación, se obtiene considerando los nuevos valores de las variables de la 1era. y la 2da. ecuación.
+        <br><br>7) Obtener el nuevo valor de la variable despejada de la primera ecuación. Considerando los valores de las variables obtenidos en los pasos 4 y 5.
+        <br><br>8) Calcular el nuevo valor de la variable despejada de la 2da. ec., considerando los valores obtenidos en los pasos 5 y 6.
+        <br><br>9) Para obtener el nuevo valor de la variable despejada de la 3era. ec., se consideran los valores anteriormente obtenidos en los pasos 6 y 7.
+        <br><br>Y así sucesivamente hasta que el margen de error es de 0.001 en todas las variables.
+        <br><br>Por lo cual, se realiza una tabla de valores para el análisis del margen de error.
+        <br><br>Nota: Se ha considerado un sistema se ecuaciones lineales de 3x3.
+        <p><b>Ejemplo:</b></p>
+        <img src ="{% static 'preface_images\GS1.jpg' %}"width="370"/>
+        <br><img src ="{% static 'preface_images\GS2.jpg' %}"width="430"/>
+        <br><img src ="{% static 'preface_images\GS3.jpg' %}"width="430"/>
+        <br><img src ="{% static 'preface_images\GS4.jpg' %}"width="430"/>
+        <br><img src ="{% static 'preface_images\GS5.jpg' %}"width="430"/>
+        <br><img src ="{% static 'preface_images\GS6.jpg' %}"width="430"/>
+        <br><img src ="{% static 'preface_images\GS7.jpg' %}"width="430"/>
+      </div>
+
+      <div class="start_excercise_box">
+        <div class="row">
+          <div class="col s12 m9">
+            <h5>Completa el ejercicio para progresar a la siguiente etapa del programa</h5>
+          </div>
+          <a href="/preface_{{ method.preface_name }}/excercise">
+            <div class="col s12 m3 btn btn-large green" style="margin-top:20px;">
+              Comenzar
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock content_center %}
