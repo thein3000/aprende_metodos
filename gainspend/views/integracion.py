@@ -3,12 +3,13 @@ from gainspend.models import Method
 from gainspend.models import UserMethod
 from django.contrib.auth.decorators import login_required
 from gainspend.forms import UserMethodForm
-from gainspend.custom_helpers import parsed_equation
+from gainspend.custom_helpers import parsed_equation, var_value
 from gainspend.metodos_numericos import regla_tres_octavos_de_simpson
 from gainspend.metodos_numericos import regla_un_tercio_de_simpson
 from gainspend.metodos_numericos import newton_cotes_abiertas
 from gainspend.metodos_numericos import newton_cotes_cerradas
 from gainspend.metodos_numericos import regla_trapezoidal
+from gainspend.randomizers import random_integral
 
 @login_required
 def preface_regla_trapezoidal(request):
@@ -22,16 +23,23 @@ def preface_regla_trapezoidal(request):
 def excercise_regla_trapezoidal(request):
     method = Method.objects.filter(name="Regla Trapezoidal").first()
     # Variables del problema
-    integral = "1/(1+x**2)"
-    n = 10
-    a = 2
-    b = 3
-    result = regla_trapezoidal.metodo_regla_trapezoidal(integral,n,a,b)
+    invalid = True
+    while invalid:
+        try:
+            integral,a,b,n = random_integral.generate_integral(1)
+            integral_print = var_value(integral)
+            n_print = var_value(n)
+            a_print = var_value(a)
+            b_print = var_value(b)
+            result = regla_trapezoidal.metodo_regla_trapezoidal(integral,n,a,b)
+            if result == 1 or abs(result) < 0.0001 or result == 0:
+                invalid = True
+            else:
+                invalid = False
+        except Exception as e:
+            invalid = True
     # Variables de presentacion del problema
-    integral_print = parsed_equation(f'({integral}) dx')
-    n_print = 10
-    a_print = 2
-    b_print = 3
+    integral_print = parsed_equation(f'({integral_print}) dx')
     data = {'method_id': method.field_id}
     user_method_form = UserMethodForm(initial=data)
     context = {
@@ -57,16 +65,23 @@ def preface_regla_tres_octavos_de_simpson(request):
 def excercise_regla_tres_octavos_de_simpson(request):
     method = Method.objects.filter(name="Regla de 3/8 de Simpson").first()
     # Variables del problema
-    integral = "1/(1+x**2)"
-    n = 10
-    a = 2
-    b= 3
-    result = regla_tres_octavos_de_simpson.metodo_regla_tres_octavos_de_simpson(integral,a,b,n)
+    invalid = True
+    while invalid:
+        try:
+            integral,a,b,n = random_integral.generate_integral(1)
+            integral_print = var_value(integral)
+            n_print = var_value(n)
+            a_print = var_value(a)
+            b_print = var_value(b)
+            result = regla_tres_octavos_de_simpson.metodo_regla_tres_octavos_de_simpson(integral,a,b,n)
+            if result == 1 or abs(result) < 0.0001 or result == 0:
+                invalid = True
+            else:
+                invalid = False
+        except Exception as e:
+            invalid = True
     # Variables de presentacion del problema
     integral_print = parsed_equation(f'({integral}) dx')
-    n_print = 10
-    a_print = 2
-    b_print = 3
     data = {'method_id': method.field_id}
     user_method_form = UserMethodForm(initial=data)
     context = {
@@ -92,16 +107,23 @@ def preface_regla_un_tercio_de_simpson(request):
 def excercise_regla_un_tercio_de_simpson(request):
     method = Method.objects.filter(name="Regla de 1/3 de Simpson").first()
     # Variables del problema
-    integral = "(cos(x)+x**2)"
-    n = 10
-    a = 1
-    b= 2
-    result = regla_un_tercio_de_simpson.metodo_regla_un_tercio_de_simpson(integral,a,b,n)
+    invalid = True
+    while invalid:
+        try:
+            integral,a,b,n = random_integral.generate_integral(1)
+            integral_print = var_value(integral)
+            n_print = var_value(n)
+            a_print = var_value(a)
+            b_print = var_value(b)
+            result = regla_un_tercio_de_simpson.metodo_regla_un_tercio_de_simpson(integral,a,b,n)
+            if result == 1 or abs(result) < 0.0001 or result == 0:
+                invalid = True
+            else:
+                invalid = False
+        except Exception as e:
+            invalid = True
     # Variables de presentacion del problema
-    integral_print = parsed_equation(integral)
-    n_print = 3
-    a_print = 1
-    b_print = 2
+    integral_print = parsed_equation(f'({integral}) dx')
     data = {'method_id': method.field_id}
     user_method_form = UserMethodForm(initial=data)
     context = {
@@ -127,16 +149,23 @@ def preface_newton_cotes_abiertas(request):
 def excercise_newton_cotes_abiertas(request):
     method = Method.objects.filter(name="Newton - Cotes abiertas").first()
     # Variables del problema
-    integral = "(sin(2*x)+x**3)"
-    n = 5
-    a = 0
-    b = 1
-    result = newton_cotes_abiertas.metodo_newton_cotes_abiertas(integral,a,b,n)
+    invalid = True
+    while invalid:
+        try:
+            integral,a,b,n = random_integral.generate_integral(1)
+            integral_print = var_value(integral)
+            n_print = var_value(n)
+            a_print = var_value(a)
+            b_print = var_value(b)
+            result = newton_cotes_abiertas.metodo_newton_cotes_abiertas(integral,a,b,n)
+            if result == 1 or abs(result) < 0.0001 or result == 0:
+                invalid = True
+            else:
+                invalid = False
+        except Exception as e:
+            invalid = True
     # Variables de presentacion del problema
-    integral_print = parsed_equation(integral)#"(sin(2*x)+x**3)"
-    n_print = 5
-    a_print = 0
-    b_print = 1
+    integral_print = parsed_equation(f'({integral}) dx')
     data = {'method_id': method.field_id}
     user_method_form = UserMethodForm(initial=data)
     context = {
@@ -162,16 +191,23 @@ def preface_newton_cotes_cerradas(request):
 def excercise_newton_cotes_cerradas(request):
     method = Method.objects.filter(name="Newton - Cotes cerradas").first()
     # Variables del problema
-    integral = "(sin(2*x)+x**3)"
-    n = 5
-    a = 0
-    b = 1
-    result = newton_cotes_cerradas.metodo_newton_cotes_cerradas(integral,a,b,n)
+    invalid = True
+    while invalid:
+        try:
+            integral,a,b,n = random_integral.generate_integral(1)
+            integral_print = var_value(integral)
+            n_print = var_value(n)
+            a_print = var_value(a)
+            b_print = var_value(b)
+            result = newton_cotes_cerradas.metodo_newton_cotes_cerradas(integral,a,b,n)
+            if result == 1 or abs(result) < 0.0001 or result == 0:
+                invalid = True
+            else:
+                invalid = False
+        except Exception as e:
+            invalid = True
     # Variables de presentacion del problema
-    integral_print = parsed_equation(integral)#"(sin(2*x)+x**3)"
-    n_print = 5
-    a_print = 0
-    b_print = 1
+    integral_print = parsed_equation(f'({integral}) dx')
     data = {'method_id': method.field_id}
     user_method_form = UserMethodForm(initial=data)
     context = {
