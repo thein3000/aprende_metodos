@@ -1,0 +1,57 @@
+{% extends "../base/base_main.html" %}
+{% load humanize %}
+{% load static %}
+{% block title %}{{method.name}}{% endblock title %}
+
+{% block content_center %}
+<div class="container">
+
+  <div class="preface_title" style="background-image: url({% static 'images/32.png' %})">
+    <div class="card-title">
+      <h3 style ="margin:0px;">Solución de ecuaciones no lineales</h3>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title" style="border-bottom:1px solid black;">
+        <h4>{{ method.name }}</h4>
+      </div>
+
+      <div class="preface_content">
+        Es el punto medio entre dos puntos conocido también como de corte binario, participación, intervalo ó balzano.
+        <br><br>Es un tipo de búsqueda incremental en el que el intervalo se divide siempre a la mitad.
+        <br> <br>La posición de la raíz se determina situando en el punto de subintervalo dentro del cual ocurre un cambio de signo.
+        <br><br>El proceso se repite hasta obtener unamejor aproximación.
+        <p> Formula</p>
+        <img src ="{% static 'preface_images\BIS1.jpg' %}"width="120"/>
+        <p>a. Es el valor donde se comporta positivo.
+        <br>b. Es el valor donde se comporta negativo.
+        </p>
+        <img src ="{% static 'preface_images\BIS2.jpg' %}"width="220"/>
+        <p> <b> Ejemplo</b> 
+        <br> <br>En la grafica de la funcion </p>
+        <img src ="{% static 'preface_images\BIS3.jpg' %}"width="120"/>
+        <br> <img src ="{% static 'preface_images\BIS4.jpg' %}"width="420"/>
+        <br><br>Cuando el valor entre los dos ultimos sea igual 0.001 aqui se termina. Buscando x que es el punto medio entre a y b.
+        <br><img src ="{% static 'preface_images\BIS5.jpg' %}"width="200"/>
+      </div>
+
+      <div class="start_excercise_box">
+        <div class="row">
+          <div class="col s12 m9">
+            <h5>Completa el ejercicio para progresar a la siguiente etapa del programa</h5>
+          </div>
+          <a href="/preface_{{ method.preface_name }}/excercise">
+            <div class="col s12 m3 btn btn-large green" style="margin-top:20px;">
+              Comenzar
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock content_center %}

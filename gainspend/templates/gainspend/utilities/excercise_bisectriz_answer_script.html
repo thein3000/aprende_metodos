@@ -1,0 +1,57 @@
+// Funcion de Validacion de respuesta
+function sort_of_equal(v1, v2, epsilon) {
+  if (epsilon == null) {
+    epsilon = 0.001;
+  }
+  return Math.abs(v1 - v2) < epsilon;
+};
+function validar_respuesta() {
+  if ($("#no_tiene_solucion").is(":checked")) {
+    if (excercise_answer == "Si existe") {
+      mandar_formulario();
+    } else {
+      $("#valor_x").addClass("invalid");
+      swal(
+        '¡Se ha equivocado!',
+        'Revise su procedimiento y vuelva a intentar',
+        'error'
+      )
+    }
+  } else {
+    if (excercise_answer == "No existe") {
+      mandar_formulario();
+    } else {
+      $("#valor_x").addClass("invalid");
+      swal(
+        '¡Se ha equivocado!',
+        'Revise su procedimiento y vuelva a intentar',
+        'error'
+      )
+    }
+  }
+}
+
+function mandar_formulario() {
+  form_seconds = $("#excercise_timer").data('seconds');
+  console.log(form_seconds);
+  $('#id_seconds').val(form_seconds);
+  $("#user_method_form").submit();
+}
+// Aparecer probelma e iniciar timer
+function iniciar_problema(){
+  $("#start_excercise_box").removeClass("hide");
+  $("#excercise_cover").addClass("hide");
+  $("#excercise_timer").timer({
+    action: 'start',
+    duration: 600,
+    callback: function() {
+      location.reload();
+    }
+  });
+}
+$("#validar_respuesta").on("click", function() {
+  validar_respuesta();
+});
+$("#comenzar_problema").on("click", function() {
+  iniciar_problema();
+});

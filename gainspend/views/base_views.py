@@ -8,7 +8,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
 from django.core import serializers
 
-
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -26,10 +25,10 @@ def signup(request):
 @login_required
 def main_dashboard(request):
     # Dump data into json file - start
-    data = serializers.serialize("json", UserMethod.objects.all())
-    out = open("gainspend/fixtures/user_methods.json", "w")
-    out.write(data)
-    out.close()
+    # data = serializers.serialize("json", UserMethod.objects.all())
+    # out = open("gainspend/fixtures/user_methods.json", "w")
+    # out.write(data)
+    # out.close()
     # Dump data into json file - end
     methods = Method.objects.all()
     completed_list = []

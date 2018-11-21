@@ -1,0 +1,51 @@
+{% extends "../base/base_main.html" %}
+{% load humanize %}
+{% load static %}
+{% block title %}{{method.name}}{% endblock title %}
+
+{% block scripts %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static 'vendor/timer/timer.jquery.min.js' %}"></script>
+{% endblock scripts %}
+
+{% block content_center %}
+<div class="container">
+  <div class="preface_title" style="background-image: url({% static 'images/32.png' %})">
+    <div class="card-title">
+      <h3 style ="margin:0px;">{{ method.name }}</h3>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title" style="border-bottom:1px solid black;">
+        <h5>Completa el ejercicio para progresar a la siguiente etapa del programa</h5>
+      </div>
+      <div class="excercise_content">
+        <!-- Excercise elements Start -->
+        {% include "gainspend/utilities/excercise_upper_elements.html" with user_method_form=user_method_form %}
+        <!-- Excercise elements end -->
+        <div id="problem_description" class="row">
+          <div class="center-align">
+            <h5>¿Existe una raíz entre el punto a y b con respecto a la siguiente función?</h5>
+            <h4>a = {{ a_print }}</h4>
+            <h4>b = {{ b_print }}</h4>
+            <h2>{{ equation_print }}</h2>
+          </div>
+        </div>
+        <!-- problem_description -->
+      </div>
+      {% include "gainspend/utilities/excercise_bisectriz_start_excercise_box.html" %}
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" language="javascript" class="init">
+  $(document).ready(function() {
+    //Conseguir Respuesta
+    var excercise_answer = "{{ result }}";
+    console.log(excercise_answer)
+    //Validaciones y todo procesamiento
+    {% include "gainspend/utilities/excercise_bisectriz_answer_script.html" %}
+  });
+</script>
+{% endblock content_center %}
