@@ -1,0 +1,26 @@
+body {
+
+}
+.dashboard_title {
+  margin-top: 10px;
+  height: 275px;
+  color: white;
+  margin-bottom: -4px;
+  position: relative;
+  text-align: center;
+  padding-top: 178px;
+}
+.rocket_background {
+  position: fixed;
+  top:60px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:  top;
+}
+.success_message_box {
+  margin-top: 25%;
+}

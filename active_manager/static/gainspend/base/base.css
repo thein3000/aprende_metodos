@@ -1,0 +1,98 @@
+.dark-purple {
+  background-color: #363442 !important;
+}
+.disabled_option {
+    cursor: default !important;
+}
+.base_header_logo {
+  padding: 20px;
+  font-size: x-large;
+}
+.card_margin {
+  margin: .5rem 0 1rem 0;
+}
+.preface_content {
+
+}
+.preface_title {
+  margin-top: 10px;
+  min-height: 70px;
+  color: white;
+  margin-bottom: -4px;
+  position: relative;
+  text-align: center;
+  padding-top: 10px;
+}
+.second_tag {
+  border-radius: 14px;
+  padding: 2px 8px 4px;
+}
+.start_excercise_box {
+  border-top: 1px solid black;
+}
+.number_answer {
+  font-size: 30px !important;
+  padding: 10px 0px !important;
+  margin-top: 12px !important;
+  cursor: pointer;
+}
+.excercise_content {
+  position: relative;
+}
+
+#excercise_cover{
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: #38373c;
+  z-index: 5;
+}
+#comenzar_problema {
+  margin: auto;
+  color: black;
+}
+#excercise_timer {
+  margin: auto;
+  color: #fbfbfb;
+  background-color: #363442;
+  display: block;
+  width: 156px;
+  text-align: center;
+  padding: 14px;
+  font-size: 20px;
+}
+.integral_table {
+  width: auto;
+  margin: auto;
+}
+.integral_table tr {
+  border: 0px;
+  width: auto;
+  margin: auto;
+}
+.integral_table .integral_structure {
+  position: relative;
+}
+.integral_table .integral_structure .integral_b {
+  display: block;
+  position: absolute;
+  top: 40px;
+  left: 46px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.integral_table .integral_structure .integral_symbol {
+  display: block;
+  font-weight: 100;
+  font-size: 98px;
+}
+.integral_table .integral_structure .integral_a {
+  display: block;
+  position: absolute;
+  top: -36px;
+  left: 45px;
+  font-size: 18px;
+  font-weight: bold;
+}
