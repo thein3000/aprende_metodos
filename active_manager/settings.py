@@ -25,7 +25,7 @@ SECRET_KEY = 'hzy18z#qd4e8zd3w$4+4dqnn2db-55*fq#-9mbtzdl8=!6%_wc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["peaceful-brook-20511.herokuapp.com"]
+ALLOWED_HOSTS = ["aprendemetodos.herokuapp.com"]
 
 
 # Application definition
