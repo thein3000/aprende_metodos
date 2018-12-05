@@ -8,4 +8,4 @@ def generate_matriz():
     x = np.random.randint(1,10, size=(valor,valor1))
     return x
 
-# print(generate_matriz())
+print(generate_matriz())
